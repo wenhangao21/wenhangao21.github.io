@@ -9,30 +9,15 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
-    <style>
-      /* Inline CSS for the content container with enforced styles */
-      .content-container {
-        margin-left: 15% !important;
-        margin-right: 15% !important;
-      }
-
-      /* Optional: Responsive design for smaller screens */
-      @media (max-width: 768px) {
-        .content-container {
-          margin-left: 5% !important;
-          margin-right: 5% !important;
-        }
-      }
-    </style>
   </head>
 
   <body>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
-
+	<div class="content-container" style="margin-left: 15%; margin-right: 15%;">
     {{ content }}
-
+	</div>
     <div class="page__footer">
       <footer>
         {% include footer/custom.html %}

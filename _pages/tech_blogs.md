@@ -1,6 +1,6 @@
 ---
-permalink: /services/
-title: "Services"
+permalink: /tech_blogs/
+title: "Technical Blogs"
 author_profile: false
 redirect_from: 
   - /md/

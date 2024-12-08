@@ -15,8 +15,6 @@ Journal/Conference Reviewer
 - International Conference on Learning Representations (ICLR), 2025
 - The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025
 
-<iframe src="https://wenhangao21.github.io/blogs/blogs.html" width="100%" height="600" style="border:none;"></iframe>
-
 
 
 

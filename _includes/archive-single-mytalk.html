@@ -1,0 +1,24 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<li>
+  <b>{{ title }}</b>, <i>{{ post.venue }}</i><br>
+  {% if post.video %}
+    <a href="{{ post.video }}" target="_blank" rel="noopener noreferrer">Video</a>
+  {% endif %}
+  {% if post.video and post.slides %}&nbsp;|&nbsp;{% endif %}
+  {% if post.slides %}
+    <a href="{{ post.slides }}" target="_blank" rel="noopener noreferrer">Slides</a>
+  {% endif %}
+</li>

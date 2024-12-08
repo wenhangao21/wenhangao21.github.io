@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: single
 title: "Technical Blogs"
 author_profile: false
 ---
-
-<div style="margin: 20px;">
 
 ## About Me
 Hi, I'm Wenhan Gao, a Ph.D. student in Applied Mathematics at Stony Brook University. I work on Neural Operators, AI for Science, and other exciting research areas.  

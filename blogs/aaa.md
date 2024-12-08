@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: default
 title: "Technical Blogs"
 author_profile: false
 ---

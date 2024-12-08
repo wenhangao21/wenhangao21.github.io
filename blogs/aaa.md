@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: blog
 title: "Technical Blogs"
 author_profile: false
 ---

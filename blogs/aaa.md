@@ -1,4 +1,9 @@
-# Welcome to My Website
+---
+layout: default
+title: My Custom Page
+---
+
+ Welcome to My Website
 
 ## About Me
 Hi, I'm Wenhan Gao, a Ph.D. student in Applied Mathematics at Stony Brook University. I work on Neural Operators, AI for Science, and other exciting research areas.  

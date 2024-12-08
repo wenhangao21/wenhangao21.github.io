@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>9_hierarchical_lvm_p1</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<!-- Include Syntax Highlighter -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!-- MUST INCLUDE TO PROPERLY ADD HEADER! -->
+<link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../tech_reports.css" />
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+	
+<body>
+
+    <!-- Use the custom HTML tag -->
+    <cell content="This is my first content."></cell>
+    <cell content="Here comes the second content."></cell>
+    <cell content="Another example of content."></cell>
+	
+    <script>
+        // Define a custom HTML element
+        class Cell extends HTMLElement {
+            connectedCallback() {
+                const content = this.getAttribute("content") || "[Default Content]";
+                this.innerHTML = `
+                    <div class="cell border-box-sizing text_cell rendered">
+                        <div class="prompt input_prompt"></div>
+                        <div class="inner_cell">
+                            <div class="text_cell_render border-box-sizing rendered_html">${content}</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Register the custom element
+        customElements.define("cell", Cell);
+    </script>
+	
+</body>
+</html>

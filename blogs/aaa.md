@@ -1,6 +1,7 @@
 ---
 layout: default
-title: My Custom Page
+title: "Technical Blogs"
+author_profile: false
 ---
 
  Welcome to My Website

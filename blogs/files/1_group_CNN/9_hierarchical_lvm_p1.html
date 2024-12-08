@@ -9,6 +9,11 @@
 
 
 
+<!-- Include Syntax Highlighter -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
 <!-- MUST INCLUDE TO PROPERLY ADD HEADER! -->
 <link rel="stylesheet" type="text/css" media="screen" href="../main.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../tech_reports.css" />
@@ -43,21 +48,24 @@
   
 </div>
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3>
 </div>
-</div>
-</div>
+
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The main goal of AI is to formulate and implement systems that can interact with an environment, process, store and transmit information. In other words, we wish an AI system <em>understands</em> the world around it by identifying and disentangling hidden factors in the observed low-sensory data (Bengio et al., 2013). If we think about the problem of building such a system, we can formulate it as learning a probabilistic model, i.e., a joint distribution over observed data, $\mathbf{x}$, and hidden factors, $\mathbf{z}$, namely, $p(\mathbf{x}, \mathbf{z})$. Then learning a <em>useful representation</em> is equivalent to finding a posterior distribution over the hidden factors, $p(\mathbf{z}|\mathbf{x})$. However, it is rather unclear what we really mean by <em>useful</em> in this context. In a beautiful blog post (Huszar, 2017), Ferenc Huszar outlines why learning a latent variable model by maximizing the likelihood function is not necessarily useful from the representation learning perspective. Here, we will use it as a good starting point for a discussion of why applying hierarchical latent variable models could be beneficial.</p>
+<p>The main goal of AI is to formulate and implement systems that can interact with an environment, process, store and transmit information. 
+In other words, we wish an AI system <em>understands</em> the world around it by identifying and disentangling hidden factors in the observed low-sensory data (Bengio et al., 2013). 
+If we think about the problem of building such a system, we can formulate it as learning a probabilistic model, i.e., a joint distribution over observed data, $\mathbf{x}$, and hidden factors, $\mathbf{z}$, namely, $p(\mathbf{x}, \mathbf{z})$. 
+Then learning a <em>useful representation</em> is equivalent to finding a posterior distribution over the hidden factors, $p(\mathbf{z}|\mathbf{x})$. 
+However, it is rather unclear what we really mean by <em>useful</em> in this context. In a beautiful blog post (Huszar, 2017), Ferenc Huszar outlines why learning a latent variable model by maximizing the likelihood function is not necessarily useful from the representation learning perspective. 
+Here, we will use it as a good starting point for a discussion of why applying hierarchical latent variable models could be beneficial.</p>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -249,151 +257,17 @@ $$<p>Eventually, we implicitly force a close connection between the variational 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt"></div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">HierarchicalVAE</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nn_r_1</span><span class="p">,</span> <span class="n">nn_r_2</span><span class="p">,</span> <span class="n">nn_delta_1</span><span class="p">,</span> <span class="n">nn_delta_2</span><span class="p">,</span> <span class="n">nn_z_1</span><span class="p">,</span> <span class="n">nn_x</span><span class="p">,</span> <span class="n">num_vals</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">likelihood_type</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">HierarchicalVAE</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<!-- # Code Block -->
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<pre><code class="language-python"># Simple Python function
+def greet(name):
+    print(f"Hello, {name}!")
 
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hierachical VAE by JT.&#39;</span><span class="p">)</span>
-        
-        <span class="c1"># bottom-up path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn_r_1</span> <span class="o">=</span> <span class="n">nn_r_1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn_r_2</span> <span class="o">=</span> <span class="n">nn_r_2</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn_delta_1</span> <span class="o">=</span> <span class="n">nn_delta_1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn_delta_2</span> <span class="o">=</span> <span class="n">nn_delta_2</span>
-        
-        <span class="c1"># top-down path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn_z_1</span> <span class="o">=</span> <span class="n">nn_z_1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn_x</span> <span class="o">=</span> <span class="n">nn_x</span>
-
-        
-        <span class="c1"># other params</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span> <span class="c1"># dim of inputs</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L</span> <span class="c1"># dim of the second latent layer</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span> <span class="o">=</span> <span class="n">num_vals</span> <span class="c1"># num of values per pixel</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">=</span> <span class="n">likelihood_type</span> <span class="c1"># the conditional likelihood type (categorical/bernoulli)</span>
-    
-    <span class="c1"># If you don&#39;t remember the reparameterization trick, please go back to the post on VAEs.</span>
-    <span class="k">def</span> <span class="nf">reparameterization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">log_var</span><span class="p">):</span>
-        <span class="n">std</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">log_var</span><span class="p">)</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">eps</span>
-        
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;avg&#39;</span><span class="p">):</span>
-        <span class="c1">#=====</span>
-        <span class="c1"># First, we need to calculate the bottom-up deterministic path.</span>
-        <span class="c1"># Here we use a small trick to keep the delta of variance constained, namely, we applpy the hard-tanh nonlinearity.</span>
-        
-        <span class="c1"># bottom-up</span>
-        <span class="c1"># step 1</span>
-        <span class="n">r_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_r_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">r_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_r_2</span><span class="p">(</span><span class="n">r_1</span><span class="p">)</span>
-        
-        <span class="c1">#step 2</span>
-        <span class="n">delta_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_delta_1</span><span class="p">(</span><span class="n">r_1</span><span class="p">)</span>
-        <span class="n">delta_mu_1</span><span class="p">,</span> <span class="n">delta_log_var_1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">delta_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">delta_log_var_1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">hardtanh</span><span class="p">(</span><span class="n">delta_log_var_1</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
-        
-        <span class="c1"># step 3</span>
-        <span class="n">delta_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_delta_2</span><span class="p">(</span><span class="n">r_2</span><span class="p">)</span>
-        <span class="n">delta_mu_2</span><span class="p">,</span> <span class="n">delta_log_var_2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">delta_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">delta_log_var_2</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">hardtanh</span><span class="p">(</span><span class="n">delta_log_var_2</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
-        
-        <span class="c1"># Next, we can do the top-down path.</span>
-        
-        <span class="c1"># top-down</span>
-        <span class="c1"># step 4</span>
-        <span class="n">z_2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reparameterization</span><span class="p">(</span><span class="n">delta_mu_2</span><span class="p">,</span> <span class="n">delta_log_var_2</span><span class="p">)</span>
-        
-        <span class="c1"># step 5</span>
-        <span class="n">h_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_z_1</span><span class="p">(</span><span class="n">z_2</span><span class="p">)</span>
-        <span class="n">mu_1</span><span class="p">,</span> <span class="n">log_var_1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">h_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        
-        <span class="c1"># step 6</span>
-        <span class="n">z_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reparameterization</span><span class="p">(</span><span class="n">mu_1</span> <span class="o">+</span> <span class="n">delta_mu_1</span><span class="p">,</span> <span class="n">log_var_1</span> <span class="o">+</span> <span class="n">delta_log_var_1</span><span class="p">)</span>
-        
-        <span class="c1"># step 7</span>
-        <span class="n">h_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_x</span><span class="p">(</span><span class="n">z_1</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">==</span> <span class="s1">&#39;categorical&#39;</span><span class="p">:</span>
-            <span class="n">b</span> <span class="o">=</span> <span class="n">h_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="n">h_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span>
-            <span class="n">h_d</span> <span class="o">=</span> <span class="n">h_d</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span><span class="p">)</span>
-            <span class="n">mu_d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">h_d</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">==</span> <span class="s1">&#39;bernoulli&#39;</span><span class="p">:</span>
-            <span class="n">mu_d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">h_d</span><span class="p">)</span>
-        
-        <span class="c1">#=====ELBO</span>
-        <span class="c1"># RE</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">==</span> <span class="s1">&#39;categorical&#39;</span><span class="p">:</span>
-            <span class="n">RE</span> <span class="o">=</span> <span class="n">log_categorical</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu_d</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">==</span> <span class="s1">&#39;bernoulli&#39;</span><span class="p">:</span>
-            <span class="n">RE</span> <span class="o">=</span> <span class="n">log_bernoulli</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu_d</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        
-        <span class="c1"># KL</span>
-        <span class="c1"># For the Kullback-Leibler part, we need calculate two divergences:</span>
-        <span class="c1"># 1) KL[q(z_2|z) || p(z_2)] where p(z_2) = N(0,1)</span>
-        <span class="c1"># 2) KL[q(z_1|z_2, x) || p(z_1|z_2)]</span>
-        <span class="c1"># Note: We use the analytical of the KL between two Gaussians here. If you use a different distribution,</span>
-        <span class="c1"># please pay attention! You would need to use a different expression here.</span>
-        <span class="n">KL_z_2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">delta_mu_2</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">delta_log_var_2</span><span class="p">)</span> <span class="o">-</span> <span class="n">delta_log_var_2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">KL_z_1</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">delta_mu_1</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_var_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">delta_log_var_1</span><span class="p">)</span> <span class="o">-</span>\
-                        <span class="n">delta_log_var_1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        
-        <span class="n">KL</span> <span class="o">=</span> <span class="n">KL_z_1</span> <span class="o">+</span> <span class="n">KL_z_2</span>
-        
-        <span class="c1"># Final ELBO</span>
-        <span class="k">if</span> <span class="n">reduction</span> <span class="o">==</span> <span class="s1">&#39;sum&#39;</span><span class="p">:</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">RE</span> <span class="o">-</span> <span class="n">KL</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">RE</span> <span class="o">-</span> <span class="n">KL</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        
-        <span class="k">return</span> <span class="n">loss</span>
-    
-    <span class="c1"># Sampling is the top-down path but without calculating delta mean and delta variance.</span>
-    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">):</span>
-        <span class="c1"># step 1</span>
-        <span class="n">z_2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">)</span>
-        <span class="c1"># step 2</span>
-        <span class="n">h_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_z_1</span><span class="p">(</span><span class="n">z_2</span><span class="p">)</span>
-        <span class="n">mu_1</span><span class="p">,</span> <span class="n">log_var_1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">h_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># step 3</span>
-        <span class="n">z_1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reparameterization</span><span class="p">(</span><span class="n">mu_1</span><span class="p">,</span> <span class="n">log_var_1</span><span class="p">)</span>
-        
-        <span class="c1"># step 4</span>
-        <span class="n">h_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn_x</span><span class="p">(</span><span class="n">z_1</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">==</span> <span class="s1">&#39;categorical&#39;</span><span class="p">:</span>
-            <span class="n">b</span> <span class="o">=</span> <span class="n">batch_size</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="n">h_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span>
-            <span class="n">h_d</span> <span class="o">=</span> <span class="n">h_d</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span><span class="p">)</span>
-            <span class="n">mu_d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">h_d</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="c1"># step 5</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">mu_d</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_vals</span><span class="p">)</span>
-            <span class="n">x_new</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_type</span> <span class="o">==</span> <span class="s1">&#39;bernoulli&#39;</span><span class="p">:</span>
-            <span class="n">mu_d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">h_d</span><span class="p">)</span>
-            <span class="c1"># step 5</span>
-            <span class="n">x_new</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bernoulli</span><span class="p">(</span><span class="n">mu_d</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x_new</span>
-</pre></div>
-
-    </div>
+greet("World")</code></pre>
 </div>
 </div>
-
-</div>
+<!-- # End Code Block -->
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">

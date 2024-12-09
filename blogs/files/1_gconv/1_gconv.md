@@ -50,4 +50,23 @@ To learn symmetry, a common approach is to do data-augmentation: Feed augmented 
 <span style="color: green;">Solution:</span>
 - Building symmetries into the model by design! 
 
+## Mathematical Preliminary
+### Definition: Group
+A **group** $(G, \cdot)$ is a set of elements $G$ equipped with a group product $\cdot$, a binary operator, that satisfies the following four axioms:
+- Closure: Given two elements $g$ and $h$ of $G$, the product $g \cdot h$ is also in $G$.
+- Associativity: For $g, h, i \in G$ the product $\cdot$ is associative, i.e., $g \cdot(h \cdot i)=(g \cdot h) \cdot i$.
+- Identity element: There exists an identity element $e \in G$ such that $e \cdot g=g \cdot e=g$ for any $g \in G$.
+- Inverse element: For each $g \in G$ there exists an inverse element $g^{-1} \in G$ s.t. $g^{-1} \cdot g=g \cdot g^{-1}=e$.
+
+**Example:**
+
+The translation group consists of all possible translations in $\mathbb{R}^2$ and is equipped with the group product and group inverse:
+
+$$
+\begin{aligned}
+g \cdot g^{\prime} & =\left(t+t^{\prime}\right), \quad t, t^{\prime} \in \mathbb{R}^2 \\
+g^{-1} & =(-t),
+\end{aligned}
+$$
+with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
 

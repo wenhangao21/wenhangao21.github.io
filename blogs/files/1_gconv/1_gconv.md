@@ -85,13 +85,13 @@ $$
 
 - $f \in \mathbb{L}_2\left(\mathbb{R}\right)$: A function defined on a line.
 - $G=\mathbb{R}$: The 1D translation group.
-- $[\mathscr{L}_{g = t}f]]~(x)=f\left(t^{-1}_θ \odot x\right) = f(x - t)$: A translation of the function.
+- $[\mathscr{L}_{g = t}f]~(x)=f\left(t^{-1}_θ \odot x\right) = f(x - t)$: A translation of the function.
 
 <span style="color: gray;">Example II:</span>
 
 - $f \in \mathbb{L}_2\left(\mathbb{R}^2\right)$: A 2D image.
 - $G=S E(2)$: The 2D roto-translation group.
-- $[\mathscr{L}_{g = (t, \theta)}f]]~(x)=f\left(\mathbb{R}^{-1} (x-t)\right)$: A roto-translation of the image.
+- $[\mathscr{L}_{g = (t, \theta)}f]~(x)=f\left(\mathbb{R}^{-1}_θ (x-t)\right)$: A roto-translation of the image.
 
 <span style="color: gray;">Remark: Now we have group stucture on different objects</span>
 

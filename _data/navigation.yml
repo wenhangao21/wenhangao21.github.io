@@ -32,3 +32,6 @@ main:
     
   - title: "Services"
     url: /services/
+    
+  - title: "Technical Blogs"
+    url: /tech_blogs/

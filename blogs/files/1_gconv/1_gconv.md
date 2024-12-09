@@ -98,3 +98,42 @@ $$
 1. Group Product (acting on $G$ it self): $g\cdot g'$
 2. Left Regular Representation (acting on a vector spaces): $\mathscr{L}_gf$
 3. Group Actions (acting on $\mathbb{R}^d$): $g \odot x$
+
+### 2.3 Definition: Equivariance and Invariance
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Equivariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it commutes with the group action:
+$$
+\Phi \circ \rho^X(g)=\rho^Y(g) \circ \Phi,
+$$
+
+**Invariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it remains unchanged after the group action:
+
+$$
+\Phi \circ \rho^X(g)=\Phi,
+$$
+
+- $\rho^X(g)$: group representation action on $X$
+- $\rho^Y(g)$: group representation action on $Y$
+- Invariance is a special case of equivariance when $\rho^Y(g)$ is the identity.
+
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/invariance_and_equvariance.png" style="width: 50%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">Figure 4: Invariant task in the left as the classification label remains unchanged after translating the cat. Equivariant task in the right as the localization operator commutes with translation.</figcaption>
+  
+## 3. CNNs and Translation Equivariance
+
+### 3.1 Convolution and Cross-Correlation
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Definition (Convolution):**
+
+> The convolution of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
+$$
+(k * f)(x):=\int_{\mathbb{R}^d} k(x-x')f(x') d x' .
+$$
+
+> An equivalent definition is (commutativity):
+$$
+(k * f)(x):=\int_{\mathbb{R}^d} k(x')f(x-x') d x' .
+$$
+

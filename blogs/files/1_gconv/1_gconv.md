@@ -206,7 +206,7 @@ $$
 Let's look at the definition of cross-correlation:
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 80%; display: block; margin: 0 auto;" />
 </figure>
 
 Here, we explicityly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ to be represented by a group. Group representations on $k$ is reflected on $f$ as well.
@@ -223,18 +223,21 @@ To generalize to other groups, we should consider the followings:
 
 The lifting correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:
 
+<!-- 
 $$
 (k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
 $$
+-->
 
 <figure style="text-align: center;">
-  <img alt="Group Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 80%; display: block; margin: 0 auto;" />
 </figure>
 
 <figure style="text-align: center;">
-  <img alt="Group Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 50%; display: block; margin: 0 auto;" />
 </figure>
-
+  <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect rotation angles.</figcaption>
+  
 Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
 
 ### 4.2 

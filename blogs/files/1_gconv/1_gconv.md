@@ -25,3 +25,18 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 
 ### Learning Symmetries
 To learn symmetry, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
+
+<figure style="text-align: center;">
+  <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <figcaption style="margin-top: 10px;">Figure 2: Data augmentaton to learn symmetries.</figcaption>
+</figure>
+
+<span style="color: red;">Issues:</span>
+- <span style="color: red;">No guarantee</span> of having symmetries in the model
+- <span style="color: red;">Wasting valuable net capacity</span> on learning symmetries from data
+- <span style="color: red;">Redundancy</span> in learned feature representation
+
+<span style="color: green;">Solution:</span>
+- Building symmetries into the model by design! 
+
+

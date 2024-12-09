@@ -235,12 +235,12 @@ $$
 Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
 
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect rotation angles.</figcaption>
+  <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect the rotation angles.</figcaption>
   
 
-### 4.2 Demonstration: Lifting Correlation to the $p_4$ Rotation Group
+### 4.2 Demonstration: Lifting Correlation with the $p_4$ Rotation Group
 
 The $p_4$ group can be described as a semi-direct product:
 
@@ -253,7 +253,8 @@ where:
 - $\mathbb{Z}^2$ : The group of translations in the plane (not $\mathbb{R}^2$ because images are discrete).
 
 
-The lifting operation will convolve the input with the kernels rotated by $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, respectively. The result contains $4$ feature maps that correspond to these angles.
+The lifting operation will simply convolve the input with the kernels rotated by $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, respectively. The result contains $4$ feature maps that correspond to these angles.
+
 ```python
 def lift_correlation(image, kernel):
     """
@@ -273,4 +274,9 @@ def lift_correlation(image, kernel):
         results.append(result)
     return np.array(results)
 ```
+<figure style="text-align: center;">
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 50%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">Figure 6: Lifting operation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension. </figcaption>
+
 

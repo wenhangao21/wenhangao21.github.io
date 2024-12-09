@@ -28,8 +28,8 @@ To learn symmetry, a common approach is to do data-augmentation: Feed augmented 
 
 <figure style="text-align: center;">
   <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 50%; display: block; margin: 0 auto;" />
-  <figcaption style="margin-top: 10px;">Figure 2: Data augmentaton to learn symmetries.</figcaption>
 </figure>
+  <figcaption style="text-align: center;">Figure 2: Data augmentaton to learn symmetries.</figcaption>
 
 <span style="color: red;">Issues:</span>
 - <span style="color: red;">No guarantee</span> of having symmetries in the model
@@ -57,6 +57,7 @@ g \cdot g^{\prime} & =\left(t+t^{\prime}\right), \quad t, t^{\prime} \in \mathbb
 g^{-1} & =(-t),
 \end{aligned}
 $$
+
 with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
 
 ### Definition: Representation and Left-regular Representation

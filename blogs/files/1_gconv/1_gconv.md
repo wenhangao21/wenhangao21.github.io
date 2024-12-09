@@ -192,7 +192,7 @@ $$
 (k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
 $$
 
-<span style="color: red;">Intuition: :</span> 
+<span style="color: red;">Intuition: </span> 
 - **$f(x'+x)$ represents a translated version of $f(x)$.** We have created many translated version of $f(x)$ while creating the feature map. If we need to compute the cross-correlation for a transformed $f$, we can just go and look up the relevant outputs, because we have already computed them. Equivalently, $k(x'-x)$ represents a translated version of $k(x)$.
 - In CNN, we translate the kernel across the image to "scan" the image.
 
@@ -201,7 +201,7 @@ $$
 </figure>
   <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input.</figcaption>
   
- ### 3.4 Generalization
+### 3.4 Generalization
  
 Let's look at the definition of cross-correlation:
 
@@ -216,3 +216,15 @@ To generalize to other groups, we should consider the followings:
 - Make the function defined on the group of interest.
 - Integrate over the group of interest.
 - Make the kernel reflect the actions of the group of interest.
+
+## 4. Regular Group CNN and SE(2) Equivariance
+
+### 4.1 Definition: $SE(2)$ Lifting Correlation
+
+The lifting correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:
+
+$$
+(k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
+$$
+
+Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.

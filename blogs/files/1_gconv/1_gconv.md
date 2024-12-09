@@ -61,7 +61,7 @@ g^{-1} & =(-t),
 $$
 <!-- Line breaker -->
 with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
-<!-- Line breaker -->
+
 ### Definition: Representation and Left-regular Representation
 A **representation** $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
 <!-- Line breaker -->

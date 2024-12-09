@@ -7,9 +7,9 @@ author_profile: false
 
 # Group Convolution Neural Networks
 <!-- Line breaker -->
-## Introduction
+## 1. Introduction
 <!-- Line breaker -->
-### Why Symmetries
+### 1.1 Why Symmetries
 <!-- Line breaker -->
 Group equivariance in ML models is about enforcing symmetries in the architectures.
 - Many learning tasks, oftentimes, have symmetries under some set of transformations acting on the data.
@@ -24,7 +24,7 @@ Group equivariance in ML models is about enforcing symmetries in the architectur
 <!-- Line breaker -->
 FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (1957) for discoveries about symmetries, and his B.S. thesis is “Group Theory and Molecular Spectra”.
 <!-- Line breaker -->
-### Learning Symmetries
+### 1.2 Learning Symmetries
 <!-- Line breaker -->
 To learn symmetry, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
 <!-- Line breaker -->
@@ -41,8 +41,8 @@ To learn symmetry, a common approach is to do data-augmentation: Feed augmented 
 <span style="color: green;">Solution:</span>
 - Building symmetries into the model by design! 
 
-## Mathematical Preliminary
-### Definition: Group
+## 2. Mathematical Preliminary
+### 2.1 Definition: Group
 A **group** $(G, \cdot)$ is a set of elements $G$ equipped with a group product $\cdot$, a binary operator, that satisfies the following four axioms:
 - Closure: Given two elements $g$ and $h$ of $G$, the product $g \cdot h$ is also in $G$.
 - Associativity: For $g, h, i \in G$ the product $\cdot$ is associative, i.e., $g \cdot(h \cdot i)=(g \cdot h) \cdot i$.
@@ -62,7 +62,7 @@ $$
 <!-- Line breaker -->
 with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
 
-### Definition: Representation and Left-regular Representation
+### 2.2 Definition: Representation and Left-regular Representation
 A **representation** $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
 <!-- Line breaker -->
 $$

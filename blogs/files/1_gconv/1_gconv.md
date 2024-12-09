@@ -255,7 +255,7 @@ where:
 
 The lifting operation will simply convolve the input with the kernels rotated by $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, respectively. The result contains $4$ feature maps that correspond to these angles.
 
-```python {.large-code}
+```python
 def lift_correlation(image, kernel):
     """
     Apply lifting correlation/convolution on an image.

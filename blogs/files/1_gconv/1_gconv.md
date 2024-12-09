@@ -26,7 +26,7 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 
 ### 1.2 Learning Symmetries
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetry, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
 
 <figure style="text-align: center;">
   <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 50%; display: block; margin: 0 auto;" />
@@ -85,13 +85,13 @@ $$
 
 - $f \in \mathbb{L}_2\left(\mathbb{R}\right)$: A function defined on a line.
 - $G=\mathbb{R}$: The 1D translation group.
-- $\\[\mathscr{L}_{g = t}f\\](x)=f\left(t^{-1} \odot x\right) = f(x - t)$: A translation of the function.
+- $[\mathscr{L}_{g = t}f](x)=f\left(t^{-1} \odot x\right) = f(x - t)$: A translation of the function.
 
 <span style="color: gray;">Example II:</span>
 
 - $f \in \mathbb{L}_2\left(\mathbb{R}^2\right)$: A 2D image.
 - $G=S E(2)$: The 2D roto-translation group.
-- $\\[\mathscr{L}_{g = (t, \theta)}f\\](\mathbf{x})=f\left(\mathbf{R}_\theta^{-1}(x-t)\right)$: A roto-translation of the image.
+- $[\mathscr{L}_{g = (t, \theta)}f](\mathbf{x})=f\left(\mathbf{R}_\theta^{-1}(x-t)\right)$: A roto-translation of the image.
 
 <span style="color: gray;">Remark: Now we have group stucture on different objects</span>
 

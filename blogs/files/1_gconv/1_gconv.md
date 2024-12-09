@@ -13,4 +13,4 @@ Group equivariance in ML models is about enforcing symmetries in the architectur
 - More importantly, the nature itself is about symmetries.
 	- Similar symmetries appear in physical systems, molecular structures, and many other scientific data.
 	
-<img align="right" alt="png" width="80%" src="./symmetry.png"/>
+<img align="right" alt="png" width="80%" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/symmetry.png"/>

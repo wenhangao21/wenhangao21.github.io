@@ -253,4 +253,24 @@ where:
 - $\mathbb{Z}^2$ : The group of translations in the plane (not $\mathbb{R}^2$ because images are discrete).
 
 
+The lifting operation will convolve the input with the kernels rotated by $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, respectively. The result contains $4$ feature maps that correspond to these angles.
+```python
+def lift_correlation(image, kernel):
+    """
+    Apply lifting correlation/convolution on an image.
+
+    Parameters:
+    - image (numpy.ndarray): The input image as a 2D array, size (s,s)
+    - conv_kernel (numpy.ndarray): The convolution kernel as a 2D array.
+
+    Returns:
+    - numpy.ndarray: Resulting feature maps after lifting correlation, size (|G|,s,s)
+    """
+    results = []
+    for i in range(4):  # apply rotations to the kernel and convolve with the input
+        rotated_kernel = np.rot90(conv_kernel, i)
+        result = convolve2d(image, rotated_kernel, mode='same', boundary='symm')
+        results.append(result)
+    return np.array(results)
+```
 

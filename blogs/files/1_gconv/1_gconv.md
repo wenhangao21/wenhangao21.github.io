@@ -206,7 +206,7 @@ $$
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's look at the definition of cross-correlation:
 
 <figure style="text-align: center;">
-  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 80%; display: block; margin: 0 auto;" />
+  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
 
 Here, we explicityly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ to be represented by a group. Group representations on $k$ is reflected on $f$ as well.
@@ -229,15 +229,16 @@ $$
 $$
 -->
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 80%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
 
+Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
+
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect rotation angles.</figcaption>
   
-Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
 
 ### 4.2 Demonstration: Lifting Correlation to the $p_4$ Rotation Group
 

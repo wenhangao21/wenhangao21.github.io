@@ -64,13 +64,37 @@ with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
 
 ### 2.2 Definition: Representation and Left-regular Representation
 A **representation** $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
-<!-- Line breaker -->
+
 $$
-\rho\left(g^{\prime}\right) \circ \rho(g)[\mathbf{v}]=\rho\left(g^{\prime} \cdot g\right)[\mathbf{v}]
+\rho\left(g^{\prime}\right) \circ \rho(g)[\mathbf{v}]=\rho\left(g^{\prime} \cdot g\right)[\mathbf{v}].
 $$
-<!-- Line breaker -->
+
 **This essentially means that we can transfer group structure to other types of objects now, such as vectors or images.**
-<!-- Line breaker -->
+
 Note: 
 - A **homomorphism** is a structure-preserving map between two algebraic structures of the same type (such as two groups, two rings, or two vector spaces). 
 - A **general linear group** is the group of all invertible $d_V \times d_V$ matrices.
+
+A **left-regular representation** $\mathscr{L}_g$ is a representation that transforms functions $f$ by transforming their domains via the inverse group action
+
+$$
+\mathscr{L}_g[f](x):=f\left(g^{-1} \cdot x\right).
+$$
+
+<span style="color: gray;">Example I:</span>
+
+- $f \in \mathbb{L}_2\left(\mathbb{R}\right)$: A function defined on a line.
+- $G=\mathbb{R}$: The 1D translation group.
+- $[\mathscr{L}_{g = t}f](x)=f\left(t^{-1} \odot x\right) = f(x - t)$: A translation of the function.
+
+<span style="color: gray;">Example II:</span>
+
+- $f \in \mathbb{L}_2\left(\mathbb{R}^2\right)$: A 2D image.
+- $G=S E(2)$: The 2D roto-translation group.
+- $[\mathscr{L}_{g = (t, \theta)}f](\mathbf{x})=f\left(\mathbf{R}_\theta^{-1}(x-t)\right)$: A roto-translation of the image.
+
+<span style="color: gray;">Remark: Now we have group stucture on different objects</span>
+
+1. Group Product (acting on $G$ it self): $g\cdot g'$
+2. Left Regular Representation (acting on a vector spaces): $\mathscr{L}_gf$
+3. Group Actions (acting on $\mathbb{R}^d$): $g \odot x$

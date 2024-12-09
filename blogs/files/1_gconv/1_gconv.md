@@ -91,7 +91,7 @@ $$
 
 - $f \in \mathbb{L}_2\left(\mathbb{R}^2\right)$: A 2D image.
 - $G=S E(2)$: The 2D roto-translation group.
-- $\mathscr{L}_{g = (t, \theta)}f(x)=f\left(\mathbb{R}_{g = (t, \theta)}^{-1} (x-t)\right)$: A roto-translation of the image.
+- $\mathscr{L}_{g = (t, \theta)}f(x)=f\left(R_\theta^{-1} (x-t)\right)$: A roto-translation of the image.
 
 <span style="color: gray;">Remark: Now we have group stucture on different objects</span>
 

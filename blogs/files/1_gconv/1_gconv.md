@@ -125,15 +125,94 @@ $$
 
 ### 3.1 Convolution and Cross-Correlation
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Definition (Convolution):**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **convolution** of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
 
-> The convolution of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
 $$
 (k * f)(x):=\int_{\mathbb{R}^d} k(x-x')f(x') d x' .
 $$
 
 > An equivalent definition is (commutativity):
+
 $$
 (k * f)(x):=\int_{\mathbb{R}^d} k(x')f(x-x') d x' .
 $$
 
+
+The **corss-correlation** of $f$ and $g$ is written $f \star g$, denoting the operator with the symbol $\star$. It is defined as the integral of the product of the two functions after one is shifted. As such, it is a particular kind of integral transform:
+$$
+(k \star f)(x):=\int_{\mathbb{R}^d} k(x'-x)f(x') d x' .
+$$
+> An equivalent definition is (not commutativity in this case):
+$$
+(k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
+$$
+
+Note: Neural networks perform the same whether use convolution or correlation because the learned filters enable adaptability. The filters are learned and if a CNN can learn a task using convolution operation, it can also learn the same task using correlation operation (It would learn the rotated version of each filter).
+
+### 3.2 Translation Equivariance
+
+Convolution and Cross-Correlation are translation equivariant, so are their discrete counterparts.
+
+<span style="color: gray;">Proof:</span>
+
+1. Translate $f$ by $t$ first, then apply the convolution:
+
+$$
+(k \star \mathscr{L}_tf)(x)=\int_{\mathbb{R}^d} k(x'-x)[t^{-1} \odot f(x')] d x' = \int_{\mathbb{R}^d} k(x'-x)f(x'-t) d x'.
+$$
+
+2. Apply convolution first, and then translate by $t$:
+
+$$
+\begin{aligned}
+\mathscr{L}_t(k \star f)(x) &= \mathscr{L}_t \left( \int_{\mathbb{R}^d} k(x' - x) f(x') \, dx' \right) \\
+&= \int_{\mathbb{R}^d} k(x' - (x - t)) f(x') \, dx' \\
+&= \int_{\mathbb{R}^d} k(x' - x + t) f(x') \, dx' \\
+&= \int_{\mathbb{R}^d} k(x' - x) f(x' - t) \, dx'.
+\end{aligned}
+$$
+
+In the last equality, we just replace $x'$ by $x' -t$. Note that this operation is valid because this substitution is a bijection $\mathbb{R}^d \rightarrow \mathbb{R}^d$ and we integrate over the entire $\mathbb{R}^d$.
+
+By similar arguments, we can prove translation equivariance for convolution and the discrete versions.
+
+### 3.3 Intuition on Translation Equivariance
+
+Mathematically, it is easy to prove translation equivariance. However, let's look at the definiton of cross-correlation again to gain some intution about how to achieve equivariance.
+
+Cross-Correlation:
+
+$$
+(k \star f)(x):=\int_{\mathbb{R}^d} k(x'-x)f(x') d x' .
+$$
+
+Replace $x'$ by $x'+x$:
+
+$$
+(k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
+$$
+
+<span style="color: red;">Intuition: :</span> 
+- **$f(x'+x)$ represents a translated version of $f(x)$.** We have created many translated version of $f(x)$ while creating the feature map. If we need to compute the cross-correlation for a transformed $f$, we can just go and look up the relevant outputs, because we have already computed them. Equivalently, $k(x'-x)$ represents a translated version of $k(x)$.
+- In CNN, we translate the kernel across the image to "scan" the image.
+
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 30%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input.</figcaption>
+  
+ ### 3.4 Generalization
+ 
+Let's look at the definition of cross-correlation:
+
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 50%; display: block; margin: 0 auto;" />
+</figure>
+
+Here, we explicityly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ to be represented by a group. Group representations on $k$ is reflected on $f$ as well.
+
+To generalize to other groups, we should consider the followings:
+
+- Make the function defined on the group of interest.
+- Integrate over the group of interest.
+- Make the kernel reflect the actions of the group of interest.

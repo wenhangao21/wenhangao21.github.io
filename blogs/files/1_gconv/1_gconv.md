@@ -197,7 +197,7 @@ $$
 - In CNN, we translate the kernel across the image to "scan" the image.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 30%; display: block; margin: 0 auto;" />
+  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 30%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input.</figcaption>
   
@@ -227,4 +227,16 @@ $$
 (k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
 $$
 
+<figure style="text-align: center;">
+  <img alt="Group Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 50%; display: block; margin: 0 auto;" />
+</figure>
+
+<figure style="text-align: center;">
+  <img alt="Group Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 50%; display: block; margin: 0 auto;" />
+</figure>
+
 Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
+
+### 4.2 
+
+

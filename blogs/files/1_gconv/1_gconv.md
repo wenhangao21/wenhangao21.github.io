@@ -151,7 +151,7 @@ Note: Neural networks perform the same whether use convolution or correlation be
 
 ### 3.2 Translation Equivariance
 
-Convolution and Cross-Correlation are translation equivariant, so are their discrete counterparts.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Convolution and Cross-Correlation are translation equivariant, so are their discrete counterparts.
 
 <span style="color: gray;">Proof:</span>
 
@@ -178,7 +178,7 @@ By similar arguments, we can prove translation equivariance for convolution and 
 
 ### 3.3 Intuition on Translation Equivariance
 
-Mathematically, it is easy to prove translation equivariance. However, let's look at the definiton of cross-correlation again to gain some intution about how to achieve equivariance.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mathematically, it is easy to prove translation equivariance. However, let's look at the definiton of cross-correlation again to gain some intution about how to achieve equivariance.
 
 Cross-Correlation:
 
@@ -203,7 +203,7 @@ $$
   
 ### 3.4 Generalization
  
-Let's look at the definition of cross-correlation:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's look at the definition of cross-correlation:
 
 <figure style="text-align: center;">
   <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 80%; display: block; margin: 0 auto;" />
@@ -217,11 +217,11 @@ To generalize to other groups, we should consider the followings:
 - Integrate over the group of interest.
 - Make the kernel reflect the actions of the group of interest.
 
-## 4. Regular Group CNN and SE(2) Equivariance
+## 4. Regular Group CNN and $SE(2)$ Equivariance
 
 ### 4.1 Definition: $SE(2)$ Lifting Correlation
 
-The lifting correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:
 
 <!-- 
 $$
@@ -239,6 +239,17 @@ $$
   
 Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
 
-### 4.2 
+### 4.2 Demonstration: Lifting Correlation to the $p_4$ Rotation Group
+
+The $p_4$ group can be described as a semi-direct product:
+
+$$
+P_4=C_4 \ltimes \mathbb{Z}^2,
+$$
+
+where:
+- $C_4$ : The cyclic group of order 4 representing the rotational symmetries.
+- $\mathbb{Z}^2$ : The group of translations in the plane (not $\mathbb{R}^2$ because images are discrete).
+
 
 

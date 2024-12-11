@@ -119,7 +119,7 @@ $$
 <figure style="text-align: center;">
   <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/invariance_and_equvariance.png" style="width: 50%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 4: Invariant task in the left as the classification label remains unchanged after translating the cat. Equivariant task in the right as the localization operator commutes with translation.</figcaption>
+  <figcaption style="text-align: center;">Figure 4: Invariant task in the left as the classification label remains unchanged after translating the cat. Equivariant task in the right as the localization operator commutes with translation. Figure Source: [1]. </figcaption>
   
 ## 3. CNNs and Translation Equivariance
 
@@ -199,7 +199,7 @@ $$
 <figure style="text-align: center;">
   <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 30%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input.</figcaption>
+  <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input. Figure Source: [2].</figcaption>
   
 ### 3.4 Generalization
  
@@ -281,3 +281,8 @@ def lift_correlation(image, kernel):
   <figcaption style="text-align: center;">Figure 6: Lifting correlation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension (this specifies the equivariance of the lifting correlation). </figcaption>
 
 
+### References
+
+[1] Imperial's Deep learning course: Equivariance and Invariance, Youtube, Bernhard Kainz
+
+[2] From Convolution to Neural Network by Gregory Gundersen: https://gregorygundersen.com/blog/2017/02/24/cnns/

@@ -275,7 +275,7 @@ def lift_correlation(image, kernel):
 ```
 
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 80%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 6: Lifting correlation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension (this specifies the equivariance of the lifting correlation). </figcaption>
 

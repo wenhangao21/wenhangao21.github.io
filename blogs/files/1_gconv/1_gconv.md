@@ -17,7 +17,7 @@ author_profile: false
 	- Similar symmetries appear in physical systems, molecular structures, and many other scientific data.
 
 <figure style="text-align: center;">
-  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/symmetry.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/symmetry.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 1: Symmetries in ML tasks and in nature.</figcaption>
 
@@ -28,7 +28,7 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
 
 <figure style="text-align: center;">
-  <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 2: Data augmentaton to learn symmetries.</figcaption>
 
@@ -116,7 +116,7 @@ $$
 - Invariance is a special case of equivariance when $\rho^Y(g)$ is the identity.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/invariance_and_equvariance.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/invariance_and_equvariance.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 4: Invariant task in the left as the classification label remains unchanged after translating the cat. Equivariant task in the right as the localization operator commutes with translation. Figure Source: [1]. </figcaption>
   
@@ -196,7 +196,7 @@ $$
 - In CNN, we translate the kernel across the image to "scan" the image.
 
 <figure style="text-align: center;">
-  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 30%; display: block; margin: 0 auto;" />
+  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input. Figure Source: [2].</figcaption>
   
@@ -205,7 +205,7 @@ $$
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's look at the definition of cross-correlation:
 
 <figure style="text-align: center;">
-  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
 Here, we explicityly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ to be represented by a group. Group representations on $k$ is reflected on $f$ as well.
@@ -228,13 +228,13 @@ $$
 $$
 -->
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
 Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
 
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect the rotation angles.</figcaption>
   
@@ -275,7 +275,7 @@ def lift_correlation(image, kernel):
 ```
 
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 6: Lifting correlation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension (this specifies the equivariance of the lifting correlation). </figcaption>
 

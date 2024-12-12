@@ -295,6 +295,16 @@ The group correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting th
   <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
+Although the examples are given for the group $\mathrm{SE}(2)$, the idea can generalize to other affine groups (semi-direct product groups).
+
+If we look carefully at how rotational equivariance is achieved, we find that it basically adds a rotation dimension represented by an axis $\theta$, and thus, rotational equivariance problem now becomes translation equivariance problem which can be solved easily by 1D convolution/cross-correlation.
+
+$$\text { translational weight sharing } \Longleftrightarrow \quad \text { translation group equivariance }$$
+
+$$\text { affine weight sharing } \Longleftrightarrow \quad \text { affine group equivariance }$$
+
+Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H):=\left(\mathbb{R}^d,+\right) \rtimes H.$
+
 ### 4.4 Demonstration: Cross Correlation with the $p_4$ Rotation Group
 Now, we have to reflect the differences in formulatino between the lifting correlation and cross correlation in the code as well.
 
@@ -323,9 +333,16 @@ def p4_group_convolution(features, kernel):
     return output
 ```
 
-Similar to above, you can check that the resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features).
+Similar to above, you can check that the resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features). 
 
+In actual implementation, the group dimension can be added to the channel dimension:
 
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 55%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
+
+### 4.5 Steerable CNNs
 
 ### References
 

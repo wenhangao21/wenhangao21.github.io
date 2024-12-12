@@ -1,10 +1,3 @@
----
-layout: blog
-title: "Technical Blogs"
-author_profile: false
----
-<div style="height: 20px;"></div>
-
 # Group Convolution Neural Networks
 
 ## 1. Introduction

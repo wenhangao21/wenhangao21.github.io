@@ -8,7 +8,7 @@ author_profile: false
 
 **TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
-- The toy implementation can be found ![here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
+- The toy implementation along with slides can be found ![here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 
 ## 1. Introduction
 
@@ -292,7 +292,7 @@ Now, the function is already defined on the group of interest after lifting, we 
 The group correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:
 
 <figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
 ### 4.4 Demonstration: Cross Correlation with the $p_4$ Rotation Group

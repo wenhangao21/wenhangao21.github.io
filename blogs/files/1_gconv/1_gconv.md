@@ -1,3 +1,7 @@
+---
+author_profile: false
+---
+
 # Group Convolution Neural Networks
 
 ## 1. Introduction

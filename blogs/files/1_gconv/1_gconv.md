@@ -8,6 +8,8 @@ author_profile: false
 
 **TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
+- The toy implementation can be found ![here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
+
 ## 1. Introduction
 
 ### 1.1 Why Symmetries
@@ -233,7 +235,7 @@ $$
   <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
-Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
+Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a planar rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
 
 <figure style="text-align: center;">
   <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 65%; display: block; margin: 0 auto;" />
@@ -246,7 +248,7 @@ Lifting correlation raise the feature map to a higher dimension that represents 
 The $p_4$ group can be described as a semi-direct product:
 
 $$
-P_4=C_4 \ltimes \mathbb{Z}^2,
+p_4=C_4 \ltimes \mathbb{Z}^2,
 $$
 
 where:
@@ -276,11 +278,52 @@ def lift_correlation(image, kernel):
     return np.array(results)
 ```
 
+The resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features).
+
 <figure style="text-align: center;">
   <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 80%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 6: Lifting correlation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension (this specifies the equivariance of the lifting correlation). </figcaption>
 
+### 4.3 Definition: $SE(2)$ Group Cross Correlations
+
+Now, the function is already defined on the group of interest after lifting, we still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.
+
+The group correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:
+
+<figure style="text-align: center;">
+  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
+</figure>
+
+### 4.4 Demonstration: Cross Correlation with the $p_4$ Rotation Group
+Now, we have to reflect the differences in formulatino between the lifting correlation and cross correlation in the code as well.
+
+```python
+def p4_group_convolution(features, kernel):
+    """
+    Perform P4 group convolution on a set of feature maps on P4 group.
+
+    Parameters:
+    - features (numpy.ndarray): A 3D array of feature maps with shape (|G|, s, s).
+    - kernel (numpy.ndarray): A 2D array representing the convolution kernel.
+
+    Returns:
+    - numpy.ndarray: feature maps after the P4 group convolution with shape (|G|, s, s).
+    """
+    output = np.zeros_like(features)
+    # Perform convolution for each feature map, convolve over both planar and angular axes
+    for i in range(features.shape[0]):
+        feature_map = features[i]
+        result = np.zeros_like(feature_map)
+        # SE(2) group on the kernels
+        for j in range(4):
+            rotated_kernel = np.rot90(kernel, j)  
+            result += convolve2d(feature_map, rotated_kernel, mode='same', boundary='symm')
+        output[i] = result
+    return output
+```
+
+Similar to above, you can check that the resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features).
 
 
 

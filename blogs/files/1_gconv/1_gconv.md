@@ -340,7 +340,7 @@ Similar to above, you can check that the resulting feature maps in the group spa
 In actual implementation, the group dimension can be added to the channel dimension:
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 85%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
   
@@ -359,9 +359,9 @@ Overall, Group CNNs have the following structures:
   
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/GCNN.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/GCNN.png" style="width: 85%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
+  <figcaption style="text-align: center;">Figure 8: Overall Structure of Group CNNs: Group Lifting Layer $\Rightarrow$ Group Convolution Layers $\Rightarrow$ Group Projection Layer. </figcaption>
 
 ## 5 Steerable CNNs
 

@@ -6,7 +6,9 @@ author_profile: false
 
 # Group Convolution Neural Networks
 
-**TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
+**TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. 
+
+This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
 - The toy implementation along with slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 
@@ -338,11 +340,30 @@ Similar to above, you can check that the resulting feature maps in the group spa
 In actual implementation, the group dimension can be added to the channel dimension:
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 75%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
+  
+### 4.5 Overall Group CNN Pipeline
+Overall, Group CNNs have the following structures:
+
+1. Lifting Layer (Generat group equivariant feature maps):
+  - 2D input $\Rightarrow$ 3D feature maps with the third dimension being rotation.
+
+2. Group Conv Layers (Convolve over the group space):
+  - 3D feature maps $\Rightarrow$ 3D feature maps
+
+3. Projection Layer (Collapse the group dimension):
+  - Invariance: 3D feature map $\Rightarrow$ 2D feature map by (e.g. max/avg) pooling over $\theta$ dimension. Now, it is invairant in $\theta$ dimension.
+  - Equivariance: The resulting 2D feature map is rotation equivariant w.r.t. the input.
+  
+
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/GCNN.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
 
-### 4.5 Steerable CNNs
+## 5 Steerable CNNs
 
 ### References
 

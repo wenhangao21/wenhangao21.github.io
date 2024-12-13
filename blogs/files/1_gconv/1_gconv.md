@@ -378,11 +378,11 @@ In a single sentence, steerable CNNs interpolates discrete (in terms of the rota
   <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/fiber.png" style="width: 45%; display: block; margin: 0 auto;" />
 </figure>
 
-- It is very natural to represent this function as a Fourier series. We can get the Fourier coefficients from discrete points, e.g. $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$m and represent the function as Fourier coefficients.
+- How do we get continuous functions from discrete values? The answer is interpolation! As this function is periodic and defined on [0,2\pi), it is very natural to represent this function as a Fourier series. We can get the Fourier coefficients from discrete points, e.g. $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$m, by performing discrete Fourier transform.
 
 - Now a periodic shift (translation) is a phase shift on these coefficients (Fourier shift theorem) and convolution is a point-wise multiplications with the coefficients. 
 
-
+For details, the readers are refered to [2]. 
 
 
 ### References

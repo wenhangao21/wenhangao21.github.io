@@ -370,12 +370,17 @@ In actual implementation, the group dimension can be added to the channel dimens
 ### 5.1 From Group CNNs to Steerable CNNs
 Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, is continuous. You may do very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is incontractible, and even so, discretizations still lose some of the continuity inherent in the group structure.
 
-Steerable CNNs extend group CNNs by incorporating continuous group symmetries while keeping computations efficient. 
-- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a function $f: [0,2\pi) \mapsto \mathbb{R}$.
+In a single sentence, steerable CNNs interpolates discrete (in terms of the rotation dimension) feature maps from group CNNs by Fourier/trigonometric interpolations.
 
+- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a periodic function $f: \theta in [0,2\pi) \mapsto \mathbb{R}$.
 
+<figure style="text-align: center;">
+  <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/fiber.png" style="width: 45%; display: block; margin: 0 auto;" />
+</figure>
 
-- 
+- It is very natural to represent this function as a Fourier series. We can get the Fourier coefficients from discrete points, e.g. $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$m and represent the function as Fourier coefficients.
+
+- Now a periodic shift (translation) is a phase shift on these coefficients (Fourier shift theorem) and convolution is a point-wise multiplications with the coefficients. 
 
 
 

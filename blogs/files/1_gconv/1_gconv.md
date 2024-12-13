@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Technical Blogs"
+title: "Group CNNs"
 author_profile: false
 ---
 
@@ -372,7 +372,7 @@ Group CNNs typically work with discrete groups of transformations, such as the $
 
 In a single sentence, steerable CNNs interpolates discrete (in terms of the rotation dimension) feature maps from group CNNs by Fourier/trigonometric interpolations.
 
-- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a periodic function $f: \theta in [0,2\pi) \mapsto \mathbb{R}$.
+- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a periodic function $f: \theta \in [0,2\pi) \mapsto \mathbb{R}$.
 
 <figure style="text-align: center;">
   <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/fiber.png" style="width: 45%; display: block; margin: 0 auto;" />

@@ -6,7 +6,7 @@ author_profile: false
 
 # Group Convolution Neural Networks
 
-**TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. 
 
 This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
@@ -14,7 +14,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 
 ## 1. Introduction
 
-### 1.1 Why Symmetries
+### 1.1. Why Symmetries
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group equivariance in ML models is about enforcing symmetries in the architectures.
 - Many learning tasks, oftentimes, have symmetries under some set of transformations acting on the data.
@@ -29,7 +29,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 
 FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (1957) for discoveries about symmetries, and his B.S. thesis is “Group Theory and Molecular Spectra”.
 
-### 1.2 Learning Symmetries
+### 1.2. Learning Symmetries
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
 
@@ -47,7 +47,9 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 - Building symmetries into the model by design! 
 
 ## 2. Mathematical Preliminary
-### 2.1 Definition: Group
+
+### 2.1. Definition: Group
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A **group** $(G, \cdot)$ is a set of elements $G$ equipped with a group product $\cdot$, a binary operator, that satisfies the following four axioms:
 - Closure: Given two elements $g$ and $h$ of $G$, the product $g \cdot h$ is also in $G$.
 - Associativity: For $g, h, i \in G$ the product $\cdot$ is associative, i.e., $g \cdot(h \cdot i)=(g \cdot h) \cdot i$.
@@ -67,7 +69,7 @@ $$
 
 with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
 
-### 2.2 Definition: Representation and Left-regular Representation
+### 2.2. Definition: Representation and Left-regular Representation
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A **representation** $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
 
 $$
@@ -104,7 +106,7 @@ $$
 2. Left Regular Representation (acting on a vector spaces): $\mathscr{L}_gf$
 3. Group Actions (acting on $\mathbb{R}^d$): $g \odot x$
 
-### 2.3 Definition: Equivariance and Invariance
+### 2.3. Definition: Equivariance and Invariance
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Equivariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it commutes with the group action:
 $$
@@ -128,7 +130,7 @@ $$
   
 ## 3. CNNs and Translation Equivariance
 
-### 3.1 Convolution and Cross-Correlation
+### 3.1. Convolution and Cross-Correlation
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **convolution** of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
 
@@ -154,7 +156,7 @@ $$
 
 Note: Neural networks perform the same whether use convolution or correlation because the learned filters enable adaptability. The filters are learned and if a CNN can learn a task using convolution operation, it can also learn the same task using correlation operation (It would learn the rotated version of each filter).
 
-### 3.2 Translation Equivariance
+### 3.2. Translation Equivariance
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Convolution and Cross-Correlation are translation equivariant, so are their discrete counterparts.
 
@@ -181,7 +183,7 @@ In the last equality, we just replace $x'$ by $x' -t$. Note that this operation 
 
 By similar arguments, we can prove translation equivariance for convolution and the discrete versions.
 
-### 3.3 Intuition on Translation Equivariance
+### 3.3. Intuition on Translation Equivariance
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mathematically, it is easy to prove translation equivariance. However, let's look at the definiton of cross-correlation again to gain some intution about how to achieve equivariance.
 
@@ -206,7 +208,7 @@ $$
 </figure>
   <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input. Figure Source: [4].</figcaption>
   
-### 3.4 Generalization
+### 3.4. Generalization
  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's look at the definition of cross-correlation:
 
@@ -224,7 +226,7 @@ To generalize to other groups, we should consider the followings:
 
 ## 4. Regular Group CNN and $SE(2)$ Equivariance
 
-### 4.1 Definition: $SE(2)$ Lifting Correlation
+### 4.1. Definition: $SE(2)$ Lifting Correlation
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:
 
@@ -245,9 +247,9 @@ Lifting correlation raise the feature map to a higher dimension that represents 
   <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect the rotation angles.</figcaption>
   
 
-### 4.2 Demonstration: Lifting Correlation with the $p_4$ Rotation Group
+### 4.2. Demonstration: Lifting Correlation with the $p_4$ Rotation Group
 
-The $p_4$ group can be described as a semi-direct product:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The $p_4$ group can be described as a semi-direct product:
 
 $$
 p_4=C_4 \ltimes \mathbb{Z}^2,
@@ -287,9 +289,9 @@ The resulting feature maps in the group space are equivariant (rotation in the i
 </figure>
   <figcaption style="text-align: center;">Figure 6: Lifting correlation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension (this specifies the equivariance of the lifting correlation). </figcaption>
 
-### 4.3 Definition: $SE(2)$ Group Cross Correlations
+### 4.3. Definition: $SE(2)$ Group Cross Correlations
 
-Now, the function is already defined on the group of interest after lifting, we still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, the function is already defined on the group of interest after lifting, we still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.
 
 The group correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:
 
@@ -307,8 +309,8 @@ $$\text { affine weight sharing } \Longleftrightarrow \quad \text { affine group
 
 Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H):=\left(\mathbb{R}^d,+\right) \rtimes H.$
 
-### 4.4 Demonstration: Cross Correlation with the $p_4$ Rotation Group
-Now, we have to reflect the differences in formulatino between the lifting correlation and cross correlation in the code as well.
+### 4.4. Demonstration: Cross Correlation with the $p_4$ Rotation Group
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, we have to reflect the differences in formulatino between the lifting correlation and cross correlation in the code as well.
 
 ```python
 def p4_group_convolution(features, kernel):
@@ -344,8 +346,8 @@ In actual implementation, the group dimension can be added to the channel dimens
 </figure>
   <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
   
-### 4.5 Overall Group CNN Pipeline
-Overall, Group CNNs have the following structures:
+### 4.5. Overall Group CNN Pipeline
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overall, Group CNNs have the following structures:
 
 1. Lifting Layer (Generat group equivariant feature maps):
   - 2D input $\Rightarrow$ 3D feature maps with the third dimension being rotation.
@@ -361,9 +363,22 @@ Overall, Group CNNs have the following structures:
 <figure style="text-align: center;">
   <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/GCNN.png" style="width: 85%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 8: Overall Structure of Group CNNs: Group Lifting Layer $\Rightarrow$ Group Convolution Layers $\Rightarrow$ Group Projection Layer. </figcaption>
+  <figcaption style="text-align: center;">Figure 8: Overall Structure of Group CNNs: Group Lifting Layer $\Rightarrow$ Group Convolution Layers $\Rightarrow$ Group Projection Layer. Figure Source: [5]. </figcaption>
 
-## 5 Steerable CNNs
+## 5. High-level Ideas on $SE(2)$ Steerable CNNs
+
+### 5.1 From Group CNNs to Steerable CNNs
+Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, is continuous. You may do very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is incontractible, and even so, discretizations still lose some of the continuity inherent in the group structure.
+
+Steerable CNNs extend group CNNs by incorporating continuous group symmetries while keeping computations efficient. 
+- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a function $f: [0,2\pi) \mapsto \mathbb{R}$.
+
+
+
+- 
+
+
+
 
 ### References
 
@@ -374,3 +389,5 @@ Overall, Group CNNs have the following structures:
 [3] Imperial's Deep learning course: Equivariance and Invariance by Bernhard Kainz
 
 [4] From Convolution to Neural Network by Gregory Gundersen
+
+[5] UvA - An Introduction to Group Equivariant Deep Learning by Erik Bekkers

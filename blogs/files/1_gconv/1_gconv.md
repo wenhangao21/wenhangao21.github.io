@@ -354,7 +354,7 @@ Overall, Group CNNs have the following structures:
   - 3D feature maps $\Rightarrow$ 3D feature maps
 
 3. Projection Layer (Collapse the group dimension):
-  - Invariance: 3D feature map $\Rightarrow$ 2D feature map by (e.g. max/avg) pooling over $\theta$ dimension. Now, it is invairant in $\theta$ dimension.
+  - Invariance: 3D feature map $\Rightarrow$ 2D feature map by (e.g. max/avg) pooling over the $\theta$ dimension. Now, it is invairant in $\theta$ dimension.
   - Equivariance: The resulting 2D feature map is rotation equivariant w.r.t. the input.
   
 

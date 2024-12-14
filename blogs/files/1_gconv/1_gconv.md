@@ -76,7 +76,7 @@ $$
 $$
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/representation.png" style="width: 35%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/representation.png" style="width: 27%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">Figure 3: Rotation by $g$ first and then by $g'$ is the same as rotation by $g' \cdot g$. </figcaption>
 

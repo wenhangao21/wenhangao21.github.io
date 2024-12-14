@@ -10,17 +10,17 @@ author_profile: false
 
 This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
-- The toy implementation along with slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
+- The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 
 ## 1. Introduction
 
 ### 1.1. Why Symmetries
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group equivariance in ML models is about enforcing symmetries in the architectures.
-- Many learning tasks, oftentimes, have symmetries under some set of transformations acting on the data.
-	- For example, in image classification, rotating or flipping an image of a cat should not change its classification as a "cat."
-- More importantly, the nature itself is about symmetries.
-	- Similar symmetries appear in physical systems, molecular structures, and many other scientific data.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group equivariance in ML models is about enforcing symmetries in the architectures.  
+- Many learning tasks, oftentimes, have symmetries under some set of transformations acting on the data.  
+	- For example, in image classification, rotating or flipping an image of a cat should not change its classification as a "cat."  
+- More importantly, nature itself is about symmetries.  
+	- Similar symmetries appear in physical systems, molecular structures, and many other scientific data.  
 
 <figure style="text-align: center;">
   <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/symmetry.png" style="width: 65%; display: block; margin: 0 auto;" />
@@ -31,8 +31,7 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 
 ### 1.2. Learning Symmetries
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to do data-augmentation: Feed augmented data and hope the model “learns” the symmetry.
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to use data augmentation: feed augmented data and hope the model “learns” the symmetry.  
 <figure style="text-align: center;">
   <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
@@ -154,11 +153,11 @@ $$
 (k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
 $$
 
-Note: Neural networks perform the same whether use convolution or correlation because the learned filters enable adaptability. The filters are learned and if a CNN can learn a task using convolution operation, it can also learn the same task using correlation operation (It would learn the rotated version of each filter).
+Note: Neural networks perform the same whether using convolution or correlation because the learned filters enable adaptability. The filters are learned, and if a CNN can learn a task using the convolution operation, it can also learn the same task using the correlation operation (it would learn the rotated version of each filter).  
 
 ### 3.2. Translation Equivariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Convolution and Cross-Correlation are translation equivariant, so are their discrete counterparts.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Convolution and cross-correlation are translation equivariant, so are their discrete counterparts.
 
 <span style="color: gray;">Proof:</span>
 
@@ -179,13 +178,13 @@ $$
 \end{aligned}
 $$
 
-In the last equality, we just replace $x'$ by $x' -t$. Note that this operation is valid because this substitution is a bijection $\mathbb{R}^d \rightarrow \mathbb{R}^d$ and we integrate over the entire $\mathbb{R}^d$.
+In the last equality, we just replace $x'$ by $x' - t$. Note that this operation is valid because this substitution is a bijection $\mathbb{R}^d \rightarrow \mathbb{R}^d$, and we integrate over the entire $\mathbb{R}^d$.  
 
-By similar arguments, we can prove translation equivariance for convolution and the discrete versions.
+By similar arguments, we can prove translation equivariance for convolution and its discrete versions.  
 
 ### 3.3. Intuition on Translation Equivariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mathematically, it is easy to prove translation equivariance. However, let's look at the definiton of cross-correlation again to gain some intution about how to achieve equivariance.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mathematically, it is easy to prove translation equivariance. However, let's look at the definition of cross-correlation again to gain some intuition about how to achieve equivariance.  
 
 Cross-Correlation:
 
@@ -200,13 +199,13 @@ $$
 $$
 
 <span style="color: red;">Intuition: </span> 
-- **$f(x'+x)$ represents a translated version of $f(x)$.** We have created many translated version of $f(x)$ while creating the feature map. If we need to compute the cross-correlation for a transformed $f$, we can just go and look up the relevant outputs, because we have already computed them. Equivalently, $k(x'-x)$ represents a translated version of $k(x)$.
-- In CNN, we translate the kernel across the image to "scan" the image.
+- **$f(x' + x)$ represents a translated version of $f(x)$.** We have created many translated versions of $f(x)$ while creating the feature map. If we need to compute the cross-correlation for a transformed $f$, we can just go and look up the relevant outputs because we have already computed them. Equivalently, $k(x' - x)$ represents a translated version of $k(x)$.  
+- In CNNs, we translate the kernel across the image to "scan" the image.  
 
 <figure style="text-align: center;">
   <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent  to translating the input. Figure Source: [4].</figcaption>
+  <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent to translating the input. Figure Source: [4].</figcaption>
   
 ### 3.4. Generalization
  
@@ -216,20 +215,19 @@ $$
   <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
-Here, we explicityly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ to be represented by a group. Group representations on $k$ is reflected on $f$ as well.
+Here, we explicitly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ be represented by a group. Group representations on $k$ are reflected on $f$ as well.  
 
-To generalize to other groups, we should consider the followings:
+To generalize to other groups, we should consider the following:
 
-- Make the function defined on the group of interest.
-- Integrate over the group of interest.
-- Make the kernel reflect the actions of the group of interest.
+- Make the function defined on the group of interest.  
+- Integrate over the group of interest.  
+- Make the kernel reflect the actions of the group of interest.  
 
 ## 4. Regular Group CNN and $SE(2)$ Equivariance
 
 ### 4.1. Definition: $SE(2)$ Lifting Correlation
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:  
 <!-- 
 $$
 (k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
@@ -239,7 +237,7 @@ $$
   <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
-Lifting correlation raise the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a planar rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.
+Lifting correlation raises the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a planar rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.  
 
 <figure style="text-align: center;">
   <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 65%; display: block; margin: 0 auto;" />
@@ -291,26 +289,26 @@ The resulting feature maps in the group space are equivariant (rotation in the i
 
 ### 4.3. Definition: $SE(2)$ Group Cross Correlations
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, the function is already defined on the group of interest after lifting, we still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, the function is already defined on the group of interest after lifting. We still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.  
 
-The group correlation of $f$ and $g$ is written $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:
+The group correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:  
 
 <figure style="text-align: center;">
   <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
-Although the examples are given for the group $\mathrm{SE}(2)$, the idea can generalize to other affine groups (semi-direct product groups).
+Although the examples are given for the group $\mathrm{SE}(2)$, the idea can generalize to other affine groups (semi-direct product groups).  
 
-If we look carefully at how rotational equivariance is achieved, we find that it basically adds a rotation dimension represented by an axis $\theta$, and thus, rotational equivariance problem now becomes translation equivariance problem which can be solved easily by 1D convolution/cross-correlation.
+If we look carefully at how rotational equivariance is achieved, we find that it basically adds a rotation dimension represented by an axis $\theta$. Thus, the rotational equivariance problem now becomes a translation equivariance problem, which can be solved easily by convolution/cross-correlation.  
 
 $$\text { translational weight sharing } \Longleftrightarrow \quad \text { translation group equivariance }$$
 
 $$\text { affine weight sharing } \Longleftrightarrow \quad \text { affine group equivariance }$$
 
-Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H):=\left(\mathbb{R}^d,+\right) \rtimes H.$
+Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H) := \left(\mathbb{R}^d, +\right) \rtimes H.$  
 
 ### 4.4. Demonstration: Cross Correlation with the $p_4$ Rotation Group
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, we have to reflect the differences in formulatino between the lifting correlation and cross correlation in the code as well.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, we have to reflect the differences in formulation between the lifting correlation and cross-correlation in the code as well.  
 
 ```python
 def p4_group_convolution(features, kernel):
@@ -337,9 +335,9 @@ def p4_group_convolution(features, kernel):
     return output
 ```
 
-Similar to above, you can check that the resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features). 
+Similar to above, you can check that the resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features).  
 
-In actual implementation, the group dimension can be added to the channel dimension:
+In actual implementation, the group dimension can be added to the channel dimension:  
 
 <figure style="text-align: center;">
   <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 85%; display: block; margin: 0 auto;" />
@@ -349,16 +347,15 @@ In actual implementation, the group dimension can be added to the channel dimens
 ### 4.5. Overall Group CNN Pipeline
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overall, Group CNNs have the following structures:
 
-1. Lifting Layer (Generat group equivariant feature maps):
-  - 2D input $\Rightarrow$ 3D feature maps with the third dimension being rotation.
+1. **Lifting Layer (Generate group equivariant feature maps):**  
+   - 2D input $\Rightarrow$ 3D feature maps with the third dimension representing rotation.  
 
-2. Group Conv Layers (Convolve over the group space):
-  - 3D feature maps $\Rightarrow$ 3D feature maps
+2. **Group Conv Layers (Convolve over the group space):**  
+   - 3D feature maps $\Rightarrow$ 3D feature maps.  
 
-3. Projection Layer (Collapse the group dimension):
-  - Invariance: 3D feature map $\Rightarrow$ 2D feature map by (e.g. max/avg) pooling over the $\theta$ dimension. Now, it is invairant in $\theta$ dimension.
-  - Equivariance: The resulting 2D feature map is rotation equivariant w.r.t. the input.
-  
+3. **Projection Layer (Collapse the group dimension):**  
+   - **Invariance:** 3D feature map $\Rightarrow$ 2D feature map by (e.g., max/avg) pooling over the $\theta$ dimension. Now, it is invariant in the $\theta$ dimension.  
+   - **Equivariance:** The resulting 2D feature map is rotation equivariant with respect to the input.  
 
 <figure style="text-align: center;">
   <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/GCNN.png" style="width: 85%; display: block; margin: 0 auto;" />
@@ -368,21 +365,21 @@ In actual implementation, the group dimension can be added to the channel dimens
 ## 5. High-level Ideas on $SE(2)$ Steerable CNNs
 
 ### 5.1 From Group CNNs to Steerable CNNs
-Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, is continuous. You may do very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is incontractible, and even so, discretizations still lose some of the continuity inherent in the group structure.
+Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
 
-In a single sentence, steerable CNNs **interpolates** discrete (in terms of the rotation dimension) feature maps from group CNNs by Fourier/trigonometric interpolations.
+In a single sentence, steerable CNNs **interpolate** discrete (in terms of the rotation dimension) feature maps from group CNNs using Fourier/trigonometric interpolations.  
 
-- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a periodic function $f: \theta \in [0,2\pi) \mapsto \mathbb{R}$.
+- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a periodic function $f: \theta \in [0, 2\pi) \mapsto \mathbb{R}$.  
 
 <figure style="text-align: center;">
   <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/fiber.png" style="width: 45%; display: block; margin: 0 auto;" />
 </figure>
 
-- How do we get continuous functions from discrete values? The answer is interpolation! As this function is periodic and defined on [0,2\pi), it is very natural to represent this function as a Fourier series. We can get the Fourier coefficients from discrete points, e.g. $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$m, by performing discrete Fourier transform.
+- How do we get continuous functions from discrete values? The answer is interpolation. As this function is periodic and defined on $[0, 2\pi)$, it is very natural to represent this function as a Fourier series. We can get the Fourier coefficients from discrete points, e.g., $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, by performing a discrete Fourier transform.  
 
-- Now a periodic shift (translation) is a phase shift on these coefficients (Fourier shift theorem) and convolution is a point-wise multiplications with the coefficients. 
+- Now, a periodic shift (translation) is a phase shift on these coefficients (Fourier shift theorem), and convolution is a point-wise multiplication with the coefficients.  
 
-- A little caveat, this is an approximation to equivariance if the degrees of rotation are not one of those discrete points.
+- A little caveat: this is an approximation to equivariance if the degrees of rotation are not one of those discrete points.  
 
 For details, the readers are refered to [2]. 
 
@@ -398,3 +395,5 @@ For details, the readers are refered to [2].
 [4] From Convolution to Neural Network by Gregory Gundersen
 
 [5] UvA - An Introduction to Group Equivariant Deep Learning by Erik Bekkers
+
+### Useful Resources for Starters 

@@ -365,7 +365,7 @@ In actual implementation, the group dimension can be added to the channel dimens
 ## 5. High-level Ideas on $SE(2)$ Steerable CNNs
 
 ### 5.1 From Group CNNs to Steerable CNNs
-Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
 
 In a single sentence, steerable CNNs **interpolate** discrete (in terms of the rotation dimension) feature maps from group CNNs using Fourier/trigonometric interpolations.  
 
@@ -384,7 +384,7 @@ In a single sentence, steerable CNNs **interpolate** discrete (in terms of the r
 For details, the readers are refered to [2]. 
 
 
-### References
+## References
 
 [1] Group Equivariant Convolutional Networks by Taco S. Cohen and Max Welling
 
@@ -396,4 +396,9 @@ For details, the readers are refered to [2].
 
 [5] UvA - An Introduction to Group Equivariant Deep Learning by Erik Bekkers
 
-### Useful Resources for Starters 
+## Other Useful Resources for Starters
+
+### Lecture Recordings
+1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
+2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
+

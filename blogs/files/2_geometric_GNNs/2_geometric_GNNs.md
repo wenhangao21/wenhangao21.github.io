@@ -4,28 +4,27 @@ title: "Group CNNs"
 author_profile: false
 ---
 
-# Group Convolution Neural Networks
+# Geometric GNNs
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This tutorial introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This tutorial introduces geometric GNNs, which guarantee Euclidian (E(n)) symmetries in neural networks; for example, when you rotate a molecular, scalar quantities such as potential energy should remain invariant and vector or tensor quantities should be equivariant to the rotation.
 
-This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
+This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate concepts including tensor decomposition, equivariance, and irreducibility. 
 
 - The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
+- It is assumed that you are familiar with the basic concepts of equivariance. If not, please read [Group CNN](https://wenhangao21.github.io/blogs/files/1_gconv/1_gconv/) first.
 
 ## 1. Introduction
 
-### 1.1. Why Symmetries
+### 1.1. Geometric Representation of Atomistic Systems
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group equivariance in ML models is about enforcing symmetries in the architectures.  
-- Many learning tasks, oftentimes, have symmetries under some set of transformations acting on the data.  
-	- For example, in image classification, rotating or flipping an image of a cat should not change its classification as a "cat."  
-- More importantly, nature itself is about symmetries.  
-	- Similar symmetries appear in physical systems, molecular structures, and many other scientific data.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There are different ways of representing molecules; for example:
+- SMILE strings (1D)
+- Planar graphs (2D)
 
 <figure style="text-align: center;">
-  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/symmetry.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 1: Symmetries in ML tasks and in nature.</figcaption>
+
 
 FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (1957) for discoveries about symmetries, and his B.S. thesis is “Group Theory and Molecular Spectra”.
 

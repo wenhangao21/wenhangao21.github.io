@@ -29,26 +29,38 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 3D geometric configuration (coordinates) is crucial in determining properties and so, GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 27%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 35%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin. </figcaption>
 
 ### 1.2. Graphs and Geometric Graphs
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Graphs** are purely topological objects and **geometric graphs** are a type of graphs where nodes are additionally endowed with <span style="color: red;">geometric information</span>.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to use data augmentation: feed augmented data and hope the model “learns” the symmetry.  
 <figure style="text-align: center;">
-  <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/geometric_graphs.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 2: Data augmentaton to learn symmetries.</figcaption>
+  <figcaption style="text-align: center;"> Comparison of graphs and geometric graphs. Figure adopted from [1]. </figcaption>
 
-<span style="color: red;">Issues:</span>
-- <span style="color: red;">No guarantee</span> of having symmetries in the model
-- <span style="color: red;">Wasting valuable net capacity</span> on learning symmetries from data
-- <span style="color: red;">Redundancy</span> in learned feature representation
+| Graphs | Geometric Graphs |
+|$G = (A,S)$ |$G = (A,S,X,V)$ |
+|$A \in \mathbb{R}^{n \times n}:$ Adjacency matrix |$A \in \mathbb{R}^{n \times n}:$ Adjacency matrix |
+|$S \in \mathbb{R}^{n \times f}$ : Scalar node features |$S \in \mathbb{R}^{n \times f}$ : Scalar node features |
+||$X \in \mathbb{R}^{n \times 3}$ : $xyz$-coordinates |
+||$V \in \mathbb{R}^{n \times b \times 3}:$ Geometric features, e.g., velocity|
 
-<span style="color: green;">Solution:</span>
-- Building symmetries into the model by design! 
+
+Here,
+- Scalar loosely refers to features without geometric information.
+- $n$ is the number of nodes, $f$ and $b$ are the sizes of the scalar and geometric node features, respectively.
+
+We have two types of features: <span style="color: blue;">scalar features</span> and <span style="color: red;">geometric features</span>. We have the following symmetries:
+
+- Scalar features remain unchanged (invariance).
+- Geometric features transform with Euclidean transformations of the system (equivariance).
+
+
+
 
 ## 2. Mathematical Preliminary
 
@@ -396,7 +408,7 @@ For details, the readers are refered to [2].
 
 ## References
 
-[1] Group Equivariant Convolutional Networks by Taco S. Cohen and Max Welling
+[1] A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems, Duvel et al
 
 [2] Steerable CNNs by Taco S. Cohen and Max Welling
 

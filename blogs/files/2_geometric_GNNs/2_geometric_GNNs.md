@@ -24,13 +24,13 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 - Geometric graphs (3D)
 
 <figure style="text-align: center;">
-  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
 
 3D geometric configuration (coordinates) is crucial in determining properties and so, GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 35%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin. </figcaption>
 
@@ -39,7 +39,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Graphs** are purely topological objects and **geometric graphs** are a type of graphs where nodes are additionally endowed with <span style="color: red;">geometric information</span>.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/geometric_graphs.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/geometric_graphs.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;"> Comparison of graphs and geometric graphs. Figure adopted from [1]. </figcaption>
 
@@ -56,83 +56,42 @@ Here,
 - $n$ is the number of nodes, $f$ and $b$ are the sizes of the scalar and geometric node features, respectively.
 
 
-### Geometric GNNs
+### 1.3. Symmetries
 
 We have two types of features: <span style="color: blue;">scalar features</span> and <span style="color: red;">geometric features</span>. We have the following symmetries:
 
 - <span style="color: blue;">Scalar features</span> remain unchanged (invariance).
 - <span style="color: red;">Geometric features</span> transform with Euclidean transformations of the system (equivariance).
-- Graphs,including geometric graphs, permutation invariant; it is still the same graph even if the nodes are given in a different order.
+- Graphs,including geometric graphs, are permutationally equivariant node-wise and invariant graph-wise; it is still the same graph even if the nodes are given in a different order.
+
 
 <figure style="text-align: center;">
   <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/symmetries.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;"> Geometric GNNs should account for all physical symmetries. Figure adopted from [1]. </figcaption>
 
-## 2. Mathematical Preliminary
 
-### 2.1. Definition: Group
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A **group** $(G, \cdot)$ is a set of elements $G$ equipped with a group product $\cdot$, a binary operator, that satisfies the following four axioms:
-- Closure: Given two elements $g$ and $h$ of $G$, the product $g \cdot h$ is also in $G$.
-- Associativity: For $g, h, i \in G$ the product $\cdot$ is associative, i.e., $g \cdot(h \cdot i)=(g \cdot h) \cdot i$.
-- Identity element: There exists an identity element $e \in G$ such that $e \cdot g=g \cdot e=g$ for any $g \in G$.
-- Inverse element: For each $g \in G$ there exists an inverse element $g^{-1} \in G$ s.t. $g^{-1} \cdot g=g \cdot g^{-1}=e$.
-<!-- Line breaker -->
-<span style="color: gray;">Example:</span>
+## 2. Geometric GNNs
 
-The translation group consists of all possible translations in $\mathbb{R}^2$ and is equipped with the group product and group inverse:
+### 2.1. Recap of GNNs
 
-$$
-\begin{aligned}
-g \cdot g^{\prime} & =\left(t+t^{\prime}\right), \quad t, t^{\prime} \in \mathbb{R}^2 \\
-g^{-1} & =(-t),
-\end{aligned}
-$$
-
-with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
-
-### 2.2. Definition: Representation and Left-regular Representation
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A **representation** $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
-
-$$
-\rho\left(g^{\prime}\right) \circ \rho(g)[\mathbf{v}]=\rho\left(g^{\prime} \cdot g\right)[\mathbf{v}].
-$$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/representation.png" style="width: 27%; display: block; margin: 0 auto;" />
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 3: Rotation by $g$ first and then by $g'$ is the same as rotation by $g' \cdot g$. </figcaption>
 
-**This essentially means that we can transfer group structure to other types of objects now, such as vectors or images.**
 
-Note: 
-- A **homomorphism** is a structure-preserving map between two algebraic structures of the same type (such as two groups, two rings, or two vector spaces). 
-- A **general linear group** is the group of all invertible $d_V \times d_V$ matrices.
+- Readers who are not familiar with GNNs are refered to [Stanford CS224W: Machine Learning with Graphs](https://www.youtube.com/playlist?list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn).
 
-A **left-regular representation** $\mathscr{L}_g$ is a representation that transforms functions $f$ by transforming their domains via the inverse group action
 
-$$
-\mathscr{L}_g[f](x):=f\left(g^{-1} \cdot x\right).
-$$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To ensure symmetries
+- <span style="color: blue;">Scalar features</span> must be updated in an invariant manner.
+- <span style="color: red;">Geometric features</span> must be updated in an equivariant manner.\
 
-<span style="color: gray;">Example I:</span>
+To make it equivariant (invariant) to E(3), there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constraint the geometric information that can be utilized, while the other constraints the model operations.
 
-- $f \in \mathbb{L}_2\left(\mathbb{R}\right)$: A function defined on a line.
-- $G=\mathbb{R}$: The 1D translation group.
-- $[\mathscr{L}_{g = t}f]~(x)=f\left(t^{-1}_θ \odot x\right) = f(x - t)$: A translation of the function.
-
-<span style="color: gray;">Example II:</span>
-
-- $f \in \mathbb{L}_2\left(\mathbb{R}^2\right)$: A 2D image.
-- $G=S E(2)$: The 2D roto-translation group.
-- $[\mathscr{L}_{g = (t, \theta)}f]~(x)=f\left(\mathbb{R}^{-1}_θ (x-t)\right)$: A roto-translation of the image.
-
-<span style="color: gray;">Remark: Now we have group stucture on different objects</span>
-
-1. Group Product (acting on $G$ it self): $g\cdot g'$
-2. Left Regular Representation (acting on a vector spaces): $\mathscr{L}_gf$
-3. Group Actions (acting on $\mathbb{R}^d$): $g \odot x$
 
 ### 2.3. Definition: Equivariance and Invariance
 

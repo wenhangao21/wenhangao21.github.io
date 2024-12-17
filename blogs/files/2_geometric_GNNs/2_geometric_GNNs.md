@@ -20,15 +20,21 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There are different ways of representing molecules; for example:
 - SMILE strings (1D)
 - Planar graphs (2D)
+- Geometric graphs (3D)
 
 <figure style="text-align: center;">
   <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
 
+3D geometric configuration (coordinates) is crucial in determining properties and so, GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin.
 
-FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (1957) for discoveries about symmetries, and his B.S. thesis is “Group Theory and Molecular Spectra”.
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 27%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin. </figcaption>
 
-### 1.2. Learning Symmetries
+### 1.2. Graphs and Geometric Graphs
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to use data augmentation: feed augmented data and hope the model “learns” the symmetry.  
 <figure style="text-align: center;">

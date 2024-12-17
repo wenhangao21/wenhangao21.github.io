@@ -405,3 +405,7 @@ For details, the readers are refered to [2].
 1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
 2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
 
+### Survey Papers, Notes, and Books
+1. Artificial Intelligence for Science in Quantum, Atomistic, and Continuum Systems (Section 2), Xuan Zhang (Texas A&M) et al.
+2. Equivariant and Coordinate Independent Convolutional Networks: A gauge field theory of neural networks, Maurice Weiler el al.
+

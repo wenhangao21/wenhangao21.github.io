@@ -6,12 +6,13 @@ author_profile: false
 
 # Geometric GNNs
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This tutorial introduces geometric GNNs, which guarantee Euclidian (E(n)) symmetries in neural networks; for example, when you rotate a molecular, scalar quantities such as potential energy should remain invariant and vector or tensor quantities should be equivariant to the rotation.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This blog introduces geometric GNNs, which guarantee Euclidian (E(n)) symmetries in neural networks; for example, when you rotate a molecular, scalar quantities such as potential energy should remain invariant and vector or tensor quantities should be equivariant to the rotation.
 
 This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate concepts including tensor decomposition, equivariance, and irreducibility. 
 
 - The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 - It is assumed that you are familiar with the basic concepts of equivariance. If not, please read [Group CNN](https://wenhangao21.github.io/blogs/files/1_gconv/1_gconv/) first.
+- [Reference [1]](https://www.chaitjo.com/publication/duval-2023-hitchhikers/) provides great introduction to geometric GNNs, this blog will introduce geometric GNNs in less details but rather focus on explaining tensor decomposition, equivariance of tensors, and irreducibility.
 
 ## 1. Introduction
 

@@ -55,13 +55,19 @@ Here,
 - Scalar loosely refers to features without geometric information.
 - $n$ is the number of nodes, $f$ and $b$ are the sizes of the scalar and geometric node features, respectively.
 
+
+### Geometric GNNs
+
 We have two types of features: <span style="color: blue;">scalar features</span> and <span style="color: red;">geometric features</span>. We have the following symmetries:
 
-- Scalar features remain unchanged (invariance).
-- Geometric features transform with Euclidean transformations of the system (equivariance).
+- <span style="color: blue;">Scalar features</span> remain unchanged (invariance).
+- <span style="color: red;">Geometric features</span> transform with Euclidean transformations of the system (equivariance).
+- Graphs,including geometric graphs, permutation invariant; it is still the same graph even if the nodes are given in a different order.
 
-
-
+<figure style="text-align: center;">
+  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/symmetries.png" style="width: 75%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;"> Geometric GNNs should account for all physical symmetries. Figure adopted from [1]. </figcaption>
 
 ## 2. Mathematical Preliminary
 

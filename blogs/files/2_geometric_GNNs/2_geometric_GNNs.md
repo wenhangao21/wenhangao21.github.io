@@ -12,7 +12,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 
 - The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 - It is assumed that you are familiar with the basic concepts of equivariance. If not, please read [Group CNN](https://wenhangao21.github.io/blogs/files/1_gconv/1_gconv/) first.
-- [Reference [1]](https://www.chaitjo.com/publication/duval-2023-hitchhikers/) provides great introduction to geometric GNNs, this blog will introduce geometric GNNs in less details but rather focus on explaining tensor decomposition, equivariance of tensors, and irreducibility.
+- [Reference [1]](https://www.chaitjo.com/publication/duval-2023-hitchhikers/) provides great introduction to geometric GNNs, this blog will introduce geometric GNNs in less details and focus on explaining tensor decomposition, equivariance of tensors, and irreducibility.
 
 ## 1. Introduction
 

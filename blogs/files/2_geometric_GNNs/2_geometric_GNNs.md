@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Group CNNs"
+title: "Geometric GNNs"
 author_profile: false
 ---
 
@@ -302,7 +302,7 @@ Now, as before, if we wish to maintain equivariance through message passing, we 
 </figure>
 <figcaption style="text-align: center;">Example: Decomposing a rank-2 Cartesian tensor into Spherical tensors. </figcaption>
 
-Specifically, this process is a change of basis.
+This process is a change of basis.
 
 ---
 
@@ -317,8 +317,16 @@ $\vec{v}=\left(e _ 1, \ldots, e _ n\right) M M^{-1}\left(v^1, \ldots, v^n\right)
 
 ---
 
+> Note: Decomposition into irreps is not unique.
+
+Specifically, we can decompose a Cartesian tensor of rank-$2$ as follows:
+
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 40%; display: block; margin: 0 auto;" />
+</figure>
 
 
+The `e3nn` library provides 
 
 
 ## 4. Regular Group CNN and $SE(2)$ Equivariance

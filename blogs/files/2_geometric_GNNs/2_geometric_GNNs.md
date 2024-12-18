@@ -385,7 +385,7 @@ However, we can decompose the tensor product ${S}^{\left(l_1\right)} \otimes {T}
 
 As a rule, the $\left(l_1 l_2\right)$-dimensional tensor product of two spherical tensors of ranks $l_1$ and $l_2$ decomposes into:
 $$
-l_1 \otimes l_2=\left|l_1-l_2\right| \oplus\left|l_1-l_2+1\right| \oplus \cdots \oplus\left(l_1+l_2-1\right) \oplus\left(l_1+l_2\right) .
+l_1 \otimes l_2=\left|l_1-l_2\right| \oplus\left|l_1-l_2+1\right| \oplus \cdots \oplus\left(l_1+l_2-1\right) \oplus\left(l_1+l_2\right).
 $$
 
 This means the $l_1 l_2$-dimensional product decomposes into exactly one spherical tensor for each rank between the absolute difference $\left|l_1-l_2\right|$ and the sum $l_1+l_2$.
@@ -410,7 +410,7 @@ $$\mathbf{T} = \begin{pmatrix} t_{-1} \\\ t_0 \\\ t_1 \end{pmatrix}, \quad  \mat
 ---
 
 <figure style="float: right; margin-right: 10px;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 40%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 10%; display: block; margin: 0 auto;" />
 </figure> 
 
 ## References

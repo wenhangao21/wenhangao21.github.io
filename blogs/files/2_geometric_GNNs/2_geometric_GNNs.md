@@ -388,9 +388,9 @@ $$
 l_1 \otimes l_2=\left|l_1-l_2\right| \oplus\left|l_1-l_2+1\right| \oplus \cdots \oplus\left(l_1+l_2-1\right) \oplus\left(l_1+l_2\right).
 $$
 
-This means the $l_1 l_2$-dimensional product decomposes into exactly one spherical tensor for each rank between the absolute difference $\left|l_1-l_2\right|$ and the sum $l_1+l_2$.
+This means the $l_1 l_2$-dimensional product decomposes into exactly one spherical tensor for each rank between the absolute difference $\left\vert l_1-l_2\right\vert$ and the sum $l_1+l_2$.
 
-Example: $|1-2|= 1$ and $1+2 = 3$. The $15$ elements in the tensor product can be decomposed into a $l = 1$ ($3$ elements) tensor, a $l = 2$ ($5$ elements) tensor, and a $l = 3$ ($7$ elements). In some not so rigorous notation:$1 \otimes 2=1 \oplus 2 \oplus 3$.
+Example: $\vert1-2\vert= 1$ and $1+2 = 3$. The $15$ elements in the tensor product can be decomposed into a $l = 1$ ($3$ elements) tensor, a $l = 2$ ($5$ elements) tensor, and a $l = 3$ ($7$ elements). In some not so rigorous notation:$1 \otimes 2=1 \oplus 2 \oplus 3$.
 
 The coefficients of the decomposition (elements in the change of basis matrix) are given by the Clebsch-Gordan coefficients.
 

@@ -284,25 +284,33 @@ The representations of rotations for rank-$2$ Catersian tensors are generally re
 </figure>
 <figcaption style="text-align: center;">Left: Visualization of the representation of a rotation on rank-$2$ Cartesian tensors. Right: Visualization of the representation after decomposition. </figcaption>
 
+### 3.4. Decomposing Cartesian Tensors into Spherical Tensors
 
-
+Now, as before, if we wish to maintain equivariance through message passing, we have to treat each rank separately. A general strategy is to treat each tensors as an entity and apply a single weight on it. However, the size of the tensor grow exponentially as the rank of the tensor, and it does not scale well. We can decompose the Cartesian tensor space into simpler parts (a direct sum of some subspaces).
   
- 
-### 3.4. Generalization
- 
-Let's look at the definition of cross-correlation:
+- Each subspace acts independently under the actions of the rotation group (irreducible representations).
+- Tensors in each subspace have the same "type".
+- Like scalar-vector networks, we apply equivariant operations to each type.
 
 <figure style="text-align: center;">
-  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/decomposition_rank2.png" style="width: 50%; display: block; margin: 0 auto;" />
 </figure>
+<figcaption style="text-align: center;">Example: Decomposing a rank-2 Cartesian tensor into Spherical tensors. </figcaption>
 
-Here, we explicitly think of the cross-correlation in terms of translations. To generalize, if we want to transform $f$ with other groups, the trick is to make the kernel $k$ be represented by a group. Group representations on $k$ are reflected on $f$ as well.  
+Specifically, this process is a change of basis.
 
-To generalize to other groups, we should consider the following:
+---
+Let $\vec{v} \in V$ be a vector. Fix a basis $\{e _ 1, \ldots, e _ n\}$, whence you have
+$\vec{v}=\sum _ {i=1}^n e _ i v^i=\left(e _ 1, \ldots e _ n\right) \cdot\left(v^1, \ldots, v^n\right)^T$.
 
-- Make the function defined on the group of interest.  
-- Integrate over the group of interest.  
-- Make the kernel reflect the actions of the group of interest.  
+Then a change of basis is equivalent to the choice of an invertible $n \times n$ matrix $M$ via
+
+$\vec{v}=\left(e _ 1, \ldots, e _ n\right) M M^{-1}\left(v^1, \ldots, v^n\right)^T=\left(\epsilon _ 1, \ldots, \epsilon _ n\right) \cdot\left(\nu^1, \ldots, \nu^n\right)^T$, where $\{\epsilon _ 1, \ldots, \epsilon _ n\}$ is the new basis and $\nu^1, \ldots, \nu^n$ are the new coefficients.
+---
+
+
+
+
 
 ## 4. Regular Group CNN and $SE(2)$ Equivariance
 

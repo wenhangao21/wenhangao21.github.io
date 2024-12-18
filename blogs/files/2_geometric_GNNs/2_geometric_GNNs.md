@@ -433,7 +433,7 @@ $$
 
 Generally, we can stack all the values from the degree-$l$ spherical harmonics together to get a order-$\ell$ spherical tensor.
 
-> Example: Given a 3D point $v = (x,y,z)$, we can write it as a radial part $||v||$ and a directional part $v/||v||$. The directional part is now defined on $S^2$, write it as $(\theta, \phi)$. We can get a order-$1$ tensor with spherical harmonics as: 
+> Example: Given a 3D point $v = (x,y,z)$, we can write it as a radial part $\Vert v \Vert$ and a directional part $\frac{v}{\Vert v \Vert}$. The directional part is now defined on $S^2$, write it as $(\theta, \phi)$. We can get a order-$1$ tensor with spherical harmonics as: 
 
 $$V^{(1)} =\left(\begin{array}{l}
 Y _ {l=1}^{m=-1}(\theta, \phi) \\\

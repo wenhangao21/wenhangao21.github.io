@@ -407,7 +407,7 @@ Suppose we with to get the $l = 1$ tensor resulted from the tensor product of ${
 Similarly, $C _ {\left(m _ 1, m _ 2, m _ 3\right)}^{\left(l _ 1 =1, l _ 2 =2, l _ 3 =2\right)}$ will give the resulting $l=2$ tensor, etc..
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/cg_tp.png" style="width: 20%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/cg_tp.png" style="width: 25%; display: block; margin: 0 auto;" />
 </figure>
 
 ---
@@ -427,8 +427,9 @@ f(\theta, \varphi)=\sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} f_{\ell}^m Y_{\e
 $$
 
 <figure style="text-align: center;">
-  <img alt="Spinning GIF" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/Rotating_spherical_harmonics.png" style="width: 30%; display: block; margin: 0 auto;" />
+  <img alt="Spinning GIF" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/Rotating_spherical_harmonics.gif" style="width: 30%; display: block; margin: 0 auto;" />
 </figure>
+
 
 ## References
 

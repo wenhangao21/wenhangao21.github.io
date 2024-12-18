@@ -186,14 +186,14 @@ A tensor is a multi-dimensional array with directional information. A rank-$n$ *
 - For a rotation represented by an orthogonal matrix $R$ , the components of $T$ transform as follows:
 
 $$
-T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=\sum _ {i_1, i_2, \ldots, i_n} R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}
+T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=\sum _ {i_1, i_2, \ldots, i_n} R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}.
 $$ 
 
 
 Equivalently, in index notation with Einstein summation convention, this can be written compactly as (refered to this [StackOverflow Post](https://stackoverflow.com/questions/26089893/understanding-numpys-einsum) for einsum operations):
 
 $$
-T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}
+T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}.
 $$
 
 A vector (rank-$1$ tensor) $v$ in 3D Euclidean space $\mathbb{R}^3$ can be expressed in the familiar Cartesian coordinate system in the standard basis:
@@ -293,19 +293,23 @@ Now, as before, if we wish to maintain equivariance through message passing, we 
 - Like scalar-vector networks, we apply equivariant operations to each type.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/decomposition_rank2.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/decomposition_rank2.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
 <figcaption style="text-align: center;">Example: Decomposing a rank-2 Cartesian tensor into Spherical tensors. </figcaption>
 
 Specifically, this process is a change of basis.
 
 ---
+
+**Change of Basis**:
+
 Let $\vec{v} \in V$ be a vector. Fix a basis $\{e _ 1, \ldots, e _ n\}$, whence you have
 $\vec{v}=\sum _ {i=1}^n e _ i v^i=\left(e _ 1, \ldots e _ n\right) \cdot\left(v^1, \ldots, v^n\right)^T$.
 
 Then a change of basis is equivalent to the choice of an invertible $n \times n$ matrix $M$ via
 
 $\vec{v}=\left(e _ 1, \ldots, e _ n\right) M M^{-1}\left(v^1, \ldots, v^n\right)^T=\left(\epsilon _ 1, \ldots, \epsilon _ n\right) \cdot\left(\nu^1, \ldots, \nu^n\right)^T$, where $\{\epsilon _ 1, \ldots, \epsilon _ n\}$ is the new basis and $\nu^1, \ldots, \nu^n$ are the new coefficients.
+
 ---
 
 

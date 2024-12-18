@@ -427,9 +427,31 @@ f(\theta, \varphi)=\sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} f_{\ell}^m Y_{\e
 $$
 
 <figure style="text-align: center;">
-  <img alt="Spinning GIF" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/Rotating_spherical_harmonics.gif" style="width: 30%; display: block; margin: 0 auto;" />
+  <img alt="Spinning GIF" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/Rotating_spherical_harmonics.gif" style="width: 20%; display: block; margin: 0 auto;" />
 </figure>
+<figcaption style="text-align: center;">Visualization of Spherical Harmonics from Wikipedia. </figcaption>
 
+Generally, we can stack all the values from the degree-$l$ spherical harmonics together to get a order-$\ell$ spherical tensor.
+
+> Example: Given a 3D point $v = (x,y,z)$, we can write it as a radial part $||v||$ and a directional part $v/||v||$. The directional part is now defined on $S^2$, write it as $(\theta, \phi)$. We can get a order-$1$ tensor with spherical harmonics as: 
+
+$$V^{(1)} =\left(\begin{array}{l}
+Y _ {l=1}^{m=-1}(\theta, \phi) \\\
+Y _ {l=1}^{m=0}(\theta, \phi) \\\
+Y _ {l=1}^{m=1}(\theta, \phi)
+\end{array}\right)$$
+
+
+
+For simplicity, we can rewrite (real) spherical harmonics as a vector-valued function for order-$\ell$. That is $Y^{\ell}(\cdot): \mathbb{R}^3 \rightarrow \mathbb{R}^{2 \ell+1}$ maps an input 3D vector to a $(2 \ell+1)$-dimensional vector representing the coefficients of order- $\ell$ spherical harmonics bases.
+
+Spherical harmonics function is equivariant to order-$\ell$ rotations, or so-called order-$\ell$ $S O(3)$ transformations:
+$$
+Y^{\ell}(R \boldsymbol{c})=D^{\ell}(R) Y^{\ell}(\boldsymbol{c}),
+$$
+where $\boldsymbol{c}$ is a 3D point.
+
+> Note: Spherical harmonics are a set of orthonormal functions defined on the surface of a sphere ($[0, \pi] \times [0, 2\pi]$) just like Fourier Basis. In fact, Fourier basis is called circular harmonics.
 
 ## References
 

@@ -6,7 +6,7 @@ author_profile: false
 
 # Geometric GNNs
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This blog introduces geometric GNNs, which guarantee Euclidian (E(n)) symmetries in neural networks; for example, when you rotate a molecular, scalar quantities such as potential energy should remain invariant and vector or tensor quantities should be equivariant to the rotation.
+**TL;DR:** This blog introduces geometric GNNs, which guarantee Euclidian (E(n)) symmetries in neural networks; for example, when you rotate a molecular, scalar quantities such as potential energy should remain invariant and vector or tensor quantities should be equivariant to the rotation.
 
 This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate concepts including tensor decomposition, equivariance, and irreducibility. 
 
@@ -18,7 +18,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 
 ### 1.1. Geometric Representation of Atomistic Systems
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There are different ways of representing molecules; for example:
+There are different ways of representing molecules; for example:
 - SMILE strings (1D)
 - Planar graphs (2D)
 - Geometric graphs (3D)
@@ -36,7 +36,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 
 ### 1.2. Graphs and Geometric Graphs
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Graphs** are purely topological objects and **geometric graphs** are a type of graphs where nodes are additionally endowed with <span style="color: red;">geometric information</span>.
+**Graphs** are purely topological objects and **geometric graphs** are a type of graphs where nodes are additionally endowed with <span style="color: red;">geometric information</span>.
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/geometric_graphs.png" style="width: 55%; display: block; margin: 0 auto;" />
@@ -76,7 +76,7 @@ We have two types of features: <span style="color: blue;">scalar features</span>
 
 ### 2.1. GNNs and Geometric Message Passing
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.
+Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 75%; display: block; margin: 0 auto;" />
@@ -106,7 +106,7 @@ To make it equivariant (invariant) to $E(3)$, there are in general two direction
 
 ### 2.1. Summarization of Scalarization GNNs
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scalarization networks use invariant quantities as geometries that are conditioned. For example:
+Scalarization networks use invariant quantities as geometries that are conditioned. For example:
 
 - Using relative distances (e.g. SchNet [2]):
 	- $\mathbf{m} _{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, d _{i j}\right)$, where $d _{i j}=\left\|x_j-x_i\right\|$
@@ -147,7 +147,7 @@ Cons:
 
 ### 3.1. Introduction 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In invariant GNNs, invariants are 'fixed' prior to message passing. In equivariant GNNs, vector/tensor quantities remain available. Equivariant GNNs can also build up invariants 'on the go' during message passing. More layers of message passing can lead to more complex invariants being built up. 
+In invariant GNNs, invariants are 'fixed' prior to message passing. In equivariant GNNs, vector/tensor quantities remain available. Equivariant GNNs can also build up invariants 'on the go' during message passing. More layers of message passing can lead to more complex invariants being built up. 
 
 - In invariant GNNs, we work with only scalars $f\left(s_1, s_2, \ldots, s_n\right)$.
 
@@ -177,9 +177,7 @@ As of now, we are constrained to have only scalar or vector features. What about
 
 ### 3.2. Catersian Tensors and Tensor Products
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A tensor is a multi-dimensional array with directional information.
-
-Cartesian tensors: A rank- $n$ Cartesian tensor $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T_{\mathrm{i}_1 \mathrm{i}_2 \cdots \mathrm{i}_{\mathrm{n}}}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T_{i_1 i_2 \cdots i_n}$ transforms independently as a vector under rotation.
+A tensor is a multi-dimensional array with directional information. A rank-$n$ *Cartesian tensor* $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T _ {\mathrm{i} _ 1 \mathrm{i} _ 2 \cdots \mathrm{i} _ n}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T _ {i_1 i_2 \cdots i_n}$ transformsindependently as a vector under rotation.
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/catersian_tensors.png" style="width: 50%; display: block; margin: 0 auto;" />
@@ -198,15 +196,18 @@ $$
 T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}
 $$
 
-
+A vector (rank-$1$ tensor) $v$ in 3D Euclidean space $\mathbb{R}^3$ can be expressed in the familiar Cartesian coordinate system in the standard basis
+```math
+\mathbf{e} _ x=\left(\begin{array}{l}1 \\ 0 \\ 0\end{array}\right) \mathbf{e} _ y=\left(\begin{array}{l}0 \\ 1 \\ 0\end{array}\right) \mathbf{e} _ z=\left(\begin{array}{l}0 \\ 0 \\ 1\end{array}\right).
+```
 
 ### 3.3. Intuition on Translation Equivariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
   
 ### 3.4. Generalization
  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's look at the definition of cross-correlation:
+Let's look at the definition of cross-correlation:
 
 <figure style="text-align: center;">
   <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
@@ -224,7 +225,7 @@ To generalize to other groups, we should consider the following:
 
 ### 4.1. Definition: $SE(2)$ Lifting Correlation
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:  
+To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:  
 <!-- 
 $$
 (k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
@@ -244,7 +245,7 @@ Lifting correlation raises the feature map to a higher dimension that represents
 
 ### 4.2. Demonstration: Lifting Correlation with the $p_4$ Rotation Group
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The $p_4$ group can be described as a semi-direct product:
+The $p_4$ group can be described as a semi-direct product:
 
 $$
 p_4=C_4 \ltimes \mathbb{Z}^2,
@@ -286,7 +287,7 @@ The resulting feature maps in the group space are equivariant (rotation in the i
 
 ### 4.3. Definition: $SE(2)$ Group Cross Correlations
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, the function is already defined on the group of interest after lifting. We still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.  
+Now, the function is already defined on the group of interest after lifting. We still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.  
 
 The group correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:  
 
@@ -305,7 +306,7 @@ $$\text { affine weight sharing } \Longleftrightarrow \quad \text { affine group
 Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H) := \left(\mathbb{R}^d, +\right) \rtimes H.$  
 
 ### 4.4. Demonstration: Cross Correlation with the $p_4$ Rotation Group
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, we have to reflect the differences in formulation between the lifting correlation and cross-correlation in the code as well.  
+Now, we have to reflect the differences in formulation between the lifting correlation and cross-correlation in the code as well.  
 
 ```python
 def p4_group_convolution(features, kernel):
@@ -342,7 +343,7 @@ In actual implementation, the group dimension can be added to the channel dimens
   <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
   
 ### 4.5. Overall Group CNN Pipeline
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overall, Group CNNs have the following structures:
+Overall, Group CNNs have the following structures:
 
 1. **Lifting Layer (Generate group equivariant feature maps):**  
    - 2D input $\Rightarrow$ 3D feature maps with the third dimension representing rotation.  
@@ -362,7 +363,7 @@ In actual implementation, the group dimension can be added to the channel dimens
 ## 5. High-level Ideas on $SE(2)$ Steerable CNNs
 
 ### 5.1 From Group CNNs to Steerable CNNs
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
+Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
 
 In a single sentence, steerable CNNs **interpolate** discrete (in terms of the rotation dimension) feature maps from group CNNs using Fourier/trigonometric interpolations.  
 

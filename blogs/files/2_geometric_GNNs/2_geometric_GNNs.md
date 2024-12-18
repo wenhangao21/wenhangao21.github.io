@@ -196,15 +196,98 @@ $$
 T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}
 $$
 
-A vector (rank-$1$ tensor) $v$ in 3D Euclidean space $\mathbb{R}^3$ can be expressed in the familiar Cartesian coordinate system in the standard basis
-```math
-\mathbf{e} _ x=\left(\begin{array}{l}1 \\ 0 \\ 0\end{array}\right) \mathbf{e} _ y=\left(\begin{array}{l}0 \\ 1 \\ 0\end{array}\right) \mathbf{e} _ z=\left(\begin{array}{l}0 \\ 0 \\ 1\end{array}\right).
-```
+A vector (rank-$1$ tensor) $v$ in 3D Euclidean space $\mathbb{R}^3$ can be expressed in the familiar Cartesian coordinate system in the standard basis:
 
-### 3.3. Intuition on Translation Equivariance
+$$
+\mathbf{e} _ x=\left(\begin{array}{l}1 \\\ 0 \\\ 0\end{array}\right) \mathbf{e} _ y=\left(\begin{array}{l}0 \\\ 1 \\\ 0\end{array}\right) \mathbf{e} _ z=\left(\begin{array}{l}0 \\\ 0 \\\ 1\end{array}\right).
+$$
+
+When you perform the tensor (or outer) product of two vectors in $\mathbb{R}^3$, you obtain a matrix (or a rank2 tensor). If you have two vectors 
+
+$$\mathbf{u}=\left(\begin{array}{c}u_x \\\ u_y \\\ u_z\end{array}\right) \text{ and }\mathbf{v}=\left(\begin{array}{c}v_x \\\ v_y \\\ v_z\end{array}\right),$$
+
+their tensor product $\mathbf{u} \otimes \mathbf{v}$ is given by:
+
+$$
+\mathbf{u} \otimes \mathbf{v}=\left(\begin{array}{c}
+u_x \\
+u_y \\
+u_z
+\end{array}\right) \otimes\left(\begin{array}{c}
+v_x \\
+v_y \\
+v_z
+\end{array}\right)=\left(\begin{array}{lll}
+u_x v_x & u_x v_y & u_x v_z \\
+u_y v_x & u_y v_y & u_y v_z \\
+u_z v_x & u_z v_y & u_z v_z
+\end{array}\right)
+$$
+
+FYI: The definition of outer product of two functions: $(f \otimes g)(x, y)=f(x) g(y)$.
+
+In terms of basis, if $\mathbf{u}$ and $\mathbf{v}$ are expressed in the standard basis $\{\mathbf{e}_x, \mathbf{e}_y, \mathbf{e}_z\}$, the resulting tensor product $\mathbf{u} \otimes \mathbf{v}$ can be viewed as a linear combination of the outer products of the basis vectors:
+
+$$
+\begin{gathered}
+\mathbf{u} \otimes \mathbf{v}=u_x v_x\left(\mathbf{e}_x \otimes \mathbf{e}_x\right)+u_x v_y\left(\mathbf{e}_x \otimes \mathbf{e}_y\right)+u_x v_z\left(\mathbf{e}_x \otimes \mathbf{e}_z\right)+u_y v_x\left(\mathbf{e}_y \otimes \mathbf{e}_x\right)+u_y v_y\left(\mathbf{e}_y \otimes \mathbf{e}_y\right)+u_y v_z\left(\mathbf{e}_y \otimes \mathbf{e}_z\right)+u_z v_x\left(\mathbf{e}_z \otimes \mathbf{e}_x\right) \\
++u_z v_y\left(\mathbf{e}_z \otimes \mathbf{e}_y\right)+u_z v_z\left(\mathbf{e}_z \otimes \mathbf{e}_z\right)
+\end{gathered}
+$$
+
+
+The basis are given by:
+
+$$
+\mathbf{e}_x \otimes \mathbf{e}_x=\left(\begin{array}{ccc}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{array}\right), \mathbf{e}_x \otimes \mathbf{e}_y=\left(\begin{array}{ccc}
+0 & 1 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{array}\right), \mathbf{e}_x \otimes \mathbf{e}_z=\left(\begin{array}{lll}
+0 & 0 & 1 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{array}\right), \mathbf{e}_y \otimes \mathbf{e}_x=\left(\begin{array}{ccc}
+0 & 0 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 0
+\end{array}\right), \ldots.
+$$
+
+
+
+### 3.3. Representations and Irreducibility
+
+A *representation* $\rho: G \rightarrow G L(V)$ is a group homomorphism from G to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
+
+$$
+\rho\left(g^{\prime}\right) \circ \rho(g)[\mathbf{v}]=\rho\left(g^{\prime} \cdot g\right)[\mathbf{v}].
+$$
+
+> Example: The representation of $SO(3)$ acting on a geometric 3D vector is a $3 \times 3$ orthogonal matrices with determinant $1$.
+
+A representation $\rho: G \rightarrow G L(V)$ is said to be *irreducible* if there are no proper non-zero subspaces $W$ of $V$ that are invariant under all group actions, i.e., $\rho(g) W \subseteq W$ for all $g \in G$. In other words, $V$ cannot be split into smaller subspaces that are individually invariant under the group action.
+
+If a representation is reducible, it can be *decomposed* into a direct sum of irreducible representations (irreps). A block diagonal matrix can represent the direct sum of the matrices that lie along the diagonal. An irreducible representation cannot be decomposed further in this way.
+> Note: A block diagonal matrix does not necessarily indicate irreducibility; it might be further reduced or decomposed.
+
+Irreducible representations are the "building blocks" of more complex representations. Representations are decomposed into indepedent simpler parts.
+
+The representations of rotations for rank-$2$ Catersian tensors are generally reducible. Let $R$ be a rotation matrix for rank-$1$ Catersian tensors, we can write the representation on rank-$2$ Catersian tensors as $R_2 \in \mathbb{R}^{3\times 3\times 3\times3} = R \otimes R$. Here we losely abuse the notation $\otimes$ to denote $(A \otimes B)_{i j, k l}=a_{i j} \cdot b_{k l}$, it is more formally known as the Kronecker product. For details, refer to the [implementation](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance) provided. 
+
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/reducible_irreducible.png" style="width: 50%; display: block; margin: 0 auto;" />
+</figure>
+<figcaption style="text-align: center;">Left: Visualization of the representation of a rotation on rank-$2$ Cartesian tensors. Right: Visualization of the representation after decomposition. </figcaption>
+
 
 
   
+ 
 ### 3.4. Generalization
  
 Let's look at the definition of cross-correlation:

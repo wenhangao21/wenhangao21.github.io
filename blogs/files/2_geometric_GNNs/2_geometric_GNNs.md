@@ -66,7 +66,7 @@ We have two types of features: <span style="color: blue;">scalar features</span>
 
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/symmetries.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/symmetries.png" style="width: 50%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;"> Geometric GNNs should account for all physical symmetries. Figure adopted from [1]. </figcaption>
 
@@ -79,7 +79,7 @@ We have two types of features: <span style="color: blue;">scalar features</span>
 Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
 
 

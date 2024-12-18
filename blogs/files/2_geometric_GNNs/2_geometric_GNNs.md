@@ -24,13 +24,13 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 - Geometric graphs (3D)
 
 <figure style="text-align: center;">
-  <img alt="Symmetry Diagram" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
 
 3D geometric configuration (coordinates) is crucial in determining properties and so, GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 40%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin. </figcaption>
 
@@ -39,7 +39,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Graphs** are purely topological objects and **geometric graphs** are a type of graphs where nodes are additionally endowed with <span style="color: red;">geometric information</span>.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/geometric_graphs.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/geometric_graphs.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;"> Comparison of graphs and geometric graphs. Figure adopted from [1]. </figcaption>
 
@@ -66,7 +66,7 @@ We have two types of features: <span style="color: blue;">scalar features</span>
 
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/symmetries.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/symmetries.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;"> Geometric GNNs should account for all physical symmetries. Figure adopted from [1]. </figcaption>
 
@@ -74,46 +74,61 @@ We have two types of features: <span style="color: blue;">scalar features</span>
 
 ## 2. Geometric GNNs
 
-### 2.1. Recap of GNNs
+### 2.1. GNNs and Geometric Message Passing
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.
 
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
 
 - Readers who are not familiar with GNNs are refered to [Stanford CS224W: Machine Learning with Graphs](https://www.youtube.com/playlist?list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn).
 
+For geometric message passing, we condition on geometries. Without loss of generality, let $a_{i j}$ contain geometric information for nodes $i,j$, we can have the following message passing schemes:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To ensure symmetries
+$$
+\mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, a_{ij}\right)
+$$
+
+
+
+To ensure symmetries
 - <span style="color: blue;">Scalar features</span> must be updated in an invariant manner.
-- <span style="color: red;">Geometric features</span> must be updated in an equivariant manner.\
+- <span style="color: red;">Geometric features</span> must be updated in an equivariant manner.
 
-To make it equivariant (invariant) to E(3), there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constraint the geometric information that can be utilized, while the other constraints the model operations.
+>　For example, let the relative position been the geometries and $f_1$ be an MLP, the messages $\mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, x_j-x_i\right)$ are clearly not equivraiant. 
 
 
-### 2.3. Definition: Equivariance and Invariance
+To make it equivariant (invariant) to $E(3)$, there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constraint the geometric information that can be utilized, while the other constraints the model operations.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Equivariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it commutes with the group action:
-$$
-\Phi \circ \rho^X(g)=\rho^Y(g) \circ \Phi,
-$$
 
-**Invariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it remains unchanged after the group action:
+### 2.2. Scalarization Networks (Invariant GNNs)
 
-$$
-\Phi \circ \rho^X(g)=\Phi,
-$$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scalarization networks use invariant quantities as geometries that are conditioned. For example:
 
-- $\rho^X(g)$: group representation action on $X$
-- $\rho^Y(g)$: group representation action on $Y$
-- Invariance is a special case of equivariance when $\rho^Y(g)$ is the identity.
-
+1. Using relative distances (e.g. SchNet [2]):
+	- $\mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, d_{i j}\right)$, where $d_{i j}=\left\|x_j-x_i\right\|$
+	- $1$-hop, body order $2$, $O(nk)$ to compute invariant quantities with $n$ being the total number of nodes and $k$ being the average degree of a node.
+	- This is $E(3)$ invariant, but we limit the expressivity of the model as we cannot distinguish different local geometries. 
+	- We cannot distinguish two local neighbourhoods apart using the unordered set of distances only.
+	
 <figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/invariance_and_equvariance.png" style="width: 65%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/distance.png" style="width: 35%; display: block; margin: 0 auto;" />
 </figure>
-  <figcaption style="text-align: center;">Figure 4: Invariant task in the left as the classification label remains unchanged after translating the cat. Equivariant task in the right as the localization operator commutes with translation. Figure Source: [3]. </figcaption>
+  <figcaption style="text-align: center;">The set of distances are the same, but the graphs are different. Image adopted from [1]. </figcaption>
+  
+2. Using relative distances and bond angles (e.g. DimeNet [3]):
+	- $\mathbf{m}_{i j}=f_1\left(s_i, s_j, d_{i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}} f_3\left(s_j, s_k, d_{i j}, d_{j k}, \measuredangle i j k\right)\right)$
+	- $2$-hop, body order $3$, $O(nk^2)$ to compute invariant quantities
+	- This is $E(3)$ invariant, but again we limit the expressivity of the model due to similar reasons.
+	
+3. Using relative distances, bond angles, and torsion angles (e.g. SphereNet [4]):
+	- $\boldsymbol{m}_{i j}=f_1\left(s_i, s_j, d_{i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}, l \in \mathcal{N}_k \backslash\{i, j\}} f_3\left(s_k, s_l, d_{k l}, d_{i j}, d_{j k}, \measuredangle i j k, \measuredangle j k l, \measuredangle i j k l\right)\right)$
+	- $3$-hop, body order $4$, $O(nk^3)$ to compute invariant quantities
+	- This is $SE(3)$ invariant and complete, meaning that it can uniquely determine the 3D configuration of the geometric graph up to $SO(3)$ transformations (Not $E(3)$ because reflections changes the sign of torsians, you can make it $E(3)$ by ignoring the sign). 
+	
+	
   
 ## 3. CNNs and Translation Equivariance
 
@@ -376,13 +391,12 @@ For details, the readers are refered to [2].
 
 [1] A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems, Duvel et al
 
-[2] Steerable CNNs by Taco S. Cohen and Max Welling
+[2] SchNet: A Continuous-filter Convolutional Neural Network for Modeling Quantum Interactions, Kristof T. Schütt et al.
 
-[3] Imperial's Deep learning course: Equivariance and Invariance by Bernhard Kainz
+[3] Directional Message Passing for Molecular Graphs, Johannes Gasteiger et al.
 
-[4] From Convolution to Neural Network by Gregory Gundersen
+[4] Spherical Message Passing for 3D Graph Networks, Yi Liu et al.
 
-[5] UvA - An Introduction to Group Equivariant Deep Learning by Erik Bekkers
 
 ## Other Useful Resources for Starters
 

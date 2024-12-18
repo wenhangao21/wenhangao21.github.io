@@ -453,6 +453,17 @@ where $\boldsymbol{c}$ is a 3D point.
 
 > Note: Spherical harmonics are a set of orthonormal functions defined on the surface of a sphere ($[0, \pi] \times [0, 2\pi]$) just like Fourier Basis. In fact, Fourier basis is called circular harmonics.
 
+
+**Summary of Terminology**
+
+1. **Rank** k Cartesian Tensors: $T^{[k]}$
+
+2. **Order**-$\ell$ Spherical Tensors: $T^{(l)}$
+
+3. Spherical Harmonics with **degree** $\ell$ and **order** $m$: $Y_l^m$
+
+4. **Order**-$\ell$ Spherical Harmonics Function that gives the **Order**-$\ell$ Spherical Harmonics Coefficients: $Y^{\ell}(\cdot)$:
+
 ## References
 
 [1] A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems, Duvel et al

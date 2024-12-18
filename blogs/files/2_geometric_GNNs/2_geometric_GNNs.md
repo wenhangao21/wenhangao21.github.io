@@ -284,6 +284,11 @@ The representations of rotations for rank-$2$ Catersian tensors are generally re
 </figure>
 <figcaption style="text-align: center;">Left: Visualization of the representation of a rotation on rank-$2$ Cartesian tensors. Right: Visualization of the representation after decomposition. </figcaption>
 
+```python
+R_rank2 = torch.einsum('ij,kl', R, R)
+plt.imshow(torch.kron(R, R), cmap='bwr', vmin=-1, vmax=1);
+```
+
 ### 3.4. Decomposing Cartesian Tensors into Spherical Tensors
 
 Now, as before, if we wish to maintain equivariance through message passing, we have to treat each rank separately. A general strategy is to treat each tensors as an entity and apply a single weight on it. However, the size of the tensor grow exponentially as the rank of the tensor, and it does not scale well. We can decompose the Cartesian tensor space into simpler parts (a direct sum of some subspaces).

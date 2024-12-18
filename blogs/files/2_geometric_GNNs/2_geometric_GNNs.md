@@ -102,8 +102,9 @@ To ensure symmetries
 
 To make it equivariant (invariant) to $E(3)$, there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constraint the geometric information that can be utilized, while the other constraints the model operations.
 
+## Scalarization GNNs (Invariant GNNs)
 
-### 2.2. Scalarization Networks (Invariant GNNs)
+### 2.1. Summarization of Scalarization GNNs
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scalarization networks use invariant quantities as geometries that are conditioned. For example:
 
@@ -128,11 +129,23 @@ To make it equivariant (invariant) to $E(3)$, there are in general two direction
 	- $3$-hop, body order $4$, $O(nk^3)$ to compute invariant quantities
 	- This is $SE(3)$ invariant and complete, meaning that it can uniquely determine the 3D configuration of the geometric graph up to $SO(3)$ transformations (Not $E(3)$ because reflections changes the sign of torsians, you can make it $E(3)$ by ignoring the sign). 
 	
-	
-  
-## 3. CNNs and Translation Equivariance
+### 2.2. Pros and Cons
 
-### 3.1. Convolution and Cross-Correlation
+In summary, invariant GNNs update latent representations by scalarizing local geometry information. This is efficient, and we can achieve invariance with simple MLP without specific constraints on the operations or activations we can take. 
+
+Pros:
+- Simple usage of network architecture and non-linearities on many-body scalars.
+- Great performance on some use-cases (e.g. GemNet on OC20).
+
+Cons:
+- Scalability of scalar’s pre-computation. The accounting of higher-order tuples is expensive. 
+- Making invariant predictions may still require solving equivariant sub-tasks.
+- May lack generalization capabilities (equivariant tasks, multi-domain).
+
+  
+## 3. Equivariant GNNs 
+
+### 3.1. Introduction
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **convolution** of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
 

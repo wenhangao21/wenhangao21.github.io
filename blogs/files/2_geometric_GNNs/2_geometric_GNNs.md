@@ -113,7 +113,7 @@ Scalarization networks use invariant quantities as geometries that are condition
 	- We cannot distinguish two local neighbourhoods apart using the unordered set of distances only.
 	
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/distance.png" style="width: 20%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/distance.png" style="width: 15%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">The set of distances are the same, but the graphs are different. Image adopted from [1]. </figcaption>
   

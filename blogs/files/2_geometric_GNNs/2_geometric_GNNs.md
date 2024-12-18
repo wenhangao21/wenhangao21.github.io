@@ -145,18 +145,25 @@ Cons:
   
 ## 3. Equivariant GNNs 
 
-### 3.1. Introduction
+### 3.1. Introduction 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **convolution** of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In invariant GNNs, invariants are 'fixed' prior to message passing. In equivariant GNNs, vector/tensor quantities remain available. Equivariant GNNs can also build up invariants 'on the go' during message passing. More layers of message passing can lead to more complex invariants being built up. 
 
+- In invariant GNNs, we work with only scalars $f\left(s_1, s_2, \ldots, s_n\right)$.
+
+- In equivariant GNNs, we work with vectors $f\left(s_1, s_2, \ldots s_n, v_1, \ldots, v_m\right)$.
+
+> Instantiation: "Scalar-vector" GNNs
+Scalar message:
 $$
-(k * f)(x):=\int_{\mathbb{R}^d} k(x-x')f(x') d x' .
+\mathbf{m}_i:=f_1\left(\mathbf{s}_i,\left\|\mathbf{v} _ {\mathbf{i}}\right\|\right) + \sum _ {j \in \mathcal{N}_i} f_2\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right)
 $$
-
-> An equivalent definition is (commutativity):
-
+Vector message:
 $$
-(k * f)(x):=\int_{\mathbb{R}^d} k(x')f(x-x') d x' .
+\begin{aligned}
+\overrightarrow{\mathbf{m}}_i:=f_3\left(\mathbf{s}_i,\left\|\mathbf{v} _ {\mathbf{i}}\right\|\right) \odot \mathbf{v}_i & +\sum _ {j \in \mathcal{N}_i} f _ 4\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right) \odot \mathbf{v}_j \\
+& +\sum _ {j \in \mathcal{N}_i} f_5\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right) \odot \vec{x} _ {i j}
+\end{aligned}
 $$
 
 

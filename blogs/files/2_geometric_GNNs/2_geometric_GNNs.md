@@ -325,170 +325,93 @@ Specifically, we can decompose a Cartesian tensor of rank-$2$ as follows:
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
 
-
-The `e3nn` library provides 
-
-
-## 4. Regular Group CNN and $SE(2)$ Equivariance
-
-### 4.1. Definition: $SE(2)$ Lifting Correlation
-
-To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:  
-<!-- 
-$$
-(k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
-$$
--->
-<figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
-</figure>
-
-Lifting correlation raises the feature map to a higher dimension that represents rotation. Now, planar rotation becomes a planar rotation in the $xy$-axes and a periodic shift (translation) in the $\theta$-axis.  
-
-<figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifting.png" style="width: 65%; display: block; margin: 0 auto;" />
-</figure>
-  <figcaption style="text-align: center;">Figure 6: Lifting operation convolves the input with rotated copies of the kernel to reflect the SE(2) group. An additional dimension is included to reflect the rotation angles.</figcaption>
-  
-
-### 4.2. Demonstration: Lifting Correlation with the $p_4$ Rotation Group
-
-The $p_4$ group can be described as a semi-direct product:
-
-$$
-p_4=C_4 \ltimes \mathbb{Z}^2,
-$$
-
-where:
-- $C_4$ : The cyclic group of order 4 representing the rotational symmetries.
-- $\mathbb{Z}^2$ : The group of translations in the plane (not $\mathbb{R}^2$ because images are discrete).
-
-
-The lifting operation will simply convolve the input with the kernels rotated by $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, respectively. The result contains $4$ feature maps that correspond to these angles.
-
 ```python
-def lift_correlation(image, kernel):
-    """
-    Apply lifting correlation/convolution on an image.
+def decompose_tensor(T):
+    if outer_product.shape != (3, 3):
+        raise ValueError("Input must be a rank-2 tensor.")
+    # l-0: Trace of the tensor
+    l0 = np.trace(T) / np.sqrt(3)
 
-    Parameters:
-    - image (numpy.ndarray): The input image as a 2D array, size (s,s)
-    - conv_kernel (numpy.ndarray): The convolution kernel as a 2D array.
+    # l-1: Antisymmetric part
+    antisymmetric_part = (T.T - T )/np.sqrt(2)
+    l1 = np.array([
+        antisymmetric_part[2, 1],  # T_yz - T_zy
+        antisymmetric_part[0, 2],  # T_zx - T_xz
+        antisymmetric_part[1, 0],  # T_xy - T_yx
+    ])
+    # l-2： Symmetric part
+    symmetric_part = (T + T.T) /2
+    matrix = symmetric_part.numpy()
+    M_xx, M_yy, M_zz = matrix[0, 0], matrix[1, 1], matrix[2, 2]
+    M_xy, M_xz, M_yz = matrix[0, 1], matrix[0, 2], matrix[1, 2]
 
-    Returns:
-    - numpy.ndarray: Resulting feature maps after lifting correlation, size (|G|,s,s)
-    """
-    results = []
-    for i in range(4):  # apply rotations to the kernel and convolve with the input
-        rotated_kernel = np.rot90(conv_kernel, i)
-        result = convolve2d(image, rotated_kernel, mode='same', boundary='symm')
-        results.append(result)
-    return np.array(results)
+    T_2m2 = M_xy* np.sqrt(2)                    # T_xy + T_yx
+    T_2m1 = M_xz* np.sqrt(2)                    # T_xz + T_zx
+    T_20 = (-M_zz - M_xx + 2* M_yy)/np.sqrt(6)  # 2T_yy - T_xx - T_zz
+    T_21 = M_yz* np.sqrt(2)                     # T_yz + T_zy
+    T_22 = (-M_xx + M_zz)/ np.sqrt(2)           # T_zz - T_xx
+    l2 = np.array([T_2m1, T_2m2, T_20, T_21, T_22])
+    return l0, l1, l2
 ```
 
-The resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features).
+For more details, refer to the [implementation](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance) provided. 
 
-<figure style="text-align: center;">
-  <img alt="Lifting" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/lifted_features.png" style="width: 80%; display: block; margin: 0 auto;" />
-</figure>
-  <figcaption style="text-align: center;">Figure 6: Lifting correlation includes an additional dimension to reflect the rotation angles. Now, a rotation in the input will results in a planar rotation in the spatial dimensions and a periodic shift (translation) in the angular dimension (this specifies the equivariance of the lifting correlation). </figcaption>
+To summarize, we have seen that the $9$-dimensional rank-$2$ Cartesian tensor can be decomposed into a $1d$, $3d$ and $5d$ parts: $
+3 \otimes 3=1 \oplus 3 \oplus 5$. These parts are called spherical tensors.
 
-### 4.3. Definition: $SE(2)$ Group Cross Correlations
 
-Now, the function is already defined on the group of interest after lifting. We still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.  
+### 3.5. Spherical Tensor
 
-The group correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:  
+A spherical tensor $T^\ell$ of order $\ell$ has $2 \ell+1$ components, denoted as $T_m^{\ell}$, where $m$ ranges from $-\ell$ to $\ell$. These components transform under rotations according to the rules of irreducible representations of the rotation group $S O(3)$.
 
-<figure style="text-align: center;">
-  <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
-</figure>
+If a rotation is represented by a matrix $R$, the components transform as:
 
-Although the examples are given for the group $\mathrm{SE}(2)$, the idea can generalize to other affine groups (semi-direct product groups).  
+$$
+{T}^{(\ell)} \rightarrow \mathcal{D}^{(\ell)}(\mathbf{R}) {T}^{(\ell)}
+$$
 
-If we look carefully at how rotational equivariance is achieved, we find that it basically adds a rotation dimension represented by an axis $\theta$. Thus, the rotational equivariance problem now becomes a translation equivariance problem, which can be solved easily by convolution/cross-correlation.  
+where $\mathcal{D}^{(\ell)}(\mathbf{R})$ is the Wigner-$\mathcal{D}$ matrix of order $\ell$ for the rotation.
 
-$$\text { translational weight sharing } \Longleftrightarrow \quad \text { translation group equivariance }$$
+- Order-$0$ and rank-$0$ are the same (invariant under rotation).
+- Order-$1$ and rank-$1$ are the same (transform under the normal $e\tiems 3$ unitary rotation matrix).
 
-$$\text { affine weight sharing } \Longleftrightarrow \quad \text { affine group equivariance }$$
+### 3.6. Tensor Products of Spherical Tensors
 
-Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H) := \left(\mathbb{R}^d, +\right) \rtimes H.$  
+Unfortunately, the tensor product of two spherical tensors ${S}^{\left(l_1\right)}$ and ${T}^{\left(l_2\right)}$ is generally not a spherical tensor anymore. 
 
-### 4.4. Demonstration: Cross Correlation with the $p_4$ Rotation Group
-Now, we have to reflect the differences in formulation between the lifting correlation and cross-correlation in the code as well.  
+> Example: As we have seen above, the tensor product of two $l_1$ spherical tensors ($9$ elements) is not an order-$4$ ($9$ elements) spherical tensor. We have to decompose it into spherical tensors of orders $0,1,2$.
 
-```python
-def p4_group_convolution(features, kernel):
-    """
-    Perform P4 group convolution on a set of feature maps on P4 group.
+However, we can decompose the tensor product ${S}^{\left(l_1\right)} \otimes {T}^{\left(l_2\right)}$ back into spherical tensors.
 
-    Parameters:
-    - features (numpy.ndarray): A 3D array of feature maps with shape (|G|, s, s).
-    - kernel (numpy.ndarray): A 2D array representing the convolution kernel.
+As a rule, the $\left(l_1 l_2\right)$-dimensional tensor product of two spherical tensors of ranks $l_1$ and $l_2$ decomposes into:
+$$
+l_1 \otimes l_2=\left|l_1-l_2\right| \oplus\left|l_1-l_2+1\right| \oplus \cdots \oplus\left(l_1+l_2-1\right) \oplus\left(l_1+l_2\right) .
+$$
 
-    Returns:
-    - numpy.ndarray: feature maps after the P4 group convolution with shape (|G|, s, s).
-    """
-    output = np.zeros_like(features)
-    # Perform convolution for each feature map, convolve over both planar and angular axes
-    for i in range(features.shape[0]):
-        feature_map = features[i]
-        result = np.zeros_like(feature_map)
-        # SE(2) group on the kernels
-        for j in range(4):
-            rotated_kernel = np.rot90(kernel, j)  
-            result += convolve2d(feature_map, rotated_kernel, mode='same', boundary='symm')
-        output[i] = result
-    return output
-```
+This means the $l_1 l_2$-dimensional product decomposes into exactly one spherical tensor for each rank between the absolute difference $\left|l_1-l_2\right|$ and the sum $l_1+l_2$.
 
-Similar to above, you can check that the resulting feature maps in the group space are equivariant (rotation in the input $\mapsto$ planar rotation + periodic shift in the output features).  
+Example: $|1-2|= 1$ and $1+2 = 3$. The $15$ elements in the tensor product can be decomposed into a $l = 1$ ($3$ elements) tensor, a $l = 2$ ($5$ elements) tensor, and a $l = 3$ ($7$ elements). In some not so rigorous notation:$1 \otimes 2=1 \oplus 2 \oplus 3$.
 
-In actual implementation, the group dimension can be added to the channel dimension:  
+The coefficients of the decomposition (elements in the change of basis matrix) are given by the Clebsch-Gordan coefficients.
 
-<figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/group_conv_channel_implementation.png" style="width: 85%; display: block; margin: 0 auto;" />
-</figure>
-  <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
-  
-### 4.5. Overall Group CNN Pipeline
-Overall, Group CNNs have the following structures:
+> Example:
+Suppose we with to get the $l = 1$ tensor resulted from the tensor product of ${S}^{\left(l _ 1\right)} \otimes {T}^{\left(l _ 2\right)}$. Each of these three elements is a weighted sum of the $3\times 5$ resulting elements. So in total, we have $3 \times 5 \times 3 = 45$ coefficients. We denote this change of basis weights by $C _ {\left(m _ 1, m _ 2, m _ 3\right)}^{\left(l _ 1, l _ 2, l _ 3\right)}$, where $-\ell _ i \leq m _ i \leq \ell _ i$.
 
-1. **Lifting Layer (Generate group equivariant feature maps):**  
-   - 2D input $\Rightarrow$ 3D feature maps with the third dimension representing rotation.  
+---
 
-2. **Group Conv Layers (Convolve over the group space):**  
-   - 3D feature maps $\Rightarrow$ 3D feature maps.  
+- $C _ {\left(m _ 1 =1, m _ 2 =2, m _ 3=1\right)}^{\left(l _ 1 =1, l _ 2 =2, l _ 3 =1\right)}$ means the coefficient of $t _ 1 \times s _ 2$  in order to get $u _ 1$ in the resulting tensor (We have $15$ coefficients for $u _ 1$).
+	- $u _ 1=\sum _ {i=-1}^1 \sum _ {j=-2}^2 C _ {\left(m _ 1=i, m _ 2=j, m _ 3=1\right)}^{\left(l _ 1=1, l _ 2=2, l _ 3=1\right)} t _ i s _ j$
+	- $u _ 2=\sum _ {i=-1}^1 \sum _ {j=-2}^2 C _ {\left(m _ 1=i, m _ 2=j, m _ 3=2\right)}^{\left(l _ 1=1, l _ 2=2, l _ 3=1\right)} t _ i s _ j$
+	- $u _ 3=\sum _ {i=-1}^1 \sum _ {j=-2}^2 C _ {\left(m _ 1=i, m _ 2=j, m _ 3=3\right)}^{\left(l _ 1=1, l _ 2=2, l _ 3=1\right)} t _ i s _ j.$
+Similarly, $C _ {\left(m _ 1, m _ 2, m _ 3\right)}^{\left(l _ 1 =1, l _ 2 =2, l _ 3 =2\right)}$ will give the resulting $l=2$ tensor, etc..
 
-3. **Projection Layer (Collapse the group dimension):**  
-   - **Invariance:** 3D feature map $\Rightarrow$ 2D feature map by (e.g., max/avg) pooling over the $\theta$ dimension. Now, it is invariant in the $\theta$ dimension.  
-   - **Equivariance:** The resulting 2D feature map is rotation equivariant with respect to the input.  
+$$\mathbf{T} = \begin{pmatrix} t_{-1} \\\ t_0 \\\ t_1 \end{pmatrix}, \quad  \mathbf{S} = \begin{pmatrix} s_{-2} \\\ s_{-1} \\\ s_0 \\\ s_1 \\\ s_2 \end{pmatrix}, \quad \mathbf{T \otimes_{cg} S} = \begin{pmatrix} u_1 \\\ u_2 \\\ u_3 \\\ - \\\ u_4 \\\ u_5 \\\ u_6 \\\ u_7 \\\ u_8 \\\ - \\\ u_9 \\\ u_{10} \\\ u_{11} \\\ u_{12} \\\ u_{13} \\\ u_{14} \\\ u_{15} \end{pmatrix}$$
 
-<figure style="text-align: center;">
-  <img alt="Invariance and Equivariance" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/GCNN.png" style="width: 85%; display: block; margin: 0 auto;" />
-</figure>
-  <figcaption style="text-align: center;">Figure 8: Overall Structure of Group CNNs: Group Lifting Layer $\Rightarrow$ Group Convolution Layers $\Rightarrow$ Group Projection Layer. Figure Source: [5]. </figcaption>
+---
 
-## 5. High-level Ideas on $SE(2)$ Steerable CNNs
-
-### 5.1 From Group CNNs to Steerable CNNs
-Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
-
-In a single sentence, steerable CNNs **interpolate** discrete (in terms of the rotation dimension) feature maps from group CNNs using Fourier/trigonometric interpolations.  
-
-- After the lifting layer, we have an extra dimension $\theta$ for the rotation angles. If we look at a specific pixel location, we can view all the feature values at this location as a periodic function $f: \theta \in [0, 2\pi) \mapsto \mathbb{R}$.  
-
-<figure style="text-align: center;">
-  <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/fiber.png" style="width: 45%; display: block; margin: 0 auto;" />
-</figure>
-
-- How do we get continuous functions from discrete values? The answer is interpolation. As this function is periodic and defined on $[0, 2\pi)$, it is very natural to represent this function as a Fourier series. We can get the Fourier coefficients from discrete points, e.g., $0^\circ$, $90^\circ$, $180^\circ$, and $270^\circ$, by performing a discrete Fourier transform.  
-
-- Now, a periodic shift (translation) is a phase shift on these coefficients (Fourier shift theorem), and convolution is a point-wise multiplication with the coefficients.  
-
-- A little caveat: this is an approximation to equivariance if the degrees of rotation are not one of those discrete points.  
-
-For details, the readers are refered to [2]. 
-
+<figure style="float: right; margin-right: 10px;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 40%; display: block; margin: 0 auto;" />
+</figure> 
 
 ## References
 

@@ -435,7 +435,7 @@ Generally, we can stack all the values from the degree-$l$ spherical harmonics t
 
 > Example: Given a 3D point $v = (x,y,z)$, we can write it as a radial part $\Vert v \Vert$ and a directional part $\frac{v}{\Vert v \Vert}$. The directional part is now defined on $S^2$, write it as $(\theta, \phi)$. We can get a order-$1$ tensor with spherical harmonics as: 
 
-$$V^{(1)} =\left(\begin{array}{l}
+$$V^{l=1} =\left(\begin{array}{l}
 Y _ {l=1}^{m=-1}(\theta, \phi) \\\
 Y _ {l=1}^{m=0}(\theta, \phi) \\\
 Y _ {l=1}^{m=1}(\theta, \phi)
@@ -451,7 +451,7 @@ Y^{\ell}(R \boldsymbol{c})=D^{\ell}(R) Y^{\ell}(\boldsymbol{c}),
 $$
 where $\boldsymbol{c}$ is a 3D point.
 
-> Note: Spherical harmonics are a set of orthonormal functions defined on the surface of a sphere ($[0, \pi] \times [0, 2\pi]$) just like Fourier Basis. In fact, Fourier basis is called circular harmonics.
+> Note: Spherical harmonics are a set of orthonormal functions defined on the surface of a sphere ($[0, \pi) \times [0, 2\pi)$) just like Fourier Basis. In fact, Fourier basis is called circular harmonics.
 
 
 **Summary of Terminology**
@@ -464,6 +464,13 @@ where $\boldsymbol{c}$ is a 3D point.
 
 4. **Order**-$\ell$ Spherical Harmonics Function that gives the **Order**-$\ell$ Spherical Harmonics Coefficients: $Y^{\ell}(\cdot)$:
 
+We have covered all the fundamental concepts in order to understand the overall pipeline of Spherical Tensor GNNs. The readers are refered to [1] and [5] for more detailed treatments. 
+
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_gnn.png" style="width: 20%; display: block; margin: 0 auto;" />
+</figure>
+<figcaption style="text-align: center;">Equivariant Interactions via Spherical Tensor Product. Image adopted from [5]. </figcaption>
+
 ## References
 
 [1] A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems, Duvel et al
@@ -473,6 +480,8 @@ where $\boldsymbol{c}$ is a 3D point.
 [3] Directional Message Passing for Molecular Graphs, Johannes Gasteiger et al.
 
 [4] Spherical Message Passing for 3D Graph Networks, Yi Liu et al.
+
+[5] Artificial Intelligence for Science in Quantum, Atomistic, and Continuum Systems (Section 2), Xuan Zhang (Texas A&M) et al.
 
 
 ## Other Useful Resources for Starters

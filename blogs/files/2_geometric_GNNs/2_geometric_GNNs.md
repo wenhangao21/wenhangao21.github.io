@@ -467,7 +467,7 @@ where $\boldsymbol{c}$ is a 3D point.
 We have covered all the fundamental concepts in order to understand the overall pipeline of Spherical Tensor GNNs. The readers are refered to [1] and [5] for more detailed treatments. 
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_gnns.png" style="width: 20%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_gnns.png" style="width:70%; display: block; margin: 0 auto;" />
 </figure>
 <figcaption style="text-align: center;">Equivariant Interactions via Spherical Tensor Product. Image adopted from [5]. </figcaption>
 

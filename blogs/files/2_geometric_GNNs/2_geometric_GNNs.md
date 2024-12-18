@@ -108,7 +108,7 @@ To make it equivariant (invariant) to $E(3)$, there are in general two direction
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scalarization networks use invariant quantities as geometries that are conditioned. For example:
 
-1. Using relative distances (e.g. SchNet [2]):
+- Using relative distances (e.g. SchNet [2]):
 	- $\mathbf{m} _{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, d _{i j}\right)$, where $d _{i j}=\left\|x_j-x_i\right\|$
 	- $1$-hop, body order $2$, $O(nk)$ to compute invariant quantities with $n$ being the total number of nodes and $k$ being the average degree of a node.
 	- This is $E(3)$ invariant, but we limit the expressivity of the model as we cannot distinguish different local geometries. 
@@ -119,12 +119,12 @@ To make it equivariant (invariant) to $E(3)$, there are in general two direction
 </figure>
   <figcaption style="text-align: center;">The set of distances are the same, but the graphs are different. Image adopted from [1]. </figcaption>
   
-2. Using relative distances and bond angles (e.g. DimeNet [3]):
+- Using relative distances and bond angles (e.g. DimeNet [3]):
 	- $\mathbf{m}_ {i j}=f_1\left(s_ i, s_j, d_ {i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}} f_3\left(s_j, s_k, d _{ij}, d _{j k},\measuredangle i j k\right)\right)$
 	- $2$-hop, body order $3$, $O(nk^2)$ to compute invariant quantities
 	- This is $E(3)$ invariant, but again we limit the expressivity of the model due to similar reasons.
 	
-3. Using relative distances, bond angles, and torsion angles (e.g. SphereNet [4]):
+- Using relative distances, bond angles, and torsion angles (e.g. SphereNet [4]):
 	- $\boldsymbol{m} _ {i j}=f_1\left(s_i, s_j, d _ {i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}, l \in \mathcal{N}_k \backslash\{i, j\}} f_3\left(s_k, s_l, d _ {k l}, d _ {i j}, d _ {j k}, \measuredangle i j k, \measuredangle j k l, \measuredangle i j k l\right)\right)$
 	- $3$-hop, body order $4$, $O(nk^3)$ to compute invariant quantities
 	- This is $SE(3)$ invariant and complete, meaning that it can uniquely determine the 3D configuration of the geometric graph up to $SO(3)$ transformations (Not $E(3)$ because reflections changes the sign of torsians, you can make it $E(3)$ by ignoring the sign). 

@@ -6,7 +6,7 @@ author_profile: false
 
 # Group Convolution Neural Networks
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **TL;DR:** This blog introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. It aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
+**TL;DR:** This blog introduces group convolutional neural networks (Group CNNs) [1,2], which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. It aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
 - The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 
@@ -14,7 +14,7 @@ author_profile: false
 
 ### 1.1. Why Symmetries
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group equivariance in ML models is about enforcing symmetries in the architectures.  
+Group equivariance in ML models is about enforcing symmetries in the architectures.  
 - Many learning tasks, oftentimes, have symmetries under some set of transformations acting on the data.  
 	- For example, in image classification, rotating or flipping an image of a cat should not change its classification as a "cat."  
 - More importantly, nature itself is about symmetries.  
@@ -29,7 +29,7 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 
 ### 1.2. Learning Symmetries
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To learn symmetries, a common approach is to use data augmentation: feed augmented data and hope the model “learns” the symmetry.  
+To learn symmetries, a common approach is to use data augmentation: feed augmented data and hope the model “learns” the symmetry.  
 <figure style="text-align: center;">
   <img alt="Data Augmentation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/data_augmentation.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
@@ -47,7 +47,7 @@ FYI: Dr. Chen Ning Yang from Stony Brook received the Nobel Prize in physics (19
 
 ### 2.1. Definition: Group
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A **group** $(G, \cdot)$ is a set of elements $G$ equipped with a group product $\cdot$, a binary operator, that satisfies the following four axioms:
+A *group* $(G, \cdot)$ is a set of elements $G$ equipped with a group product $\cdot$, a binary operator, that satisfies the following four axioms:
 - Closure: Given two elements $g$ and $h$ of $G$, the product $g \cdot h$ is also in $G$.
 - Associativity: For $g, h, i \in G$ the product $\cdot$ is associative, i.e., $g \cdot(h \cdot i)=(g \cdot h) \cdot i$.
 - Identity element: There exists an identity element $e \in G$ such that $e \cdot g=g \cdot e=g$ for any $g \in G$.
@@ -67,7 +67,7 @@ $$
 with $g=(t), g^{\prime}=\left(t^{\prime}\right)$, and $e=(0,0)$.
 
 ### 2.2. Definition: Representation and Left-regular Representation
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A **representation** $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
+A *representation* $\rho: G \rightarrow G L(V)$ is a group homomorphism from $\mathrm{G}$ to the general linear group $G L(V)$. That is, $\rho(g)$ is a linear transformation parameterized by group elements $g \in G$ that transforms some vector $\mathbf{v} \in V$ (e.g. an image or a tensor) such that
 
 $$
 \rho\left(g^{\prime}\right) \circ \rho(g)[\mathbf{v}]=\rho\left(g^{\prime} \cdot g\right)[\mathbf{v}].
@@ -81,10 +81,10 @@ $$
 **This essentially means that we can transfer group structure to other types of objects now, such as vectors or images.**
 
 Note: 
-- A **homomorphism** is a structure-preserving map between two algebraic structures of the same type (such as two groups, two rings, or two vector spaces). 
-- A **general linear group** is the group of all invertible $d_V \times d_V$ matrices.
+- A *homomorphism* is a structure-preserving map between two algebraic structures of the same type (such as two groups, two rings, or two vector spaces). 
+- A *general linear group* is the group of all invertible $d_V \times d_V$ matrices.
 
-A **left-regular representation** $\mathscr{L}_g$ is a representation that transforms functions $f$ by transforming their domains via the inverse group action
+A *left-regular representation* $\mathscr{L}_g$ is a representation that transforms functions $f$ by transforming their domains via the inverse group action
 
 $$
 \mathscr{L}_g[f](x):=f\left(g^{-1} \cdot x\right).
@@ -110,12 +110,12 @@ $$
 
 ### 2.3. Definition: Equivariance and Invariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Equivariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it commutes with the group action:
+*Equivariance* is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it commutes with the group action:
 $$
 \Phi \circ \rho^X(g)=\rho^Y(g) \circ \Phi,
 $$
 
-**Invariance** is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it remains unchanged after the group action:
+*Invariance* is a property of an operator $\Phi: X \rightarrow Y$ (such as a neural network layer) by which it remains unchanged after the group action:
 
 $$
 \Phi \circ \rho^X(g)=\Phi,
@@ -134,7 +134,7 @@ $$
 
 ### 3.1. Convolution and Cross-Correlation
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **convolution** of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
+The *convolution* of $f$ and $g$ is written as $f * g$, denoting the operator with the symbol $*$. It is defined as the integral of the product of the two functions after one is reflected and shifted. As such, it is a particular kind of integral transform:
 
 $$
 (k * f)(x):=\int_{\mathbb{R}^d} k(x-x')f(x') d x' .
@@ -147,7 +147,7 @@ $$
 $$
 
 
-The **corss-correlation** of $f$ and $g$ is written $f \star g$, denoting the operator with the symbol $\star$. It is defined as the integral of the product of the two functions after one is shifted. As such, it is a particular kind of integral transform:
+The *corss-correlation* of $f$ and $g$ is written $f \star g$, denoting the operator with the symbol $\star$. It is defined as the integral of the product of the two functions after one is shifted. As such, it is a particular kind of integral transform:
 
 $$
 (k \star f)(x):=\int_{\mathbb{R}^d} k(x'-x)f(x') d x' .
@@ -163,7 +163,7 @@ Note: Neural networks perform the same whether using convolution or correlation 
 
 ### 3.2. Translation Equivariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Convolution and cross-correlation are translation equivariant, so are their discrete counterparts.
+Convolution and cross-correlation are translation equivariant, so are their discrete counterparts.
 
 <span style="color: gray;">Proof:</span>
 
@@ -190,7 +190,7 @@ By similar arguments, we can prove translation equivariance for convolution and 
 
 ### 3.3. Intuition on Translation Equivariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mathematically, it is easy to prove translation equivariance. However, let's look at the definition of cross-correlation again to gain some intuition about how to achieve equivariance.  
+Mathematically, it is easy to prove translation equivariance. However, let's look at the definition of cross-correlation again to gain some intuition about how to achieve equivariance.  
 
 Cross-Correlation:
 
@@ -215,7 +215,7 @@ $$
   
 ### 3.4. Generalization
  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let's look at the definition of cross-correlation:
+Let's look at the definition of cross-correlation:
 
 <figure style="text-align: center;">
   <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math.png" style="width: 75%; display: block; margin: 0 auto;" />
@@ -233,7 +233,7 @@ To generalize to other groups, we should consider the following:
 
 ### 4.1. Definition: $SE(2)$ Lifting Correlation
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:  
+To make the function defined on the group of interest, we define the **lifting operation**. The lifting correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated. As such, it is a particular kind of integral transform:  
 <!-- 
 $$
 (k \star_{SE(2)} f)(x, \theta):=\int_{\mathbb{R}^2} k\Big(\mathbf{R}^{-1}_{\theta}(x'-x)\Big)f(x') d x'  = \int_{\mathbb{R}^2} [\mathscr{L}_{g=(x, \theta)}k(x')]f(x') d x' = \left\langle \mathscr{L}_{g=(x, \theta)}k, f \right\rangle_{\mathbb{L}_2\left(\mathbb{R}^2\right)} .
@@ -253,7 +253,7 @@ Lifting correlation raises the feature map to a higher dimension that represents
 
 ### 4.2. Demonstration: Lifting Correlation with the $p_4$ Rotation Group
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The $p_4$ group can be described as a semi-direct product:
+The $p_4$ group can be described as a semi-direct product:
 
 $$
 p_4=C_4 \ltimes \mathbb{Z}^2,
@@ -295,7 +295,7 @@ The resulting feature maps in the group space are equivariant (rotation in the i
 
 ### 4.3. Definition: $SE(2)$ Group Cross Correlations
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, the function is already defined on the group of interest after lifting. We still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.  
+Now, the function is already defined on the group of interest after lifting. We still need to convolve over the group of interest and make the kernel reflect the actions of the group of interest.  
 
 The group correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:  
 
@@ -314,7 +314,7 @@ $$\text { affine weight sharing } \Longleftrightarrow \quad \text { affine group
 Note: Translations and $H$-transformations form so-called affine groups: $\operatorname{Aff}(H) := \left(\mathbb{R}^d, +\right) \rtimes H.$  
 
 ### 4.4. Demonstration: Cross Correlation with the $p_4$ Rotation Group
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now, we have to reflect the differences in formulation between the lifting correlation and cross-correlation in the code as well.  
+Now, we have to reflect the differences in formulation between the lifting correlation and cross-correlation in the code as well.  
 
 ```python
 def p4_group_convolution(features, kernel):
@@ -351,7 +351,7 @@ In actual implementation, the group dimension can be added to the channel dimens
   <figcaption style="text-align: center;">Figure 7: Actual Implementation of Group CNNs: The group dimension is added to the channel dimension. </figcaption>
   
 ### 4.5. Overall Group CNN Pipeline
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overall, Group CNNs have the following structures:
+Overall, Group CNNs have the following structures:
 
 1. **Lifting Layer (Generate group equivariant feature maps):**  
    - 2D input $\Rightarrow$ 3D feature maps with the third dimension representing rotation.  
@@ -371,7 +371,7 @@ In actual implementation, the group dimension can be added to the channel dimens
 ## 5. High-level Ideas on $SE(2)$ Steerable CNNs
 
 ### 5.1 From Group CNNs to Steerable CNNs
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
+Group CNNs typically work with discrete groups of transformations, such as the $p_4$ group we have considered. However, many groups, including the rotation group, are continuous. You may perform very fine-grained discretization to capture the continuous nature of such groups, but the computational hurdle is intractable, and even so, discretizations still lose some of the continuity inherent in the group structure.  
 
 In a single sentence, steerable CNNs **interpolate** discrete (in terms of the rotation dimension) feature maps from group CNNs using Fourier/trigonometric interpolations.  
 

@@ -97,7 +97,7 @@ To ensure symmetries
 - <span style="color: blue;">Scalar features</span> must be updated in an invariant manner.
 - <span style="color: red;">Geometric features</span> must be updated in an equivariant manner.
 
->　For example, let the relative position been the geometries and $f_1$ be an MLP, the messages $\mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, x_j-x_i\right)$ are clearly not equivraiant. 
+>　For example, let the relative position be the geometries and $f_1$ be an MLP, the messages $\mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, x_j-x_i\right)$ are clearly not equivraiant. 
 
 
 To make it equivariant (invariant) to $E(3)$, there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constraint the geometric information that can be utilized, while the other constraints the model operations.

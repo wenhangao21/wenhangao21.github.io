@@ -405,13 +405,11 @@ Suppose we with to get the $l = 1$ tensor resulted from the tensor product of ${
 	- $u _ 3=\sum _ {i=-1}^1 \sum _ {j=-2}^2 C _ {\left(m _ 1=i, m _ 2=j, m _ 3=3\right)}^{\left(l _ 1=1, l _ 2=2, l _ 3=1\right)} t _ i s _ j.$
 Similarly, $C _ {\left(m _ 1, m _ 2, m _ 3\right)}^{\left(l _ 1 =1, l _ 2 =2, l _ 3 =2\right)}$ will give the resulting $l=2$ tensor, etc..
 
-$$\mathbf{T} = \begin{pmatrix} t_{-1} \\\ t_0 \\\ t_1 \end{pmatrix}, \quad  \mathbf{S} = \begin{pmatrix} s_{-2} \\\ s_{-1} \\\ s_0 \\\ s_1 \\\ s_2 \end{pmatrix}, \quad \mathbf{T \otimes_{cg} S} = \begin{pmatrix} u_1 \\\ u_2 \\\ u_3 \\\ - \\\ u_4 \\\ u_5 \\\ u_6 \\\ u_7 \\\ u_8 \\\ - \\\ u_9 \\\ u_{10} \\\ u_{11} \\\ u_{12} \\\ u_{13} \\\ u_{14} \\\ u_{15} \end{pmatrix}$$
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/cg_tp.png" style="width: 20%; display: block; margin: 0 auto;" />
+</figure>
 
 ---
-
-<figure style="float: right; margin-right: 10px;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 10%; display: block; margin: 0 auto;" />
-</figure> 
 
 ## References
 

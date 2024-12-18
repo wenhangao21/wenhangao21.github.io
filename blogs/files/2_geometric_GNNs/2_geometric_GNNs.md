@@ -180,7 +180,7 @@ As of now, we are constrained to have only scalar or vector features. What about
 A tensor is a multi-dimensional array with directional information. A rank-$n$ *Cartesian tensor* $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T _ {\mathrm{i} _ 1 \mathrm{i} _ 2 \cdots \mathrm{i} _ n}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T _ {i_1 i_2 \cdots i_n}$ transformsindependently as a vector under rotation.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/catersian_tensors.png" style="width: 50%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/cartesian_tensors.png" style="width: 50%; display: block; margin: 0 auto;" />
 </figure>
 
 - For a rotation represented by an orthogonal matrix $R$ , the components of $T$ transform as follows:

@@ -300,7 +300,7 @@ Now, as before, if we wish to maintain equivariance through message passing, we 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/decomposition_rank2.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
-<figcaption style="text-align: center;">Example: Decomposing a rank-2 Cartesian tensor into Spherical tensors. </figcaption>
+<figcaption style="text-align: center;">Example: Decomposing a rank-2 Cartesian tensor into Spherical tensors. Figure adopted from [1]. </figcaption>
 
 This process is a change of basis.
 
@@ -322,8 +322,9 @@ $\vec{v}=\left(e _ 1, \ldots, e _ n\right) M M^{-1}\left(v^1, \ldots, v^n\right)
 Specifically, we can decompose a Cartesian tensor of rank-$2$ as follows:
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 40%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/tensor_composition.png" style="width: 70%; display: block; margin: 0 auto;" />
 </figure>
+
 
 ```python
 def decompose_tensor(T):
@@ -373,7 +374,7 @@ $$
 where $\mathcal{D}^{(\ell)}(\mathbf{R})$ is the Wigner-$\mathcal{D}$ matrix of order $\ell$ for the rotation.
 
 - Order-$0$ and rank-$0$ are the same (invariant under rotation).
-- Order-$1$ and rank-$1$ are the same (transform under the normal $e\tiems 3$ unitary rotation matrix).
+- Order-$1$ and rank-$1$ are the same (transform under the normal $3 \times 3$ unitary rotation matrix).
 
 ### 3.6. Tensor Products of Spherical Tensors
 
@@ -410,6 +411,24 @@ Similarly, $C _ {\left(m _ 1, m _ 2, m _ 3\right)}^{\left(l _ 1 =1, l _ 2 =2, l 
 </figure>
 
 ---
+
+### 3.7. Spherical Harmonics
+
+Now we have a way to decompose tensor products into spherical tensors to keep track of and maintain the "types". How do we get the tensors, other than $l_1$ (vectors), in the first place? 
+
+Real spherical harmonics $Y_l^m(\theta, \phi):  S^2 \rightarrow \mathbb{R}$ are real-valued functions defined on the surface of a sphere.
+
+$$Y_{\ell}^m(\theta, \varphi)=(-1)^m \sqrt{\frac{2 \ell+1}{4 \pi} \frac{(\ell-m)!}{(\ell+m)}} P_{\ell}^m(\cos \theta) e^{i m \varphi}$$
+
+Each real spherical harmonic is indexed by two integers: $l$ (degree) and $m$ (order), where $l \geq 0$ and $-l \leq m \leq l$.  They are used as an orthonormal basis for representing functions on the sphere. Under fairly general condition (square-integrable on the sphere), any function can be written as a linear combination of spherical harmonics as follows:
+
+$$
+f(\theta, \varphi)=\sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} f_{\ell}^m Y_{\ell}^m(\theta, \varphi).
+$$
+
+<figure style="text-align: center;">
+  <img alt="Spinning GIF" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/Rotating_spherical_harmonics.png" style="width: 30%; display: block; margin: 0 auto;" />
+</figure>
 
 ## References
 

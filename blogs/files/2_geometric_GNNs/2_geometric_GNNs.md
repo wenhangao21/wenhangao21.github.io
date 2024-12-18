@@ -6,22 +6,22 @@ author_profile: false
 
 # Geometric GNNs
 
-**TL;DR:** This blog introduces geometric GNNs, which guarantee Euclidian (E(n)) symmetries in neural networks; for example, when you rotate a molecular, scalar quantities such as potential energy should remain invariant and vector or tensor quantities should be equivariant to the rotation.
+**TL;DR:** This blog introduces geometric GNNs, which guarantee Euclidean (E(n)) symmetries in neural networks; for example, when you rotate a molecule, scalar quantities such as potential energy should remain invariant, and vector or tensor quantities should be equivariant to the rotation.
 
-This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate concepts including tensor decomposition, equivariance, and irreducibility. 
+This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate concepts including tensor decomposition, equivariance, and irreducibility.
 
-- The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
+- The toy implementation, along with some slides, can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 - It is assumed that you are familiar with the basic concepts of equivariance. If not, please read [Group CNN](https://wenhangao21.github.io/blogs/files/1_gconv/1_gconv/) first.
-- [Reference [1]](https://www.chaitjo.com/publication/duval-2023-hitchhikers/) provides great introduction to geometric GNNs, this blog will introduce geometric GNNs in less details and focus on explaining tensor decomposition, equivariance of tensors, and irreducibility.
+- [Reference [1]](https://www.chaitjo.com/publication/duval-2023-hitchhikers/) provides a great introduction to geometric GNNs. This blog will introduce geometric GNNs in less detail and focus on explaining tensor decomposition, the equivariance of tensors, and irreducibility.
 
 ## 1. Introduction
 
 ### 1.1. Geometric Representation of Atomistic Systems
 
-There are different ways of representing molecules; for example:
-- SMILE strings (1D)
-- Planar graphs (2D)
-- Geometric graphs (3D)
+There are different ways of representing molecules; for example:  
+- SMILES strings (1D)  
+- Planar graphs (2D)  
+- Geometric graphs (3D)  
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 55%; display: block; margin: 0 auto;" />
@@ -51,10 +51,9 @@ There are different ways of representing molecules; for example:
 ||$V \in \mathbb{R}^{n \times b \times 3}:$ Geometric features, e.g., velocity|
 
 
-Here,
-- Scalar loosely refers to features without geometric information.
-- $n$ is the number of nodes, $f$ and $b$ are the sizes of the scalar and geometric node features, respectively.
-
+Here,  
+- Scalar loosely refers to features without geometric information.  
+- $n$ is the number of nodes, $f$ and $b$ are the sizes of the scalar and geometric node features, respectively.  
 
 ### 1.3. Symmetries
 
@@ -76,37 +75,36 @@ We have two types of features: <span style="color: blue;">scalar features</span>
 
 ### 2.1. GNNs and Geometric Message Passing
 
-Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.
+Graph Neural Networks (GNNs) are a class of deep learning models designed to operate on graph-structured data by learning node or graph representations through message-passing mechanisms to iteratively update node features to obtain useful hidden representations. In each layer, nodes aggregate information from their neighbors to update their features, allowing GNNs to effectively capture the relational and topological structure of graphs. GNNs are naturally permutation equivariant.  
+
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/GNN.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
 
+- Readers who are not familiar with GNNs are referred to [Stanford CS224W: Machine Learning with Graphs](https://www.youtube.com/playlist?list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn).
 
-- Readers who are not familiar with GNNs are refered to [Stanford CS224W: Machine Learning with Graphs](https://www.youtube.com/playlist?list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn).
-
-For geometric message passing, we condition on geometries. Without loss of generality, let $a_{i j}$ contain geometric information for nodes $i,j$, we can have the following message passing schemes:
+For geometric message passing, we condition on geometries. Without loss of generality, let $a_{ij}$ contain geometric information for nodes $i, j$. We can have the following message passing schemes:
 
 $$
 \mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, a_{ij}\right)
 $$
 
 
-
 To ensure symmetries
 - <span style="color: blue;">Scalar features</span> must be updated in an invariant manner.
 - <span style="color: red;">Geometric features</span> must be updated in an equivariant manner.
 
->　For example, let the relative position be the geometries and $f_1$ be an MLP, the messages $\mathbf{m}_{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, x_j-x_i\right)$ are clearly not equivraiant. 
+> Example: Let the relative position be the geometries and $f_1$ be an MLP, the messages $\mathbf{m}_{ij} = f_1\left(\mathbf{s}_i, \mathbf{s}_j, x_j - x_i\right)$ are clearly not equivariant.
 
+To make it equivariant (invariant) to $E(3)$, there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constrain the geometric information that can be utilized, while the other constrains the model operations.
 
-To make it equivariant (invariant) to $E(3)$, there are in general two directions: <span style="color: blue;">Scalarization</span> and <span style="color: red;">Using Steerable Tensor Features</span>. We term them as <span style="color: blue;">invariant GNNs</span> and <span style="color: red;">equivariant GNNs</span> (Tensor Operations). Invariant GNNs constraint the geometric information that can be utilized, while the other constraints the model operations.
 
 ## Scalarization GNNs (Invariant GNNs)
 
 ### 2.1. Summarization of Scalarization GNNs
 
-Scalarization networks use invariant quantities as geometries that are conditioned. For example:
+Scalarization networks use invariant quantities as geometries that are conditioned. For example:  
 
 - Using relative distances (e.g. SchNet [2]):
 	- $\mathbf{m} _{i j}=f_1\left(\mathbf{s}_i, \mathbf{s}_j, d _{i j}\right)$, where $d _{i j}=\left\|x_j-x_i\right\|$
@@ -127,20 +125,21 @@ Scalarization networks use invariant quantities as geometries that are condition
 - Using relative distances, bond angles, and torsion angles (e.g. SphereNet [4]):
 	- $\boldsymbol{m} _ {i j}=f_1\left(s_i, s_j, d _ {i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}, l \in \mathcal{N}_k \backslash\{i, j\}} f_3\left(s_k, s_l, d _ {k l}, d _ {i j}, d _ {j k}, \measuredangle i j k, \measuredangle j k l, \measuredangle i j k l\right)\right)$
 	- $3$-hop, body order $4$, $O(nk^3)$ to compute invariant quantities
-	- This is $SE(3)$ invariant and complete, meaning that it can uniquely determine the 3D configuration of the geometric graph up to $SO(3)$ transformations (Not $E(3)$ because reflections changes the sign of torsians, you can make it $E(3)$ by ignoring the sign). 
+	- This is $SE(3)$ invariant and complete, meaning that it can uniquely determine the 3D configuration of the geometric graph up to $SO(3)$ transformations (not $E(3)$ because reflections change the sign of torsions; you can make it $E(3)$ by ignoring the sign).  
 	
 ### 2.2. Pros and Cons
 
-In summary, invariant GNNs update latent representations by scalarizing local geometry information. This is efficient, and we can achieve invariance with simple MLP without specific constraints on the operations or activations we can take. 
+In summary, invariant GNNs update latent representations by scalarizing local geometry information. This is efficient, and we can achieve invariance with a simple MLP without specific constraints on the operations or activations we can take.
 
-Pros:
-- Simple usage of network architecture and non-linearities on many-body scalars.
-- Great performance on some use-cases (e.g. GemNet on OC20).
+**Pros:**  
+- Simple usage of network architecture and non-linearities on many-body scalars.  
+- Great performance on some use cases (e.g., GemNet on OC20).  
 
-Cons:
-- Scalability of scalar’s pre-computation. The accounting of higher-order tuples is expensive. 
-- Making invariant predictions may still require solving equivariant sub-tasks.
-- May lack generalization capabilities (equivariant tasks, multi-domain).
+**Cons:**  
+- Scalability of scalar pre-computation. The accounting of higher-order tuples is expensive.  
+- Making invariant predictions may still require solving equivariant sub-tasks.  
+- May lack generalization capabilities (equivariant tasks, multi-domain).  
+
 
   
 ## 3. Spherical Tensor GNNs (Equivariant GNNs)
@@ -149,9 +148,9 @@ Cons:
 
 In invariant GNNs, invariants are 'fixed' prior to message passing. In equivariant GNNs, vector/tensor quantities remain available. Equivariant GNNs can also build up invariants 'on the go' during message passing. More layers of message passing can lead to more complex invariants being built up. 
 
-- In invariant GNNs, we work with only scalars $f\left(s_1, s_2, \ldots, s_n\right)$.
+- In invariant GNNs, we work with only scalars: $f\left(s_1, s_2, \ldots, s_n\right)$.
 
-- In equivariant GNNs, we work with vectors $f\left(s_1, s_2, \ldots s_n, \boldsymbol{v}_1, \ldots, \boldsymbol{v}_m\right)$.
+- In equivariant GNNs, we work with scalars, vectors, and even high-order tensors: $f\left(s_1, s_2, \ldots s_n, \boldsymbol{v}_1, \ldots, \boldsymbol{v}_m\right)$.
 
 Instantiation - "Scalar-vector" GNNs:
 - Scalar message:
@@ -170,14 +169,15 @@ $$
 $$
 	- where $\vec{x} _ {i j} = \vec{x} _ {j} - \vec{x} _ {i}$ denotes the relative position vector and $\odot$ denotes a scalar-vector multiplication. 
 
-Clearly, we can achieve equivariance while using geometric features $\mathbf{v}_i$-s and $\vec{x} _ {i j}$-s, but we have to constraint the model operations. The high-level idea is to keep track of the "types" of the objects and apply equivariant operations; we treat scalar and vector features separately and ensure that they are maintained the same type through message passing.
+Clearly, we can achieve equivariance while using geometric features $\mathbf{v}_i$-s and $\vec{x} _ {ij}$-s, but we have to constrain the model operations. The high-level idea is to keep track of the "types" of the objects and apply equivariant operations; we treat scalar and vector features separately and ensure that they maintain the same type through message passing.
 
-As of now, we are constrained to have only scalar or vector features. What about higher order tensors?
+As of now, we are constrained to have only scalar or vector features. What about higher-order tensors?  
+
  
 
 ### 3.2. Catersian Tensors and Tensor Products
 
-A tensor is a multi-dimensional array with directional information. A rank-$n$ *Cartesian tensor* $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T _ {\mathrm{i} _ 1 \mathrm{i} _ 2 \cdots \mathrm{i} _ n}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T _ {i_1 i_2 \cdots i_n}$ transformsindependently as a vector under rotation.
+A tensor is a multi-dimensional array with directional information. A rank-$n$ *Cartesian tensor* $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T _ {\mathrm{i} _ 1 \mathrm{i} _ 2 \cdots \mathrm{i} _ n}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T _ {i_1 i_2 \cdots i_n}$ transforms independently as a vector under rotation.
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/cartesian_tensors.png" style="width: 50%; display: block; margin: 0 auto;" />
@@ -291,7 +291,7 @@ plt.imshow(torch.kron(R, R), cmap='bwr', vmin=-1, vmax=1);
 
 ### 3.4. Decomposing Cartesian Tensors into Spherical Tensors
 
-Now, as before, if we wish to maintain equivariance through message passing, we have to treat each rank separately. A general strategy is to treat each tensors as an entity and apply a single weight on it. However, the size of the tensor grow exponentially as the rank of the tensor, and it does not scale well. We can decompose the Cartesian tensor space into simpler parts (a direct sum of some subspaces).
+Now, as before, if we wish to maintain equivariance through message passing, we have to treat each rank separately. A general strategy is to treat each tensor as an entity and apply a single weight to it. However, the size of the tensor grows exponentially with the rank of the tensor, and it does not scale well. We can decompose the Cartesian tensor space into simpler parts (a direct sum of some subspaces).  
   
 - Each subspace acts independently under the actions of the rotation group (irreducible representations).
 - Tensors in each subspace have the same "type".
@@ -357,8 +357,10 @@ def decompose_tensor(T):
 
 For more details, refer to the [implementation](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance) provided. 
 
-To summarize, we have seen that the $9$-dimensional rank-$2$ Cartesian tensor can be decomposed into a $1d$, $3d$ and $5d$ parts: $
-3 \otimes 3=1 \oplus 3 \oplus 5$. These parts are called spherical tensors.
+To summarize, we have seen that the $9$-dimensional rank-$2$ Cartesian tensor can be decomposed into $1d$, $3d$, and $5d$ parts:  
+$3 \otimes 3 = 1 \oplus 3 \oplus 5$.  
+These parts are called spherical tensors.  
+
 
 
 ### 3.5. Spherical Tensor
@@ -414,7 +416,7 @@ Similarly, $C _ {\left(m _ 1, m _ 2, m _ 3\right)}^{\left(l _ 1 =1, l _ 2 =2, l 
 
 ### 3.7. Spherical Harmonics
 
-Now we have a way to decompose tensor products into spherical tensors to keep track of and maintain the "types". How do we get the tensors, other than $l_1$ (vectors), in the first place? 
+Now we have a way to decompose tensor products into spherical tensors to keep track of and maintain the "types." How do we get the tensors, other than $l_1$ (vectors), in the first place?  
 
 Real spherical harmonics $Y_l^m(\theta, \phi):  S^2 \rightarrow \mathbb{R}$ are real-valued functions defined on the surface of a sphere.
 

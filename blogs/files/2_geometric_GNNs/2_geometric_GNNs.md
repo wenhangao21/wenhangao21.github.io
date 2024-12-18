@@ -125,7 +125,7 @@ To make it equivariant (invariant) to $E(3)$, there are in general two direction
 	- This is $E(3)$ invariant, but again we limit the expressivity of the model due to similar reasons.
 	
 3. Using relative distances, bond angles, and torsion angles (e.g. SphereNet [4]):
-	- $\boldsymbol{m}_{i j}=f_1\left(s_i, s_j, d_{i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}, l \in \mathcal{N}_k \backslash\{i, j\}} f_3\left(s_k, s_l, d_{k l}, d_{i j}, d_{j k}, \measuredangle i j k, \measuredangle j k l, \measuredangle i j k l\right)\right)$
+	- $\boldsymbol{m} _ {i j}=f_1\left(s_i, s_j, d _ {i j}, \sum_{k \in \mathcal{N}_j \backslash\{i\}, l \in \mathcal{N}_k \backslash\{i, j\}} f_3\left(s_k, s_l, d _ {k l}, d _ {i j}, d _ {j k}, \measuredangle i j k, \measuredangle j k l, \measuredangle i j k l\right)\right)$
 	- $3$-hop, body order $4$, $O(nk^3)$ to compute invariant quantities
 	- This is $SE(3)$ invariant and complete, meaning that it can uniquely determine the 3D configuration of the geometric graph up to $SO(3)$ transformations (Not $E(3)$ because reflections changes the sign of torsians, you can make it $E(3)$ by ignoring the sign). 
 	

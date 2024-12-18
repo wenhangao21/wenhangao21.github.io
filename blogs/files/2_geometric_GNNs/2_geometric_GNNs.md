@@ -143,7 +143,7 @@ Cons:
 - May lack generalization capabilities (equivariant tasks, multi-domain).
 
   
-## 3. Equivariant GNNs 
+## 3. Spherical Tensor GNNs (Equivariant GNNs)
 
 ### 3.1. Introduction 
 
@@ -153,16 +153,19 @@ Cons:
 
 - In equivariant GNNs, we work with vectors $f\left(s_1, s_2, \ldots s_n, v_1, \ldots, v_m\right)$.
 
-> Instantiation: "Scalar-vector" GNNs
-Scalar message:
+Instantiation "Scalar-vector" GNNs:
+- Scalar message:
+
 $$
-\mathbf{m}_i:=f_1\left(\mathbf{s}_i,\left\|\mathbf{v} _ {\mathbf{i}}\right\|\right) + \sum _ {j \in \mathcal{N}_i} f_2\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right)
+\mathbf{m}_i:=f_1\left(\mathbf{s}_i,\left\|\mathbf{v} _ {\mathbf{i}}\right\|\right) + \sum _ {j \in \mathcal{N}_i} f_2\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right).
 $$
-Vector message:
+
+- Vector message:
+
 $$
 \begin{aligned}
 \overrightarrow{\mathbf{m}}_i:=f_3\left(\mathbf{s}_i,\left\|\mathbf{v} _ {\mathbf{i}}\right\|\right) \odot \mathbf{v}_i & +\sum _ {j \in \mathcal{N}_i} f _ 4\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right) \odot \mathbf{v}_j \\
-& +\sum _ {j \in \mathcal{N}_i} f_5\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right) \odot \vec{x} _ {i j}
+& +\sum _ {j \in \mathcal{N}_i} f_5\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right) \odot \vec{x} _ {i j}.
 \end{aligned}
 $$
 

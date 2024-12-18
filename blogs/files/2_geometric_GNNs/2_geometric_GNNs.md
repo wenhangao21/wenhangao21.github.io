@@ -115,7 +115,7 @@ To make it equivariant (invariant) to $E(3)$, there are in general two direction
 	- We cannot distinguish two local neighbourhoods apart using the unordered set of distances only.
 	
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/distance.png" style="width: 35%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/distance.png" style="width: 20%; display: block; margin: 0 auto;" />
 </figure>
   <figcaption style="text-align: center;">The set of distances are the same, but the graphs are different. Image adopted from [1]. </figcaption>
   
@@ -151,9 +151,9 @@ Cons:
 
 - In invariant GNNs, we work with only scalars $f\left(s_1, s_2, \ldots, s_n\right)$.
 
-- In equivariant GNNs, we work with vectors $f\left(s_1, s_2, \ldots s_n, v_1, \ldots, v_m\right)$.
+- In equivariant GNNs, we work with vectors $f\left(s_1, s_2, \ldots s_n, \boldsymbol{v}_1, \ldots, \boldsymbol{v}_m\right)$.
 
-Instantiation "Scalar-vector" GNNs:
+Instantiation - "Scalar-vector" GNNs:
 - Scalar message:
 
 $$
@@ -168,70 +168,37 @@ $$
 & +\sum _ {j \in \mathcal{N}_i} f_5\left(\mathbf{s}_i, \mathbf{s}_j,\left\|\vec{x} _ {i j}\right\|,\left\|\boldsymbol{v}_j\right\|, \vec{x} _ {i j} \cdot \mathbf{v}_j, \vec{x} _ {i j} \cdot \mathbf{v}_i, \mathbf{v}_i \cdot \mathbf{v}_j\right) \odot \vec{x} _ {i j}.
 \end{aligned}
 $$
+	- where $\vec{x} _ {i j} = \vec{x} _ {j} - \vec{x} _ {i}$ denotes the relative position vector and $\odot$ denotes a scalar-vector multiplication. 
 
+Clearly, we can achieve equivariance while using geometric features $\mathbf{v}_i$-s and $\vec{x} _ {i j}$-s, but we have to constraint the model operations. The high-level idea is to keep track of the "types" of the objects and apply equivariant operations; we treat scalar and vector features separately and ensure that they are maintained the same type through message passing.
 
-The **corss-correlation** of $f$ and $g$ is written $f \star g$, denoting the operator with the symbol $\star$. It is defined as the integral of the product of the two functions after one is shifted. As such, it is a particular kind of integral transform:
-$$
-(k \star f)(x):=\int_{\mathbb{R}^d} k(x'-x)f(x') d x' .
-$$
-> An equivalent definition is (not commutativity in this case):
-$$
-(k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
-$$
+As of now, we are constrained to have only scalar or vector features. What about higher order tensors?
+ 
 
-Note: Neural networks perform the same whether using convolution or correlation because the learned filters enable adaptability. The filters are learned, and if a CNN can learn a task using the convolution operation, it can also learn the same task using the correlation operation (it would learn the rotated version of each filter).  
+### 3.2. Tensors
 
-### 3.2. Translation Equivariance
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A tensor is a multi-dimensional array with directional information.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Convolution and cross-correlation are translation equivariant, so are their discrete counterparts.
+Cartesian tensors: A rank- $n$ Cartesian tensor $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T_{\mathrm{i}_1 \mathrm{i}_2 \cdots \mathrm{i}_{\mathrm{n}}}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T_{i_1 i_2 \cdots i_n}$ transforms independently as a vector under rotation.
 
-<span style="color: gray;">Proof:</span>
-
-1. Translate $f$ by $t$ first, then apply the convolution:
+- For a rotation represented by an orthogonal matrix $R$ , the components of $T$ transform as follows:
 
 $$
-(k \star \mathscr{L}_tf)(x)=\int_{\mathbb{R}^d} k(x'-x)[t^{-1} \odot f(x')] d x' = \int_{\mathbb{R}^d} k(x'-x)f(x'-t) d x'.
+T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=\sum _ {i_1, i_2, \ldots, i_n} R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}
+$$ 
+
+
+Equivalently, in index notation with Einstein summation convention, this can be written compactly as:
+
+$$
+T_{i_1^{\prime} i_2^{\prime} \cdots i_n^{\prime}}=R _ {i_1^{\prime} i_1} R _ {i_2^{\prime} i_2} \cdots R _ {i_n^{\prime} i_n} T _ {i_1 i_2 \cdots i_n}
 $$
 
-2. Apply convolution first, and then translate by $t$:
 
-$$
-\begin{aligned}
-\mathscr{L}_t(k \star f)(x) &= \mathscr{L}_t \left( \int_{\mathbb{R}^d} k(x' - x) f(x') \, dx' \right) \\
-&= \int_{\mathbb{R}^d} k(x' - (x - t)) f(x') \, dx' \\
-&= \int_{\mathbb{R}^d} k(x' - x + t) f(x') \, dx' \\
-&= \int_{\mathbb{R}^d} k(x' - x) f(x' - t) \, dx'.
-\end{aligned}
-$$
-
-In the last equality, we just replace $x'$ by $x' - t$. Note that this operation is valid because this substitution is a bijection $\mathbb{R}^d \rightarrow \mathbb{R}^d$, and we integrate over the entire $\mathbb{R}^d$.  
-
-By similar arguments, we can prove translation equivariance for convolution and its discrete versions.  
 
 ### 3.3. Intuition on Translation Equivariance
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mathematically, it is easy to prove translation equivariance. However, let's look at the definition of cross-correlation again to gain some intuition about how to achieve equivariance.  
-
-Cross-Correlation:
-
-$$
-(k \star f)(x):=\int_{\mathbb{R}^d} k(x'-x)f(x') d x' .
-$$
-
-Replace $x'$ by $x'+x$:
-
-$$
-(k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
-$$
-
-<span style="color: red;">Intuition: </span> 
-- **$f(x' + x)$ represents a translated version of $f(x)$.** We have created many translated versions of $f(x)$ while creating the feature map. If we need to compute the cross-correlation for a transformed $f$, we can just go and look up the relevant outputs because we have already computed them. Equivalently, $k(x' - x)$ represents a translated version of $k(x)$.  
-- In CNNs, we translate the kernel across the image to "scan" the image.  
-
-<figure style="text-align: center;">
-  <img alt="Convolution" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/CNNkernel.png" style="width: 40%; display: block; margin: 0 auto;" />
-</figure>
-  <figcaption style="text-align: center;">Figure 5: CNN scans through the input by translating the convolution kernels; this is equivalent to translating the input. Figure Source: [4].</figcaption>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
   
 ### 3.4. Generalization
  

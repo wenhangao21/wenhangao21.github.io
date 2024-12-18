@@ -148,10 +148,13 @@ $$
 
 
 The **corss-correlation** of $f$ and $g$ is written $f \star g$, denoting the operator with the symbol $\star$. It is defined as the integral of the product of the two functions after one is shifted. As such, it is a particular kind of integral transform:
+
 $$
 (k \star f)(x):=\int_{\mathbb{R}^d} k(x'-x)f(x') d x' .
 $$
+
 > An equivalent definition is (not commutativity in this case):
+
 $$
 (k \star f)(x):=\int_{\mathbb{R}^d} k(x')f(x'+x) d x' .
 $$

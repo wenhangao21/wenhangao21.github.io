@@ -459,13 +459,13 @@ where $\boldsymbol{c}$ is a 3D point.
 
 **Summary of Terminology**
 
-1. **Rank** k Cartesian Tensors: $T^{[k]}$
+1. **Rank** k Cartesian tensors: $T^{[k]}$
 
-2. **Order**-$\ell$ Spherical Tensors: $T^{(l)}$
+2. **Order**-$\ell$ Spherical tensors: $T^{(l)}$
 
-3. Spherical Harmonics with **degree** $\ell$ and **order** $m$: $Y_l^m$
+3. Spherical jarmonics with **degree** $\ell$ and **order** $m$: $Y_l^m$
 
-4. **Order**-$\ell$ Spherical Harmonics Function that gives the **Order**-$\ell$ Spherical Harmonics Coefficients: $Y^{\ell}(\cdot)$:
+4. **Order**-$\ell$ Spherical harmonics function that gives the **order**-$\ell$ Spherical harmonics coefficients: $Y^{\ell}(\cdot)$
 
 We have covered all the fundamental concepts in order to understand the overall pipeline of Spherical Tensor GNNs. The readers are refered to [1] and [5] for more detailed treatments. 
 

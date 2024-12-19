@@ -176,7 +176,7 @@ As of now, we are constrained to have only scalar or vector features. What about
 
  
 
-### 3.2. Catersian Tensors and Tensor Products
+### 3.2. Cartesian Tensors and Tensor Products
 
 A tensor is a multi-dimensional array with directional information. A rank-$n$ *Cartesian tensor* $T$ can be viewed as a multidimensional array with $n$ indices, i.e., $T _ {\mathrm{i} _ 1 \mathrm{i} _ 2 \cdots \mathrm{i} _ n}$ with $i_k \in$ $\{1,2,3\}$ for $\forall k \in\{1, \cdots, n\}$. Furthermore, each index of $T _ {i_1 i_2 \cdots i_n}$ transforms independently as a vector under rotation.
 

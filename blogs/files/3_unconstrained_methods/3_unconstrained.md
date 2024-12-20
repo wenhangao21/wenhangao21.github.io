@@ -116,7 +116,7 @@ A frame is defined as a set valued function $\mathscr{F}: X \rightarrow 2^G$ (Ta
 
 A frame is equivariant to $G$ if $\mathscr{F}(g \cdot x)=g \mathscr{F}(x), ∀g\in G$ (equality of sets).
 
-Frame Averaging operator is defined as:
+The frame averaging operator [1] is defined as:
 
 $$
 \langle\Phi\rangle _ {\mathcal{F}}(x)=\frac{1}{\vert \mathcal{F}(x) \vert} \sum _ {g \in \mathcal{F}(x)} \rho_2(g) \Phi\left(\rho_1(g)^{-1} x\right).
@@ -149,7 +149,14 @@ Frame $\mathcal{F}(\boldsymbol{x})$ is defined based on Principle Component Anal
 - $$\left[\boldsymbol{v} _ 1, \ldots, \boldsymbol{v} _ 3\right]$$ is a set of orthonormal vectors in $$\mathbb{R}^{3}$$, i.e., a basis of $$\mathbb{R}^{3}$$. Moreover, these vectors will "rotate" in the same way as the input.
 - $$\mathcal{F}(\boldsymbol{X})$$ based on the covariance and centroid are $$E(3)$$ equivariant.
 
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/pca.png" style="width: 35%; display: block; margin: 0 auto;" />
+</figure>
+  <figcaption style="text-align: center;">Principle directions rotate as the point cloud rotates. Frames based on PCA are equivaraint. </figcaption>
+
 > Note: We can reduce the frame size from $8$ to $4$ if we know the rotations are proper rotations (determinant is $1$). This can generalize to any dimension $d$ beyond $3$ with frame size $2^d$ for the $O(3)$ group and $2^{d-1}$ for the $SO(3)$ group.
+
+
 
 ```python
 def getting_principal_directions(point_cloud):
@@ -178,15 +185,7 @@ Full code can be found [here](https://github.com/wenhangao21/Tutorials/tree/main
 
 ## References
 
-[1] A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems, Duvel et al
-
-[2] SchNet: A Continuous-filter Convolutional Neural Network for Modeling Quantum Interactions, Kristof T. Schütt et al.
-
-[3] Directional Message Passing for Molecular Graphs, Johannes Gasteiger et al.
-
-[4] Spherical Message Passing for 3D Graph Networks, Yi Liu et al.
-
-[5] Artificial Intelligence for Science in Quantum, Atomistic, and Continuum Systems (Section 2), Xuan Zhang (Texas A&M) et al.
+[1] Frame Averaging for Invariant and Equivariant Network Design, Omri Puny et al.
 
 
 ## Other Useful Resources for Starters

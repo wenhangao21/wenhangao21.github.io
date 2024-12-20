@@ -106,10 +106,11 @@ One way is geometric pre-processing:
 Given an image, we can achieve equivariance by preprocessing the image.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/cat_pre.png" style="width: 45%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/cat_pre.png" style="width: 35%; display: block; margin: 0 auto;" />
 </figure>
+  <figcaption style="text-align: center;">For example, given cat images, if we have the location of the left eye of a cat, we can preprocess the image such that all cats will have their left eyes in the same location. Therefore, if an image is translated, it will be preprocessed to the same canonical position, eliminating the need for neural networks to have translation symmetries as these are accounted for in the data preprocessing (offset symmetries to the data). </figcaption>
+  
 
-For example, if we have the location of the left eye of a cat, we can preprocess the image such that all cats will have their left eyes in the same location. Therefore, if an image is translated, it will be preprocessed to the same canonical position, eliminating the need for neural networks to have translation symmetries as these are accounted for in the data preprocessing (offset symmetries to the data).
 
 
 

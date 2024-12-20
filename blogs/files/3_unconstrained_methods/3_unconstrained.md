@@ -93,7 +93,7 @@ $$
 
 > Opinion: When $\Phi$ is a general neural network, it is not equivariant. Therefore, this does not imply universal approximation of GA. In the case of FA (will introduce soon), it might even make the learning tasks more difficult.
 
-Issue: When $|G|$ is large (e.g., combinatorial groups such as permutations), infinite (e.g., continuous groups such as rotations), or even non-compact, then the exact averaging is intractable.
+Issue: When $\vert G \vert$ is large (e.g., combinatorial groups such as permutations), infinite (e.g., continuous groups such as rotations), or even non-compact, then the exact averaging is intractable.
 
 ## 2. Frame Averaging
 

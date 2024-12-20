@@ -23,17 +23,17 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 - Computational inefficient.
 - For large pretrained models, such as GPT, we cannot alter their network designs to ensure equivariance!
 
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/expressive.png" style="width: 55%; display: block; margin: 0 auto;" />
+</figure>
+
+
 <div style="display: flex; justify-content: center; align-items: center; border: 2px solid black; padding: 20px; max-width: 600px; margin: 0 auto; text-align: center;">
   <span style="color: red;"><em>Does enforcing equivariance/symmetries as an inductive bias truly offset a potential reduction in optimization diversity within the constrained learning spaces?</em></span>
 </div>
 
 
-
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/expressive.png" style="width: 55%; display: block; margin: 0 auto;" />
-</figure>
-
-An alternative approach that does not have any of the aforementioned shortcomings is frame/group averaging.
+It is desirable to have a pipeline that can learn any equivariant functions.
 
 ### 1.2. Group Averaging
 

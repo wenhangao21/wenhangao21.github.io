@@ -110,8 +110,19 @@ Given an image, we can achieve equivariance by preprocessing the image.
 </figure>
   <figcaption style="text-align: center;">For example, given cat images, if we have the location of the left eye of a cat, we can preprocess the image such that all cats will have their left eyes in the same location. Therefore, if an image is translated, it will be preprocessed to the same canonical position, eliminating the need for neural networks to have translation symmetries as these are accounted for in the data preprocessing (offset symmetries to the data). </figcaption>
   
+### 2.2. Definition
 
+A frame is defined as a set valued function $\mathscr{F}: X \rightarrow 2^G$ (Taking an input $x \in X$ and mapping it to a subset of $G$).
 
+A frame is equivariant to $G$ if $\mathscr{F}(g \cdot x)=g \mathscr{F}(x), ∀g\in G$ (equality of sets).
+
+Frame Averaging operator is defined as:
+
+$$
+\langle\Phi\rangle _ {\mathcal{F}}(x)=\frac{1}{\vert \mathcal{F}(x) \vert} \sum _ {g \in \mathcal{F}(x)} \rho_2(g) \Phi\left(\rho_1(g)^{-1} x\right)
+$$
+
+- Similar to group averaging, we can prove that frame averaging operator is equivariant to $G$ if $\mathcal{F}$ is equivariant to $G$, and it is as expressive as its backbone if its backbone is equivariant.
 
 
 ## References

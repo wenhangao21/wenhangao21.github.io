@@ -36,7 +36,46 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 It is desirable to have a pipeline that can learn any equivariant functions.
 
 ### 1.2. Group Averaging
+Consider an arbitrary $\Phi: X \rightarrow Y$, where $X, Y$ are input and output (vector) spaces, respectively.
 
+The GA operator $\langle\Phi\rangle _ G: X \rightarrow Y$ is defined as:
+
+$$
+\langle\Phi\rangle _ G(x)=\mathbb{E} _ {g \sim \nu} \rho _ 2(g) \cdot \Phi\left(\rho _ 1(g)^{-1} \cdot x\right) = \int _ G \rho _ 2(g) \cdot \Phi\left(\rho _ 1(g)^{-1} \cdot x\right) d \nu(x),
+$$
+
+or in summation form for discrete groups:
+
+$$
+\langle\Phi\rangle _ G(x) = \frac{1}{\vert G \vert} \sum _ {g \in G} \rho _ 2(g) \cdot \Phi\left(\rho _ 1(g)^{-1} \cdot x\right)
+$$
+
+- $\rho _ 1(g), \rho _ 2(g)$: Group representations on $X$ and $Y$, respectively.
+
+- $\nu$: Harr measure over $G$ ("uniform" over $G$)
+
+---
+
+> Claim: The GA operator is equivariant to $G$. 
+
+> Proof:
+
+> $$
+\begin{align*}
+\langle\Phi\rangle_G(h \cdot x) &= \mathbb{E}_{g \sim \nu} \rho_2(g) \cdot \Phi\left(\rho_1(g)^{-1} \cdot(\rho_1(h) \cdot x)\right) \\
+ &= \mathbb{E}_{g \sim \nu} \rho_2(g) \cdot \Phi\left(\rho_1\left(h^{-1} g\right)^{-1} \cdot x\right) \\
+ &= \rho_2(h) \mathbb{E}_{g \sim \nu} \rho_2\left(h^{-1} g\right) \cdot \Phi\left(\rho_1\left(h^{-1} g\right)^{-1} \cdot x\right) \\
+ &= \rho_2(h)\langle\Phi\rangle_G(x)
+\end{align*}
+$$
+
+---
+
+Intuition: Similar to group convolutions, we have already calculated all the transformed versions of the input, $$\rho_1(g)^{-1}x$$ and $$\rho_2(g)$$ "corrects" the output for equivariance.
+- $$\left\\{\Phi\left(\rho_1(g)^{-1} \cdot x\right), \forall g\right\\}$$ will result in the same set of outputs, but in a different order, for transformed inputs.
+  - Why? Because the set of inputs $$\left\\{\rho_1(g)^{-1} \cdot x\right\\}$$ is the same but in a different order for a transformed $x$.
+- Thus, integrating/summing over these outputs will result in invariant outputs.
+- $$\rho_2(g)$$ "corrects" the output by applying the transformation back.
 
 ## 2. Geometric GNNs
 

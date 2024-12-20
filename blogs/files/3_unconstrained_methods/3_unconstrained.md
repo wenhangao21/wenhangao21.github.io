@@ -123,7 +123,7 @@ $$
 \end{aligned}
 $$  
 
-- Third equality: Change of variable $g y=y^{\prime}$ since the determinant of $g$ is $1$.
+- Third equality: Change of variable $g y=y^{\prime}$ since the determinant of $g$ is $1$ (Caveat: $SO(2)$ is the special orthogonal group, but determinant of $1$ is not general).
 
 ```python
 def lift_correlation(image, kernel):

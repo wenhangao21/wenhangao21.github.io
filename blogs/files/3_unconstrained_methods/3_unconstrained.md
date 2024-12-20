@@ -4,7 +4,7 @@ title: "Unconstrained Methods"
 author_profile: false
 ---
 
-# Geometric GNNs
+# Unconstrained Methods for Symmetries
 
 **TL;DR:** This blog introduces unconstrained methods for symmetries, taking the $E(3)$ group and point cloud data as an example.
 

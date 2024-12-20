@@ -108,7 +108,7 @@ Now take cross-correlation/convolution as the backbone function, the group avera
 
 $$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert} \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert} \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
 
-They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($$L_g \cdot k\right$$). In group averaging, **we offset the symmetries to the input** ($$L_g^{-1} \cdot f$$), and we additionally have the “correction term” as a result of this.
+They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($$L_g \cdot k$$). In group averaging, **we offset the symmetries to the input** ($$L_g^{-1} \cdot f$$), and we additionally have the “correction term” as a result of this.
 
 > Claim: $k \star L_g f=L_g\left(L_g^{-1} k \star f\right)$ (We can move the rotation to images instead of on the kernel).  
 *Proof:*  

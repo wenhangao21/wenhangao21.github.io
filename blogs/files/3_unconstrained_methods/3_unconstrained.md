@@ -24,7 +24,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 - For large pretrained models, such as GPT, we cannot alter their network designs to ensure equivariance!
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/expressive.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/3_unconstrained_methods/expressive.png" style="width: 45%; display: block; margin: 0 auto;" />
 </figure>
 
 
@@ -47,12 +47,12 @@ $$
 or in summation form for discrete groups:
 
 $$
-\langle\Phi\rangle _ G(x) = \frac{1}{\vert G \vert} \sum _ {g \in G} \rho _ 2(g) \cdot \Phi\left(\rho _ 1(g)^{-1} \cdot x\right)
+\langle\Phi\rangle _ G(x) = \frac{1}{\vert G \vert} \sum _ {g \in G} \rho _ 2(g) \cdot \Phi\left(\rho _ 1(g)^{-1} \cdot x\right).
 $$
 
 - $\rho _ 1(g), \rho _ 2(g)$: Group representations on $X$ and $Y$, respectively.
 
-- $\nu$: Harr measure over $G$ ("uniform" over $G$)
+- $\nu$: Harr measure over $G$ ("uniform" over $G$).
 
 
 
@@ -60,7 +60,7 @@ $$
 
 *Proof:*
 
-> $$
+$$
 \begin{align*}
 \langle\Phi\rangle_G(h \cdot x) &= \mathbb{E}_{g \sim \nu} \rho_2(g) \cdot \Phi\left(\rho_1(g)^{-1} \cdot(\rho_1(h) \cdot x)\right) \\
  &= \mathbb{E}_{g \sim \nu} \rho_2(g) \cdot \Phi\left(\rho_1\left(h^{-1} g\right)^{-1} \cdot x\right) \\
@@ -71,8 +71,8 @@ $$
 
 
 Intuition: Similar to group convolutions, we have already calculated all the transformed versions of the input, $$\rho_1(g)^{-1}x$$ and $$\rho_2(g)$$ "corrects" the output for equivariance.
-- $$\left\\{\Phi\left(\rho_1(g)^{-1} \cdot x\right), \forall g\right\\}$$ will result in the same set of outputs, but in a different order, for transformed inputs.
-  - Why? Because the set of inputs $$\left\\{\rho_1(g)^{-1} \cdot x\right\\}$$ is the same but in a different order for a transformed $x$.
+- $$\left\{\Phi\left(\rho_1(g)^{-1} \cdot x\right), \forall g\right\}$$ will result in the same set of outputs, but in a different order, for transformed inputs.
+  - Why? Because the set of inputs $$\left\{\rho_1(g)^{-1} \cdot x\right\}$$ is the same but in a different order for a transformed $x$.
 - Thus, integrating/summing over these outputs will result in invariant outputs.
 - $$\rho_2(g)$$ "corrects" the output by applying the transformation back.
 

@@ -126,11 +126,27 @@ Similar to group averaging, we can prove that frame averaging operator is equiva
 
 > Example: Consider $X=\mathbb{R}^n, Y=\mathbb{R^n}$, and $G=\mathbb{R}$ with addition as the group action. We choose the group actions in this case to be $\rho_1(t) \boldsymbol{x}=\boldsymbol{x}+t \mathbf{1}$, and $\rho_2(a) y=y+t$, where $t\in G$, $\boldsymbol{x} \in X, y \in Y$ are point clouds of $n$ points, and $\mathbf{1} \in \mathbb{R}^n$ is the vector of all ones.  
 We can define the frame in this case using the averaging operator $$\mathcal{F}(\boldsymbol{x})=\left\{\frac{1}{n} \mathbf{1}^T \boldsymbol{x}\right\} \subset G=\mathbb{R}$$.  
-Note that in this case the frame contains only one element from the group, in other cases finding such a small frame is hard or even impossible.  
+Note that in this case the frame contains only one element from the group (this special case when the frame size is $1$ is called canonicalization), in other cases finding such a small frame is hard or even impossible.  
 One can check that this frame is equivariant. The FA: $$\langle\Phi\rangle _ {\mathcal{F}}(\boldsymbol{x})=\Phi\left(\boldsymbol{x}-\frac{1}{n}\left(\mathbf{1}^T x\right) \mathbf{1}\right)+\frac{1}{n} \mathbf{1}^T x$$ in the equivariant case.
-- Intuition: Geometric pre-processing, we subtract the average and then add the average back to obtain equivariance.  
+- Intuition: Geometric pre-processing, we subtract the average and then add the average back to obtain equivariance.
 
 ### 2.3.Practical Instantiation for $E(3)$ Group on 3D Point Clouds
+
+*Goal:* We would like to incorporate Euclidean symmetry to existing permutation invariant/equivaraint point cloud networks (e.g. GNNs, Transformer without positional encodings, etc.).
+
+Settings:
+- Input Space: $X=\mathbb{R}^{n \times 3}$ ($n$ nodes, each holding a $3$-dimensional vector as its position).
+- Group: $G=E(3)=O(3) \times T(3)$, namely the group of Euclidean motions in $\mathbb{R}^3$ defined by rotations and reflections $O(3)$, and translations $T(3)$.
+- Representation acting on $ \boldsymbol{x} \in X$: $\rho_1(g) \boldsymbol{x}=\boldsymbol{x} \boldsymbol{R}^T+\mathbf{1} \boldsymbol{t}^T$, where $\boldsymbol{R} \in O(d)$, and $\boldsymbol{t} \in \mathbb{R}^d$. (Apply rotation and translation to every node).
+- Output space $Y$ and representation acting on the output space $\rho_2$ are defined similarly.
+
+Frame $\mathcal{F}(\boldsymbol{x})$ is defined based on Principle Component Analysis (PCA), as follows:
+- Let $$\boldsymbol{t}=\frac{1}{n} \boldsymbol{x}^T \boldsymbol{1} \in \mathbb{R}^d$$ be the centroid of $$\boldsymbol{x}$$
+- $$\boldsymbol{C}=\left(\boldsymbol{x}-\mathbf{1} \boldsymbol{t}^T\right)^T\left(\boldsymbol{x}-\mathbf{1} \boldsymbol{t}^T\right) \in \mathbb{R}^{d \times d}$$ the covariance matrix computed after removing the centroid from $$\boldsymbol{x}$$. In the generic case the eigenvalues of $$\boldsymbol{C}$$ satisfy $$\lambda _ 1<\lambda _ 2<\cdots<\lambda _ d$$.
+- Let $$\boldsymbol{v} _ 1, \boldsymbol{v} _ 2, \ldots, \boldsymbol{v} _ d$$ be the unit length corresponding eigenvectors.
+- Then we define $$\mathcal{F}(\boldsymbol{x})=\left\{\left(\left[\alpha _ 1 \boldsymbol{v} _ 1, \ldots, \alpha _ d \boldsymbol{v} _ d\right], t\right) \mid \alpha _ i \in\{-1,1\}\right\} \subset E(d)$$.
+- $$\left[\boldsymbol{v} _ 1, \ldots, \boldsymbol{v} _ d\right]$$ is a set of orthonormal vectors in $$\mathbb{R}^{d}$$, i.e., a basis of $$\mathbb{R}^{d}$$. Moreover, these vectors will "rotate" in the same way as the input.
+- $$\mathcal{F}(\boldsymbol{X})$$ based on the covariance and centroid are $$E(d)$$ equivariant.
 
 ## References
 

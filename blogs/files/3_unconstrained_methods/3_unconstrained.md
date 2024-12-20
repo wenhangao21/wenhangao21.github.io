@@ -54,11 +54,11 @@ $$
 
 - $\nu$: Harr measure over $G$ ("uniform" over $G$)
 
----
 
-> Claim: The GA operator is equivariant to $G$. 
 
-> Proof:
+**Claim: The GA operator is equivariant to $G$.**
+
+*Proof:*
 
 > $$
 \begin{align*}
@@ -69,7 +69,6 @@ $$
 \end{align*}
 $$
 
----
 
 Intuition: Similar to group convolutions, we have already calculated all the transformed versions of the input, $$\rho_1(g)^{-1}x$$ and $$\rho_2(g)$$ "corrects" the output for equivariance.
 - $$\left\\{\Phi\left(\rho_1(g)^{-1} \cdot x\right), \forall g\right\\}$$ will result in the same set of outputs, but in a different order, for transformed inputs.
@@ -77,14 +76,42 @@ Intuition: Similar to group convolutions, we have already calculated all the tra
 - Thus, integrating/summing over these outputs will result in invariant outputs.
 - $$\rho_2(g)$$ "corrects" the output by applying the transformation back.
 
-## 2. Geometric GNNs
 
-### 2.1. GNNs and Geometric Message Passing
 
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/3d_performance.png" style="width: 40%; display: block; margin: 0 auto;" />
-</figure>
-  <figcaption style="text-align: center;">GNNs that learn with 3D representations outperforms their 2D counterparts by a large margin. </figcaption>
+**Claim: GA is as expressive as its backbone $\Phi$ when $\Phi$ is equivariant to $G$.**
+
+*Proof:*
+
+$$
+\begin{aligned}
+\langle\Phi\rangle _ G(x) & =\mathbb{E} _ {g \sim \nu} g \cdot \Phi\left(g^{-1} \cdot x\right) \\
+& =\mathbb{E} _ {g \sim \nu} g \cdot g^{-1} \cdot \Phi(x) \\
+& =\Phi(x)
+\end{aligned}
+$$
+
+
+> Opinion: When $\Phi$ is a general neural network, it is not equivariant. Therefore, this does not imply universal approximation of GA. In the case of FA (will introduce soon), it might even make the learning tasks more difficult.
+
+Issue: When $|G|$ is large (e.g., combinatorial groups such as permutations), infinite (e.g., continuous groups such as rotations), or even non-compact, then the exact averaging is intractable.
+
+## 2. Frame Averaging
+
+### 2.1. Motivating Example: Geometric Pre-processing
+
+Consider image segmentation, in which we want translation equivariance. Assuming we are using a model other than CNN, so that we do not have inherent translation equivariance, what can we do if we want translation equivariance? We can use group averaging, but it will be computationally intractable for the translation group (large in the discrete case or even infinite if we view it in a continuous manner). We should think of another way of achieving equivariance.
+
+One way is geometric pre-processing:
+
+Given an image,
+<div>
+<img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg" width="200"/>
+</div>
+
+we can achieve equivariance by preprocessing the image.
+
+For example, if we have the location of the left eye of a cat, we can preprocess the image such that all cats will have their left eyes in the same location. Therefore, if an image is translated, it will be preprocessed to the same canonical position, eliminating the need for neural networks to have translation symmetries as these are accounted for in the data preprocessing (offset symmetries to the data).
+
 
 
 ## References

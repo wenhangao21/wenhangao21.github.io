@@ -108,7 +108,7 @@ Now take cross-correlation/convolution as the backbone function, the group avera
 
 $$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vertG\vert} \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vertG\vert} \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
 
-They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($L_g \cdot k\right$). In group averaging, we offset the symmetries to the input ($L_g^{-1} \cdot f$), and we additionally have the “correction term” as the result of this.
+They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($L_g \cdot k\right$). In group averaging, **we offset the symmetries to the input** ($L_g^{-1} \cdot f$), and we additionally have the “correction term” as a result of this.
 
 > Claim: $k \star L_g f=L_g\left(L_g^{-1} k \star f\right)$ (We can move the rotation to images instead of on the kernel).  
 *Proof:*  
@@ -122,6 +122,44 @@ $$
 \end{aligned}
 $$  
 - Third equality: Change of variable $g y=y^{\prime}$ since the determinant of $g$ is $1$.
+
+```python
+def lift_correlation(image, kernel):
+    """
+    Apply lifting correlation/convolution on an image.
+
+    Parameters:
+    - image (numpy.ndarray): The input image as a 2D array, size (s,s)
+    - conv_kernel (numpy.ndarray): The convolution kernel as a 2D array.
+
+    Returns:
+    - numpy.ndarray: Resulting feature maps after lifting correlation, size (|G|,s,s)
+    """
+    results = []
+    for i in range(4):  # apply rotations to the kernel and convolve with the input
+        rotated_kernel = np.rot90(conv_kernel, i)
+        result = convolve2d(image, rotated_kernel, mode='same', boundary='symm')
+        results.append(result)
+    return np.array(results)
+	
+def group_averaging(image, kernel):
+    """
+    Apply group 'averaging' on an image, but do not average yet.
+
+    Parameters:
+    - image (numpy.ndarray): The input image as a 2D array, size (s,s)
+    - conv_kernel (numpy.ndarray): The convolution kernel as a 2D array.
+
+    Returns:
+    - numpy.ndarray: Resulting feature maps before averaging, size (|G|,s,s)
+    """
+    results = []
+    for i in range(4):  # apply inverse rotations to the images and convolve with the kernel
+        rotated_image = np.rot90(image, 4-i)
+        result = np.rot90(convolve2d(rotated_image, kernel, mode='same', boundary='symm'), i)
+        results.append(result)
+    return np.array(results)
+```
 
 ## 2. Frame Averaging
 

@@ -124,11 +124,12 @@ $$
 
 Similar to group averaging, we can prove that frame averaging operator is equivariant to $G$ if $\mathcal{F}$ is equivariant to $G$, and it is as expressive as its backbone if its backbone is equivariant.
 
-> Example: Consider $X=\mathbb{R}^n, Y=\mathbb{R^n}$, and $G=\mathbb{R}$ with addition as the group action. We choose the group actions in this case to be $\rho_1(t) \boldsymbol{x}=\boldsymbol{x}+t \mathbf{1}$, and $\rho_2(a) y=y+t$, where $t\in G$, $\boldsymbol{x} \in X, y \in Y$ are point clouds of $n$ points, and $\mathbf{1} \in \mathbb{R}^n$ is the vector of all ones.  
+> Example: Consider $X=\mathbb{R}^n, Y=\mathbb{R^n}$, and $G=\mathbb{R}$ with addition as the group action.   
+We choose the group actions in this case to be $\rho_1(t) \boldsymbol{x}=\boldsymbol{x}+t \mathbf{1}$, and $\rho_2(a) y=y+t$, where $t\in G$, $\boldsymbol{x} \in X, y \in Y$ are point clouds of $n$ points, and $\mathbf{1} \in \mathbb{R}^n$ is the vector of all ones.  
 We can define the frame in this case using the averaging operator $$\mathcal{F}(\boldsymbol{x})=\left\{\frac{1}{n} \mathbf{1}^T \boldsymbol{x}\right\} \subset G=\mathbb{R}$$.  
 Note that in this case the frame contains only one element from the group (this special case when the frame size is $1$ is called canonicalization), in other cases finding such a small frame is hard or even impossible.  
 One can check that this frame is equivariant. The FA: $$\langle\Phi\rangle _ {\mathcal{F}}(\boldsymbol{x})=\Phi\left(\boldsymbol{x}-\frac{1}{n}\left(\mathbf{1}^T x\right) \mathbf{1}\right)+\frac{1}{n} \mathbf{1}^T x$$ in the equivariant case.
-- Intuition: Geometric pre-processing, we subtract the average and then add the average back to obtain equivariance.
+- Intuition: Geometric pre-processing, we subtract the average (centroid) from the point cloud, then use any network to process them, and finally add the average back to obtain equivariance.
 
 ### 2.3.Practical Instantiation for $E(3)$ Group on 3D Point Clouds
 
@@ -137,16 +138,43 @@ One can check that this frame is equivariant. The FA: $$\langle\Phi\rangle _ {\m
 Settings:
 - Input Space: $X=\mathbb{R}^{n \times 3}$ ($n$ nodes, each holding a $3$-dimensional vector as its position).
 - Group: $G=E(3)=O(3) \times T(3)$, namely the group of Euclidean motions in $\mathbb{R}^3$ defined by rotations and reflections $O(3)$, and translations $T(3)$.
-- Representation acting on $ \boldsymbol{x} \in X$: $\rho_1(g) \boldsymbol{x}=\boldsymbol{x} \boldsymbol{R}^T+\mathbf{1} \boldsymbol{t}^T$, where $\boldsymbol{R} \in O(d)$, and $\boldsymbol{t} \in \mathbb{R}^d$. (Apply rotation and translation to every node).
+- Representation acting on $ \boldsymbol{x} \in X$: $\rho_1(g) \boldsymbol{x}=\boldsymbol{x} \boldsymbol{R}^T+\mathbf{1} \boldsymbol{t}^T$, where $\boldsymbol{R} \in O(3)$, and $\boldsymbol{t} \in \mathbb{R}^3$. (Apply rotation and translation to every node).
 - Output space $Y$ and representation acting on the output space $\rho_2$ are defined similarly.
 
 Frame $\mathcal{F}(\boldsymbol{x})$ is defined based on Principle Component Analysis (PCA), as follows:
-- Let $$\boldsymbol{t}=\frac{1}{n} \boldsymbol{x}^T \boldsymbol{1} \in \mathbb{R}^d$$ be the centroid of $$\boldsymbol{x}$$
-- $$\boldsymbol{C}=\left(\boldsymbol{x}-\mathbf{1} \boldsymbol{t}^T\right)^T\left(\boldsymbol{x}-\mathbf{1} \boldsymbol{t}^T\right) \in \mathbb{R}^{d \times d}$$ the covariance matrix computed after removing the centroid from $$\boldsymbol{x}$$. In the generic case the eigenvalues of $$\boldsymbol{C}$$ satisfy $$\lambda _ 1<\lambda _ 2<\cdots<\lambda _ d$$.
-- Let $$\boldsymbol{v} _ 1, \boldsymbol{v} _ 2, \ldots, \boldsymbol{v} _ d$$ be the unit length corresponding eigenvectors.
-- Then we define $$\mathcal{F}(\boldsymbol{x})=\left\{\left(\left[\alpha _ 1 \boldsymbol{v} _ 1, \ldots, \alpha _ d \boldsymbol{v} _ d\right], t\right) \mid \alpha _ i \in\{-1,1\}\right\} \subset E(d)$$.
-- $$\left[\boldsymbol{v} _ 1, \ldots, \boldsymbol{v} _ d\right]$$ is a set of orthonormal vectors in $$\mathbb{R}^{d}$$, i.e., a basis of $$\mathbb{R}^{d}$$. Moreover, these vectors will "rotate" in the same way as the input.
-- $$\mathcal{F}(\boldsymbol{X})$$ based on the covariance and centroid are $$E(d)$$ equivariant.
+- Let $$\boldsymbol{t}=\frac{1}{n} \boldsymbol{x}^T \boldsymbol{1} \in \mathbb{R}^3$$ be the centroid of $$\boldsymbol{x}$$
+- $$\boldsymbol{C}=\left(\boldsymbol{x}-\mathbf{1} \boldsymbol{t}^T\right)^T\left(\boldsymbol{x}-\mathbf{1} \boldsymbol{t}^T\right) \in \mathbb{R}^{3 \times 3}$$ the covariance matrix computed after removing the centroid from $$\boldsymbol{x}$$. In the generic case the eigenvalues of $$\boldsymbol{C}$$ satisfy $$\lambda _ 1<\lambda _ 2<\cdots<\lambda _ 3$$.
+- Let $$\boldsymbol{v} _ 1, \boldsymbol{v} _ 2, \ldots, \boldsymbol{v} _ 3$$ be the unit length corresponding eigenvectors.
+- Then we define $$\mathcal{F}(\boldsymbol{x})=\left\{\left(\left[\alpha _ 1 \boldsymbol{v} _ 1, \ldots, \alpha _ 3 \boldsymbol{v} _ 3\right], t\right) \mid \alpha _ i \in\{-1,1\}\right\} \subset E(3)$$. The frame size is $8$.
+- $$\left[\boldsymbol{v} _ 1, \ldots, \boldsymbol{v} _ 3\right]$$ is a set of orthonormal vectors in $$\mathbb{R}^{3}$$, i.e., a basis of $$\mathbb{R}^{3}$$. Moreover, these vectors will "rotate" in the same way as the input.
+- $$\mathcal{F}(\boldsymbol{X})$$ based on the covariance and centroid are $$E(3)$$ equivariant.
+
+> Note: We can reduce the frame size from $8$ to $4$ if we know the rotations are proper rotations (determinant is $1$). This can generalize to any dimension $d$ beyond $3$ with frame size $2^d$ for the $O(3)$ group and $2^{d-1}$ for the $SO(3)$ group.
+
+```python
+def getting_principal_directions(point_cloud):
+    cov_matrix = np.cov(point_cloud, rowvar=False)
+    eigenvalues, eigenvectors = np.linalg.eigh(cov_matrix)
+    sorted_indices = np.argsort(eigenvalues)[::-1]
+    principal_directions = eigenvectors[:, sorted_indices].T
+    return principal_directions
+	
+def getting_frames(principal_directions):
+    # Given the principal directions in 3D, output all 8 possibilities (sign ambiguity)
+    frames = []
+    for signs in np.array(np.meshgrid([-1, 1], [-1, 1], [-1, 1])).T.reshape(-1, 3):
+        frames.append(principal_directions *signs[:, np.newaxis])
+    return np.array(frames)
+	
+def FA(point_cloud, principal_directions, f): # f can be any function, does not have to be equivariant
+    frames = getting_frames(principal_directions)
+    inverse_frames = np.linalg.inv(frames)
+    rho1_point_cloud = np.einsum('ijk,nk->inj', frames, point_cloud) # using the axes represented by principal vectors -> applying inverse rotation
+    f_rho1_point_cloud = f(rho1_point_cloud)
+    rho2_f_rho1_point_cloud = np.einsum('ijk,ink->inj', inverse_frames, f_rho1_point_cloud)
+```
+Full code can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance)
+
 
 ## References
 

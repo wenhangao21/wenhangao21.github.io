@@ -56,10 +56,8 @@ $$
 
 
 
-> *Claim: The GA operator is equivariant to $G$.*
-
-*Proof:*
-
+> *Claim: The GA operator is equivariant to $G$.*  
+*Proof:*  
 $$
 \begin{align*}
 \langle\Phi\rangle_G(h \cdot x) &= \mathbb{E}_{g \sim \nu} \rho_2(g) \cdot \Phi\left(\rho_1(g)^{-1} \cdot(\rho_1(h) \cdot x)\right) \\
@@ -78,10 +76,8 @@ Intuition: Similar to group convolutions, we have already calculated all the tra
 
 
 
-> *Claim: GA is as expressive as its backbone $\Phi$ when $\Phi$ is equivariant to $G$.*
-
-*Proof:*
-
+> *Claim: GA is as expressive as its backbone $\Phi$ when $\Phi$ is equivariant to $G$.*  
+*Proof:*  
 $$
 \begin{aligned}
 \langle\Phi\rangle _ G(x) & =\mathbb{E} _ {g \sim \nu} g \cdot \Phi\left(g^{-1} \cdot x\right) \\
@@ -94,6 +90,38 @@ $$
 > Opinion: When $\Phi$ is a general neural network, it is not equivariant. Therefore, this does not imply universal approximation of GA. In the case of FA (will introduce soon), it might even make the learning tasks more difficult.
 
 > Issue: When $\vert G \vert$ is large (e.g., combinatorial groups such as permutations), infinite (e.g., continuous groups such as rotations), or even non-compact, then the exact averaging is intractable.
+
+### 1.3. Group Averaging and Group Convlution (Lifting)
+
+Let $G = SO(2)$ be the proper rotation group on 2D images.
+
+Recall the lifting operation: 
+
+$$[k \star f](g)=\int _ {\mathbb{R}^{\mathrm{d}}} k\left(g^{-1} y\right) f(y) d y=\left(L _ g \cdot k\right) \star f .$$
+
+
+If we add the projection layer (averaging pooling layer) immediately, we have:
+
+$$\frac{1}{\vertG\vert} \sum _ {g \in G}[k \star f](g)=\frac{1}{\vertG\vert} \sum _ {g \in G} \int _ {\mathbb{R}^{\mathrm{d}}} k\left(g^{-1} y\right) f(y) d y= \frac{1}{\vertG\vert} \sum _ {g \in G} \left(L _ g \cdot k\right) \star f .$$
+
+Now take cross-correlation/convolution as the backbone function, the group averaging operator is defined as:
+
+$$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vertG\vert} \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vertG\vert} \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
+
+They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($L_g \cdot k\right$). In group averaging, we offset the symmetries to the input ($L_g^{-1} \cdot f$), and we additionally have the “correction term” as the result of this.
+
+> Claim: $k \star L_g f=L_g\left(L_g^{-1} k \star f\right)$ (We can move the rotation to images instead of on the kernel).  
+*Proof:*  
+$$
+\begin{aligned}
+& {\left[\left(L _ g k\right) \star\left(L _ g f\right)\right](x) } \\
+= & \int _ {\mathbb{R}^2} \operatorname{Lg} k(x-y) \operatorname{Lg} f(y) d y \\
+= & \int _ {\mathbb{R}^2} k(g x-g y) f(g y) d y \\
+= & \int _ {\mathbb{R}^2} k\left(g x-y^{\prime}\right) f\left(y^{\prime}\right) d y^{\prime} \\
+= & \mathrm{Lg}(k \star f)(x).
+\end{aligned}
+$$  
+- Third equality: Change of variable $g y=y^{\prime}$ since the determinant of $g$ is $1$.
 
 ## 2. Frame Averaging
 
@@ -154,7 +182,7 @@ Frame $\mathcal{F}(\boldsymbol{x})$ is defined based on Principle Component Anal
 </figure>
   <figcaption style="text-align: center;">Principle directions rotate as the point cloud rotates. Frames based on PCA are equivaraint. </figcaption>
 
-> Note: We can reduce the frame size from $8$ to $4$ if we know the rotations are proper rotations (determinant is $1$). This can generalize to any dimension $d$ beyond $3$ with frame size $2^d$ for the $O(3)$ group and $2^{d-1}$ for the $SO(3)$ group.
+> Note: We can reduce the frame size from $8$ to $4$ if we know the rotations are proper rotations (determinant is $1$). This can generalize to any dimension $d$ beyond $3$ with frame size $2^d$ for the $O(d)$ group and $2^{d-1}$ for the $SO(d)$ group.
 
 
 

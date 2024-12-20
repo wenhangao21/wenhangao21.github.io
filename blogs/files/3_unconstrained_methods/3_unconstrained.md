@@ -102,16 +102,17 @@ $$[k \star f](g)=\int _ {\mathbb{R}^{\mathrm{d}}} k\left(g^{-1} y\right) f(y) d 
 
 If we add the projection layer (averaging pooling layer) immediately, we have:
 
-$$\frac{1}{\vertG\vert} \sum _ {g \in G}[k \star f](g)=\frac{1}{\vertG\vert} \sum _ {g \in G} \int _ {\mathbb{R}^{\mathrm{d}}} k\left(g^{-1} y\right) f(y) d y= \frac{1}{\vertG\vert} \sum _ {g \in G} \left(L _ g \cdot k\right) \star f .$$
+$$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert } \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert } \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
 
 Now take cross-correlation/convolution as the backbone function, the group averaging operator is defined as:
 
 $$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vertG\vert} \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vertG\vert} \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
 
-They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($L_g \cdot k\right$). In group averaging, **we offset the symmetries to the input** ($L_g^{-1} \cdot f$), and we additionally have the “correction term” as a result of this.
+They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($L_g \cdot k\right$). In group averaging, **we offset the symmetries to the input** ($$L_g^{-1} \cdot f$$), and we additionally have the “correction term” as a result of this.
 
 > Claim: $k \star L_g f=L_g\left(L_g^{-1} k \star f\right)$ (We can move the rotation to images instead of on the kernel).  
 *Proof:*  
+
 $$
 \begin{aligned}
 & {\left[\left(L _ g k\right) \star\left(L _ g f\right)\right](x) } \\
@@ -121,6 +122,7 @@ $$
 = & \mathrm{Lg}(k \star f)(x).
 \end{aligned}
 $$  
+
 - Third equality: Change of variable $g y=y^{\prime}$ since the determinant of $g$ is $1$.
 
 ```python
@@ -160,6 +162,7 @@ def group_averaging(image, kernel):
         results.append(result)
     return np.array(results)
 ```
+Full code can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance)
 
 ## 2. Frame Averaging
 

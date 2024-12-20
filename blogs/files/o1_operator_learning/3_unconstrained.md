@@ -278,7 +278,7 @@ If a representation is reducible, it can be *decomposed* into a direct sum of ir
 
 Irreducible representations are the "building blocks" of more complex representations. Representations are decomposed into indepedent simpler parts.
 
-The representations of rotations for rank-$2$ Catersian tensors are generally reducible. Let $R$ be a rotation matrix for rank-$1$ Catersian tensors, we can write the representation on rank-$2$ Catersian tensors as $R_2 \in \mathbb{R}^{3\times 3\times 3\times3} = R \otimes R$. Here we losely abuse the notation $\otimes$ to denote $(A \otimes B) _ {i j, k l}=a_{i j} \cdot b _ {k l}$, it is more formally known as the Kronecker product. For details, refer to the [implementation](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance) provided. 
+The representations of rotations for rank-$2$ Catersian tensors are generally reducible. Let $R$ be a rotation matrix for rank-$1$ Catersian tensors, we can write the representation on rank-$2$ Catersian tensors as $R_2 \in \mathbb{R}^{3\times 3\times 3\times3} = R \otimes R$. Here we losely abuse the notation $\otimes$ to denote $(A \otimes B)_{i j, k l}=a_{i j} \cdot b_{k l}$, it is more formally known as the Kronecker product. For details, refer to the [implementation](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance) provided. 
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/reducible_irreducible.png" style="width: 50%; display: block; margin: 0 auto;" />

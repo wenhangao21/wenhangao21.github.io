@@ -300,7 +300,7 @@ Now, the function is already defined on the group of interest after lifting. We 
 The group correlation of $f$ and $g$ is written as $f \star_{SE(2)} g$, denoting the operator with the symbol $\star_{SE(2)}$. It is defined as the integral of the product of the two functions after one is shifted and rotated:  
 
 <figure style="text-align: center;">
-  <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/gconv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
+  <img alt="Cross Correlation" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/1_gconv/conv_math2.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 
 Although the examples are given for the group $\mathrm{SE}(2)$, the idea can generalize to other affine groups (semi-direct product groups).  

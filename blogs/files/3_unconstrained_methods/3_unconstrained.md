@@ -1,27 +1,32 @@
 ---
 layout: blog
-title: "Geometric GNNs"
+title: "Unconstrained Methods"
 author_profile: false
 ---
 
 # Geometric GNNs
 
-**TL;DR:** This blog introduces geometric GNNs, which guarantee Euclidean (E(n)) symmetries in neural networks; for example, when you rotate a molecule, scalar quantities such as potential energy should remain invariant, and vector or tensor quantities should be equivariant to the rotation.
+**TL;DR:** This blog introduces unconstrained methods for symmetries, taking the $E(3)$ group and point cloud data as an example.
 
-This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate concepts including tensor decomposition, equivariance, and irreducibility.
+This tutorial aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate PCA on point clouds, frame averaging, and equivariance.
 
 - The toy implementation, along with some slides, can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
-- It is assumed that you are familiar with the basic concepts of equivariance. If not, please read [Group CNN](https://wenhangao21.github.io/blogs/files/1_gconv/1_gconv/) first.
-- [Reference [1]](https://www.chaitjo.com/publication/duval-2023-hitchhikers/) provides a great introduction to geometric GNNs. This blog will introduce geometric GNNs in less detail and focus on explaining tensor decomposition, the equivariance of tensors, and irreducibility.
+- It is assumed that you are familiar with the [Group CNN](https://wenhangao21.github.io/blogs/files/1_gconv/1_gconv/) and [Geometric GNNs](https://wenhangao21.github.io/blogs/files/2_geometric_GNNs/2_geometric_GNNs/). If not, please read them first.
 
 ## 1. Introduction
 
-### 1.1. Geometric Representation of Atomistic Systems
+### 1.1. Motivation
 
-There are different ways of representing molecules; for example:  
-- SMILES strings (1D)  
-- Planar graphs (2D)  
-- Geometric graphs (3D)  
+(Constrained) Geometric GNNs enforce symmetries directly into the architecture.
+- Restricting its set of possible operations or representations.
+- Hindering network capacity to fully express the intricacies of the data.
+- Computational inefficient.
+- For large pretrained models, such as GPT, we cannot alter their network designs to ensure equivariance!
+
+<div style="display: flex; justify-content: center; align-items: center; border: 2px solid black; padding: 20px; max-width: 600px; margin: 0 auto; text-align: center;">
+  <span style="color: red;">Does enforcing equivariance/symmetries as an inductive bias truly offset a potential reduction in optimization diversity within the constrained learning spaces?</span>
+</div>
+
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/2_geometric_GNNs/representations.png" style="width: 55%; display: block; margin: 0 auto;" />

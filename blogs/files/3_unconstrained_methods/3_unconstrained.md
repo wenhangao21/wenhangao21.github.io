@@ -125,9 +125,9 @@ $$
 Similar to group averaging, we can prove that frame averaging operator is equivariant to $G$ if $\mathcal{F}$ is equivariant to $G$, and it is as expressive as its backbone if its backbone is equivariant.
 
 > Example: Consider $X=\mathbb{R}^n, Y=\mathbb{R^n}$, and $G=\mathbb{R}$ with addition as the group action. We choose the group actions in this case to be $\rho_1(t) \boldsymbol{x}=\boldsymbol{x}+t \mathbf{1}$, and $\rho_2(a) y=y+t$, where $t\in G$, $\boldsymbol{x} \in X, y \in Y$ are point clouds of $n$ points, and $\mathbf{1} \in \mathbb{R}^n$ is the vector of all ones.  
-We can define the frame in this case using the averaging operator $\mathcal{F}(\boldsymbol{x})=\left\{\frac{1}{n} \mathbf{1}^T \boldsymbol{x}\right\} \subset G=\mathbb{R}$.  
+We can define the frame in this case using the averaging operator $$\mathcal{F}(\boldsymbol{x})=\left\{\frac{1}{n} \mathbf{1}^T \boldsymbol{x}\right\} \subset G=\mathbb{R}$$.  
 Note that in this case the frame contains only one element from the group, in other cases finding such a small frame is hard or even impossible.  
-One can check that this frame is equivariant. The FA: $\langle\Phi\rangle _ {\mathcal{F}}(\boldsymbol{x})=\Phi\left(\boldsymbol{x}-\frac{1}{n}\left(\mathbf{1}^T x\right) \mathbf{1}\right)+\frac{1}{n} \mathbf{1}^T x$ in the equivariant case.
+One can check that this frame is equivariant. The FA: $$\langle\Phi\rangle _ {\mathcal{F}}(\boldsymbol{x})=\Phi\left(\boldsymbol{x}-\frac{1}{n}\left(\mathbf{1}^T x\right) \mathbf{1}\right)+\frac{1}{n} \mathbf{1}^T x$$ in the equivariant case.
 - Intuition: Geometric pre-processing, we subtract the average and then add the average back to obtain equivariance.  
 
 ### 2.3.Practical Instantiation for $E(3)$ Group on 3D Point Clouds

@@ -18,9 +18,9 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 ### 1.1. Motivation
 
 (Constrained) Geometric GNNs enforce symmetries directly into the architecture.
-- Restricting its set of possible operations or representations.
+- Restricting their set of possible operations or representations.
 - Hindering network capacity to fully express the intricacies of the data.
-- Computational inefficient.
+- Computationally inefficient.
 - For large pretrained models, such as GPT, we cannot alter their network designs to ensure equivariance!
 
 <figure style="text-align: center;">
@@ -33,7 +33,7 @@ This tutorial aims to **simplify abstract concepts for newcomers**. Coding examp
 </div>
 
 
-It is desirable to have a pipeline that can learn any equivariant functions.
+It is desirable to have a pipeline in unconstrained learning spaces.
 
 ### 1.2. Group Averaging
 Consider an arbitrary $\Phi: X \rightarrow Y$, where $X, Y$ are input and output (vector) spaces, respectively.
@@ -72,9 +72,7 @@ Intuition: Similar to group convolutions, we have already calculated all the tra
 - $$\left\{\Phi\left(\rho_1(g)^{-1} \cdot x\right), \forall g\right\}$$ will result in the same set of outputs, but in a different order, for transformed inputs.
   - Why? Because the set of inputs $$\left\{\rho_1(g)^{-1} \cdot x\right\}$$ is the same but in a different order for a transformed $x$.
 - Thus, integrating/summing over these outputs will result in invariant outputs.
-- $$\rho_2(g)$$ "corrects" the output by applying the transformation back.
-
-
+- $$\rho_2(g)$$ "corrects" the output for equivariance by applying the transformation back.
 
 > *Claim: GA is as expressive as its backbone $\Phi$ when $\Phi$ is equivariant to $G$.*  
 *Proof:*  
@@ -87,7 +85,8 @@ $$
 $$
 
 
-> Opinion: When $\Phi$ is a general neural network, it is not equivariant. Therefore, this does not imply universal approximation of GA. In the case of FA (will introduce soon), it might even make the learning tasks more difficult.
+> Opinion: When the backbone $\Phi$ is a general neural network, it is not equivariant. Therefore, this does not imply universal approximation of GA. In the case of FA (will introduce soon), it might even make the learning tasks more difficult.
+
 
 > Issue: When $\vert G \vert$ is large (e.g., combinatorial groups such as permutations), infinite (e.g., continuous groups such as rotations), or even non-compact, then the exact averaging is intractable.
 
@@ -100,15 +99,15 @@ Recall the lifting operation:
 $$[k \star f](g)=\int _ {\mathbb{R}^{\mathrm{d}}} k\left(g^{-1} y\right) f(y) d y=\left(L _ g \cdot k\right) \star f .$$
 
 
-If we add the projection layer (averaging pooling layer) immediately, we have:
+If we add the projection layer (average pooling layer) immediately, we have:
 
 $$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert } \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert } \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
 
-Now take cross-correlation/convolution as the backbone function, the group averaging operator is defined as:
+Now, taking cross-correlation/convolution as the backbone function, the group averaging operator is defined as:
 
 $$\langle\Phi\rangle _ G(f)=\mathbb{E} _ {g \sim \nu} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert} \sum _ {g \in G} L _ g \cdot\left[k \star\left(L _ g^{-1} \cdot f\right)\right]=\frac{1}{\vert G\vert} \sum _ {g \in G}\left(L _ g \cdot k\right) \star f .$$
 
-They are essentially the same (with some caveat, see below). In group convolution, we modify the model architecture, making convolution kernels to reflect the group ($$L_g \cdot k$$). In group averaging, **we offset the symmetries to the input** ($$L_g^{-1} \cdot f$$), and we additionally have the “correction term” as a result of this.
+They are essentially the same (with some caveats, see below). In group convolution, we modify the model architecture, making convolution kernels reflect the group ($$L_g \cdot k$$). In group averaging, **we offset the symmetries to the input** ($$L_g^{-1} \cdot f$$), and we additionally have the “correction term” as a result of this.
 
 > Claim: $k \star L_g f=L_g\left(L_g^{-1} k \star f\right)$ (We can move the rotation to images instead of on the kernel).  
 *Proof:*  
@@ -221,7 +220,7 @@ Frame $\mathcal{F}(\boldsymbol{x})$ is defined based on Principle Component Anal
 </figure>
   <figcaption style="text-align: center;">Principle directions rotate as the point cloud rotates. Frames based on PCA are equivaraint. </figcaption>
 
-> Note: We can reduce the frame size from $8$ to $4$ if we know the rotations are proper rotations (determinant is $1$). This can generalize to any dimension $d$ beyond $3$ with frame size $2^d$ for the $O(d)$ group and $2^{d-1}$ for the $SO(d)$ group.
+> Note: We can reduce the frame size from $8$ to $4$ if we know the rotations are proper rotations (determinant is strictly $1$). This can generalize to any dimension $d$ beyond $3$, with frame size $2^d$ for the $O(d)$ group and $2^{d-1}$ for the $SO(d)$ group.
 
 
 
@@ -256,15 +255,9 @@ Full code can be found [here](https://github.com/wenhangao21/Tutorials/tree/main
 
 
 ## Other Useful Resources for Starters
-
-### Lecture Recordings
-1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
-2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
-
 ### Youtube Channels/Talks
+
 1. [Graphs and Geometry Reading Group](https://www.youtube.com/playlist?list=PLoVkjhDgBOt2UwOm70DAuxHf1Jc9ijmzl)
 2. [Euclidean Neural Networks for Learning from Physical Systems](https://www.youtube.com/watch?v=ANyOgrnCdGk)
 3. [A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems](https://www.youtube.com/watch?v=BUe45d5wrfc)
-
-### Architectures
-1. [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo/tree/main) provides unified implementations of several popular geometric GNN architectures
+4. [Frame Averaging for Invariant and Equivariant Network Design](https://www.youtube.com/watch?v=ZGtcvRaSmMk&ab_channel=ValenceLabs)

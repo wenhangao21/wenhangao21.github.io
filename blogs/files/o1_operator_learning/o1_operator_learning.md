@@ -14,13 +14,13 @@ This tutorial aims to **organize concepts for newcomers**.
 
 ### 1.1. Functions and Operators
 
-A Function is a mapping between finite-dimensional vector spaces, $$f(x) = z$$.
+A function is a mapping between finite-dimensional vector spaces, e.g. $$f(x) = z$$ for vectors $x$ and $z$.
 
-> Example: $$f(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu k}{\sigma}\right)^2}$, $x\in\mathbf{R}.$$
+> Example: $$f(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$, $x \in \mathbf{R}$.
 
-An operator is a mapping between infinite-dimensional function spaces, $$G(a(x))=u(x)$$.
+An operator is a mapping between infinite-dimensional function spaces, e.g. $$G(a(x))=u(x)$$ for functions $a$ and $u$.
 
-> Examples: Derivative Operator, Nabla Operator, Differential Operator, etc..
+> Examples: Derivative Operator, Nabla Operator, Differential Operator, etc.
 
 In the operator learning setting, we are interested in training a neural network $G_\theta$ such that $$G_\theta(a)\approx G(a)$$ through a given finite collection of observations of input-output pairs $$\left\{a_i, u_i\right\}_{i=1}^N$$, where each $a_i$ and $u_i$ are functions. In practice, the training data is solved numerically or observed in experiments.
 
@@ -30,7 +30,7 @@ In the operator learning setting, we are interested in training a neural network
 
 ### 1.2. Parametric PDEs and the Learning Task
 
-In numerous fields, we seek to study the behavior of physical systems under various parameters. Neural operators approximate the mapping from parameter function space to solution function space. Once trained, obtaining a solution can be several orders of magnitude faster than numerical methods. A particular example of operator learing is learning parametric PDEs. 
+In numerous fields, we seek to study the behavior of physical systems under various parameters. Neural operators approximate the mapping from parameter function space to solution function space. Once trained, obtaining a solution can be several orders of magnitude faster than numerical methods. A particular example of operator learning is learning parametric PDEs.
 
 Consider a parametric PDE of the form:
 
@@ -75,7 +75,7 @@ Let $a$ be a function, and we just take the function values on some sensor locat
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
-<figcaption style="text-align: center;">Assuming rectangular domain and uniform sampling of the functions, we can treat it as an (finite-dimensional) image to image mapping task and use a CNN-based architecture to learn the mapping. </figcaption>
+<figcaption style="text-align: center;">Assuming a rectangular domain and uniform sampling of the functions, we can treat it as a (finite-dimensional) image-to-image mapping task and use a CNN-based architecture to learn the mapping. </figcaption>
 
 > Example 2:  
 Let $a$ be a function in some function space, let say $a \in L^2(D)$.  
@@ -86,7 +86,7 @@ Now, the function is characterized by finite dimensinal feasures $c_k$.
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/sno.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
-<figcaption style="text-align: center;">Given appropriate fixed function bases, under fairly general assumptions, functions can be projected into a finite dimensional space with any desired precision: $f=\sum_ {i=0} ^{k} c_i f_i$. We can learn the mapping between the (finite) coefficients of the input and output functions. A particular work that follows this flow is Spectral Neural Operators. </figcaption>
+<figcaption style="text-align: center;">Given appropriate fixed function bases, under fairly general assumptions, functions can be projected into a finite-dimensional space with any desired precision: $f=\sum_ {i=0} ^{k} c_i f_i$. We can learn the mapping between the (finite) coefficients of the input and output functions. A particular work that follows this flow is Spectral Neural Operators. </figcaption>
 
 Many numerical schemes can be represented by this diagram as well.
 
@@ -110,14 +110,14 @@ How we make choices of encoders, reconstructors (decoders), and approximators gi
 
 ### 2.2. Infinite-dimensional Learning
 
-For some of the methods we previously discussed, such as CNN-based models, the network is highly dependent on the resolution of the data or sensor locations. 
+For some of the methods we previously discussed, such as CNN-based models, the network is highly dependent on the resolution of the data or sensor locations.
 
 <figure style="text-align: center;">
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn_resolution.png" style="width: 25%; display: block; margin: 0 auto;" />
 </figure>
-<figcaption style="text-align: center;">In CNN-based methods, fixed size kernels converge to a point-wise operator as the resolution increases. </figcaption>
+<figcaption style="text-align: center;">In CNN-based methods, fixed-size kernels converge to a point-wise operator as the resolution increases. </figcaption>
 
-Another perspective on operator learning is to think in terms of the continuum. 
+Another perspective on operator learning is to think in terms of the continuum.
 
 <div style="display: flex; justify-content: center; align-items: center; border: 2px solid black; padding: 20px; max-width: 600px; margin: 0 auto; text-align: center;">
   <span style="color: red;"><em>Since we are learning an operator, the network should be independent of the discretization of the input and output functions, and the learned parameters should be transferable between discretizations.</em></span>
@@ -144,7 +144,7 @@ $$v_{t}(x)
 \text {Integral Linear Operator: } \int\kappa(x, y) v_t(y)dy + b(x)\longrightarrow
 \text { Non-linearity } \longrightarrow  v_{t+1}(x)$$
 
-Now our vector $v_t$ is replaced by a function $v_t(x)$. We reformulate the linear layers as *kernel integral operators*. We are able to take inputs at different discretizations (e.g. 128x128, or 256x256) representing the same function, hence allowing the neural operator to be *discretization independent*. It learns the continuous functions instead of discretized vectors.
+Now our vector $v_t$ is replaced by a function $v_t(x)$. We reformulate the linear layers as *kernel integral operators*. We are able to take inputs at different discretizations (e.g., 128x128 or 256x256) representing the same function, hence allowing the neural operator to be *discretization independent*. It learns the continuous functions instead of discretized vectors.
 
 A standard deep neural network can be written as:
 
@@ -170,7 +170,8 @@ $$
 \end{array}
 $$
 
-> More details and simple, but complete, implementations of DeepONet and FNO can be found in these two blogs: [DeepONet](https://wenhangao21.github.io/blogs/files/o3_DON/o3_don/) and [FNO](https://wenhangao21.github.io/blogs/files/o4_FNO/o4_fno/)
+> For more details and complete yet simple implementations of DeepONet and FNO, you can refer to the following blogs: [DeepONet](https://wenhangao21.github.io/blogs/files/o3_DON/o3_don/) and [FNO](https://wenhangao21.github.io/blogs/files/o4_FNO/o4_fno/).
+
 
 ## References
 
@@ -190,8 +191,8 @@ $$
 ## Other Useful Resources for Starters
 
 ### Lecture Recordings
-1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
-2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
+1. [Introduction to Scientific Machine Learning - Purdue](https://www.youtube.com/playlist?list=PLUwQEimVf25Q-WjXNQT0aQjupfk70hxlx)
+2. [Deep Learning in Scientific Computing 2023 - ETH Zürich](https://www.youtube.com/playlist?list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm)
 
 ### Youtube Channels/Talks
 1. [Graphs and Geometry Reading Group](https://www.youtube.com/playlist?list=PLoVkjhDgBOt2UwOm70DAuxHf1Jc9ijmzl)

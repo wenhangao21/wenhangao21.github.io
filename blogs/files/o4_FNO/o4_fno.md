@@ -169,7 +169,7 @@ $$
 \end{array}
 $$
 
-> More details and simple, but complete, implementations of DeepONet and FNO can be found in these two blogs: [DeepONet](https://wenhangao21.github.io/blogs/files/o3_DON/o3_don/) and [FNO](https://wenhangao21.github.io/blogs/files/o4_FNO/o4_fno/)
+> More details and simple, but complete, implementations of DeepONet and FNO can be found in these two blogs: 
 
 ## References
 

@@ -27,9 +27,14 @@ $$
 \end{array}}+\lambda\|\mathcal{B} \phi(\boldsymbol{x} ; \boldsymbol{\theta})-g(\boldsymbol{x})\| _ 2^2.
 $$
 
-> $\mathcal{D} \phi(\boldsymbol{x} ; \boldsymbol{\theta})$ can be approximated using the Monte Carlo method at collocation points.
+- The neural network takes spatio-temporal positions as inputs and produce the function value at these positions as outputs. 
+- $\mathcal{D} \phi(\boldsymbol{x} ; \boldsymbol{\theta})$ can be approximated using the Monte Carlo method at collocation points.
 
 > Intuition: We penalize the neural network by the extend to which it violates the PDE/boundary/initial conditions. If the residual is exactly $0$, although nearly impossible, it means that $\phi(\boldsymbol{x} ; \boldsymbol{\theta})$ strictly satisfies the governing equations.
+
+<figure style="text-align: center;">
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/operator.png" style="width: 35%; display: block; margin: 0 auto;" />
+</figure>
 
 ## 2. Implementation
 

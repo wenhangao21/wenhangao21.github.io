@@ -25,7 +25,7 @@ An operator is a mapping between infinite-dimensional function spaces, $$G(a(x))
 In the operator learning setting, we are interested in training a neural network $G_\theta$ such that $$G_\theta(a)\approx G(a)$$ through a given finite collection of observations of input-output pairs $$\left\{a_i, u_i\right\}_{i=1}^N$$, where each $a_i$ and $u_i$ are functions. In practice, the training data is solved numerically or observed in experiments.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/operator.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/operator.png" style="width: 35%; display: block; margin: 0 auto;" />
 </figure>
 
 ### 1.2. Parametric PDEs and the Learning Task
@@ -61,7 +61,7 @@ such that $(a, u)$ satisfies the PDE.
 A **challenge** in operator learning is that DNNs are mappings between *finite* dimensional spaces: $$\phi _ {\text{network}}: \mathbb{R}^{d _ {in} < \infty} \mapsto \mathbb{R}^{d _ {out} < \infty}$$.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/finite_infinite.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/finite_infinite.png" style="width: 65%; display: block; margin: 0 auto;" />
 </figure>
 
 ## 2. Learning Paradiams
@@ -73,7 +73,7 @@ A naive workaround to the challenge is to have a simplified setting in which fun
 Let $a$ be a function, and we just take the function values on some sensor locations to be its finite dimensional features.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
 <figcaption style="text-align: center;">Assuming rectangular domain and uniform sampling of the functions, we can treat it as an (finite-dimensional) image to image mapping task and use a CNN-based architecture to learn the mapping. </figcaption>
 
@@ -84,9 +84,9 @@ We can approximate $a$ with a truncated basis, $a=\sum_{k=1}^{d_y} c_k\varphi_k$
 Now, the function is characterized by finite dimensinal feasures $c_k$.  
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/sno.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/sno.png" style="width: 75%; display: block; margin: 0 auto;" />
 </figure>
-<figcaption style="text-align: center;">Given appropriate fixed function bases, under fairly general assumptions, functions can be projected into a finite dimensional space with any desired precision: $$f=\sum_{i=0}^{k} c_i f_i$$. We can learn the mapping between the (finite) coefficients of the input and output functions. A particular work that follows this flow is Spectral Neural Operators. </figcaption>
+<figcaption style="text-align: center;">Given appropriate fixed function bases, under fairly general assumptions, functions can be projected into a finite dimensional space with any desired precision: $f=\sum_ {i=0} ^{k} c_i f_i$. We can learn the mapping between the (finite) coefficients of the input and output functions. A particular work that follows this flow is Spectral Neural Operators. </figcaption>
 
 Many numerical schemes can be represented by this diagram as well.
 
@@ -100,6 +100,7 @@ Many numerical schemes can be represented by this diagram as well.
 How we make choices of encoders, reconstructors (decoders), and approximators gives rise to different neural operators with different pros and cons.
 
 | Method | Encoder | Approximator | Example Reconstructor |
+| --- | --- | --- | --- |
 | CNN-based Networks | Grid Point Values | DNN | Interpolantion |
 | SNO [1] | Fourier/Chebyshev Coefs. | DNN | Fourier/Chebyshev Basis |
 | DeepOnet [2] | Sensor Point Values | Branch Net (DNN) | Trunk Net (DNN) |
@@ -112,7 +113,7 @@ How we make choices of encoders, reconstructors (decoders), and approximators gi
 For some of the methods we previously discussed, such as CNN-based models, the network is highly dependent on the resolution of the data or sensor locations. 
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn_resolution.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn_resolution.png" style="width: 25%; display: block; margin: 0 auto;" />
 </figure>
 <figcaption style="text-align: center;">In CNN-based methods, fixed size kernels converge to a point-wise operator as the resolution increases. </figcaption>
 

@@ -56,7 +56,7 @@ such that $(a, u)$ satisfies the PDE.
 - Training data
   - Observed (possibly noisy) function pairs $$\left(a_i, u_i\right) \in \mathcal{A} \times \mathcal{U}, u_i=G\left(a_i\right)$$ with measures $$a_i \sim \nu_a, u_i \sim \nu_u$$, where $$\nu_u$$ is the pushforward measure of $$\nu_a$$ by $G$
 - Task: Learn operators from data
-  - $$G_{\theta}(a)\approx u$$
+  - $G _ {\theta}(a)\approx u$
   
 A **challenge** in operator learning is that DNNs are mappings between *finite* dimensional spaces: $$\phi _ {\text{network}}: \mathbb{R}^{d _ {in} < \infty} \mapsto \mathbb{R}^{d _ {out} < \infty}$$.
 

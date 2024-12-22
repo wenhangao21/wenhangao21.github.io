@@ -4,16 +4,34 @@ title: "Geometric GNNs"
 author_profile: false
 ---
 
-# Physics Informed Neural Networks in 5 Minutes
+# Physics Informed Neural Networks (PINN) in 5 Minutes
 
 **TL;DR:** This blog introduces the high level ideas of physics informed neural networks [1] in 5 minutes. A simple implementation to solve a Poission's equation with both PINN and finite difference is also provided. 
 
 
 - The toy implementation can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Neural_PDE_Solvers).
 
-## 1. Introduction
+## 1. PINN Formulation
+Consider the following general form of a PDE for $u(\boldsymbol{x})$ :
 
-### 1.1. Geometric Representation of Atomistic Systems
+$$
+\begin{cases}\mathcal{D} u(\boldsymbol{x})=f(\boldsymbol{x}), & \text { in } \Omega, \\ \mathcal{B} u(\boldsymbol{x})=g(\boldsymbol{x}), & \text { on } \partial \Omega,\end{cases}
+$$
+
+we wish to approximate $u(\boldsymbol{x})$ with a neural network, denoted by $\phi(\boldsymbol{x} ; \boldsymbol{\theta})$. We can train the neural network with physicsinformed loss. That is, we aim to solve the following optimization problem:
+
+$$
+\boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg \min } \mathcal{L}(\boldsymbol{\theta}):=\underset{\boldsymbol{\theta}}{\arg \min } \underbrace{\|\mathcal{D} \phi(\boldsymbol{x} ; \boldsymbol{\theta})-f(\boldsymbol{x})\| _ 2^2} _ {\begin{array}{c}
+\text { Difference between the L.H.S. and } \\
+\text { R.H.S. of the differential equation}
+\end{array}}+\lambda\|\mathcal{B} \phi(\boldsymbol{x} ; \boldsymbol{\theta})-g(\boldsymbol{x})\| _ 2^2.
+$$
+
+> $\mathcal{D} \phi(\boldsymbol{x} ; \boldsymbol{\theta})$ can be approximated using the Monte Carlo method at collocation points.
+
+> Intuition: We penalize the neural network by the extend to which it violates the PDE/boundary/initial conditions. If the residual is exactly $0$, although nearly impossible, it means that $\phi(\boldsymbol{x} ; \boldsymbol{\theta})$ strictly satisfies the governing equations.
+
+## 2. Implementation
 
 
 ## References

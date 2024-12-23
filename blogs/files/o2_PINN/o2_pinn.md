@@ -33,7 +33,7 @@ $$
 > Intuition: We penalize the neural network by the extend to which it violates the PDE/boundary/initial conditions. If the residual is exactly $0$, although nearly impossible, it means that $\phi(\boldsymbol{x} ; \boldsymbol{\theta})$ strictly satisfies the governing equations.
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/operator.png" style="width: 55%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o2_PINN/pinn.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
 
 ## 2. Implementation
@@ -105,6 +105,7 @@ loss = loss_1 + lambda_term * loss_2
 ```
 
 > Full implementation can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Neural_PDE_Solvers).
+
 ## References
 
 [1] Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations, M. Raissi et al.

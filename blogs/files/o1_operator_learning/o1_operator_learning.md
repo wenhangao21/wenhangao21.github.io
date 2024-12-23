@@ -150,15 +150,15 @@ A standard deep neural network can be written as:
 
 **Instantiations of Integral Neural Operator Layers:**
 
-- GNO (Graph): Assuming a uniform distribution of $y$, the integral can be approximated by a sum
+- GNO (Graph) [6]: Assuming a uniform distribution of $y$, the integral can be approximated by a sum
 
 $$v(x) = \int \kappa(x, y) v(y) d y \approx \frac{1}{|N(x)|} \sum _ {y _ i \in N(x)} k\left(x, y _ i\right) v\left(y _ i\right) \approx \frac{1}{|B(x, r)|} \sum _ {y _ i \in B(x, r)} k\left(x, y _ i\right) v\left(y _ i\right).$$
 
-- LNO (Laplace):
+- LNO (Laplace) [7]:
 
 $$\sum_{j=1}^r\left\langle\psi^{(j)}, \nu\right\rangle \varphi^{(j)}(x)$$
 
-- FNO (Fourier): Imposing $\kappa(x, y)=\kappa(x-y)$ (translation invariance), which is a natural choice from the perspective of fundamental solutions
+- FNO (Fourier) [8]: Imposing $\kappa(x, y)=\kappa(x-y)$ (translation invariance), which is a natural choice from the perspective of fundamental solutions
 
 $$
 \begin{array}{rr}
@@ -185,7 +185,11 @@ $$
 
 [5] Operator learning with neural fields: Tackling PDEs on general geometries, Louis Serrano et al.
 
+[6] Neural Operator: Graph Kernel Network for Partial Differential Equations, Zongyi Li et al.
 
+[7] LNO: Laplace Neural Operator for Solving Differential Equations, Qianying Cao et al.
+
+[8] Fourier Neural Operator for Parametric Partial Differential Equations, Zongyi Li et al.
 
 
 ## Other Useful Resources for Starters
@@ -194,10 +198,3 @@ $$
 1. [Introduction to Scientific Machine Learning - Purdue](https://www.youtube.com/playlist?list=PLUwQEimVf25Q-WjXNQT0aQjupfk70hxlx)
 2. [Deep Learning in Scientific Computing 2023 - ETH Zürich](https://www.youtube.com/playlist?list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm)
 
-### Youtube Channels/Talks
-1. [Graphs and Geometry Reading Group](https://www.youtube.com/playlist?list=PLoVkjhDgBOt2UwOm70DAuxHf1Jc9ijmzl)
-2. [Euclidean Neural Networks for Learning from Physical Systems](https://www.youtube.com/watch?v=ANyOgrnCdGk)
-3. [A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems](https://www.youtube.com/watch?v=BUe45d5wrfc)
-
-### Architectures
-1. [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo/tree/main) provides unified implementations of several popular geometric GNN architectures

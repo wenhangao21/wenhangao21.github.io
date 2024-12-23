@@ -1,201 +1,139 @@
 ---
 layout: blog
-title: "Operator Learning"
+title: "FNO"
 author_profile: false
 ---
 
 # Operator Learning
 
-**TL;DR:** This blog briefly introduces the concept of operator learning, which maps between infinite-dimensional function spaces.
+**TL;DR:** This blog introduces the Fourier Neural Operator [1] and its implementation. 
 
 This tutorial aims to **organize concepts for newcomers**.
 
-## 1. Preliminary
+## 1. Introduction
 
-### 1.1. Functions and Operators
+### 1.1. Formulation
 
-A Function is a mapping between finite-dimensional vector spaces, $$f(x) = z$$.
-
-> Example: $$f(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2}\left(\frac{x-\mu k}{\sigma}\right)^2}$, $x\in\mathbf{R}.$$
-
-An operator is a mapping between infinite-dimensional function spaces, $$G(a(x))=u(x)$$.
-
-> Examples: Derivative Operator, Nabla Operator, Differential Operator, etc..
-
-In the operator learning setting, we are interested in training a neural network $G_\theta$ such that $$G_\theta(a)\approx G(a)$$ through a given finite collection of observations of input-output pairs $$\left\{a_i, u_i\right\}_{i=1}^N$$, where each $a_i$ and $u_i$ are functions. In practice, the training data is solved numerically or observed in experiments.
-
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/operator.png" style="width: 55%; display: block; margin: 0 auto;" />
-</figure>
-
-### 1.2. Parametric PDEs and the Learning Task
-
-In numerous fields, we seek to study the behavior of physical systems under various parameters. Neural operators approximate the mapping from parameter function space to solution function space. Once trained, obtaining a solution can be several orders of magnitude faster than numerical methods. A particular example of operator learing is learning parametric PDEs. 
-
-Consider a parametric PDE of the form:
+FNO (Fourier neural operator) is a neural network designed to approximate operators $\mathcal{G}$, which are mappings from functions to functions:
 
 $$
-\mathcal{N}(a, u)=0,
+\mathcal{G}: a(x) \mapsto u(y).
 $$
 
-where $a$ is the input function (can also be a constant, a constant is also a function), and $u$ is the PDE solution. The PDE solution operator is defined as
+FNO is a type of integral neural operator. Inspired by the kernel method for PDEs, each integral neural operator layer consists of a fixed non-linearity and a kernel integral operator $$\mathcal{K}$$ modeled by network parameters, defined as $$(\mathcal{K} v)(x)=\int \kappa(x, y) v(y) \mathrm{d} y$$. All operations in integral neural operators are defined on functions; thus, integral neural operators are understood as function space architectures. 
+
+As a natural choice inspired by CNNs and the perspective of fundamental solutions, FNO imposes the integral kernel to be translation invariant, $$\kappa(x, y)=\kappa(x-y)$$. Thus, the kernel integral operator becomes a convolution operator, and FNO performs global convolution in the frequency domain. Each Fourier layer in FNO consists of a fixed non-linearity and a convolution operator $$\mathcal{K}$$ modeled by network parameters:
+
 
 $$
-G(a)=u
+    (\mathcal{K} v)(x)=\int _ { \mathbb{R}^d} \kappa(x-y) v(y) dy.
 $$
 
-such that $(a, u)$ satisfies the PDE. 
-
-> Essentials of operator learning:  
-- Domain
-  - $\Omega \subset \mathbb{R}^d$ be a bounded open set of spatial coordinates
-- Input and output function spaces on $\Omega$ (e.g., Banach spaces, Hilbert spaces)
-  - $\mathcal{A}$ and $\mathcal{U}$
-- Ground truth solution operator
-  - $$G: \mathcal{A} \mapsto \mathcal{U}$$  with $$G(a) = u$$
-- Training data
-  - Observed (possibly noisy) function pairs $$\left(a_i, u_i\right) \in \mathcal{A} \times \mathcal{U}, u_i=G\left(a_i\right)$$ with measures $$a_i \sim \nu_a, u_i \sim \nu_u$$, where $$\nu_u$$ is the pushforward measure of $$\nu_a$$ by $G$
-- Task: Learn operators from data
-  - $$G_{\theta}(a)\approx u$$
-  
-A **challenge** in operator learning is that DNNs are mappings between *finite* dimensional spaces: $$\phi _ {\text{network}}: \mathbb{R}^{d _ {in} < \infty} \mapsto \mathbb{R}^{d _ {out} < \infty}$$.
-
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/finite_infinite.png" style="width: 55%; display: block; margin: 0 auto;" />
-</figure>
-
-## 2. Learning Paradiams
-
-### 2.1. Finite-dimensional Learning
-A naive workaround to the challenge is to have a simplified setting in which functions are characterized by finite dimensional features.
-
-> Example 1:  
-Let $a$ be a function, and we just take the function values on some sensor locations to be its finite dimensional features.
-
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn.png" style="width: 55%; display: block; margin: 0 auto;" />
-</figure>
-<figcaption style="text-align: center;">Assuming rectangular domain and uniform sampling of the functions, we can treat it as an (finite-dimensional) image to image mapping task and use a CNN-based architecture to learn the mapping. </figcaption>
-
-> Example 2:  
-Let $a$ be a function in some function space, let say $a \in L^2(D)$.  
-We can write $a$ as an infinite sum of some basis functions, $a=\sum_{k=1}^{\infty} c_k \varphi_k$, where $\varphi_k$ is some basis, e.g., fourier basis.  
-We can approximate $a$ with a truncated basis, $a=\sum_{k=1}^{d_y} c_k\varphi_k$.  
-Now, the function is characterized by finite dimensinal feasures $c_k$.  
-
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/sno.png" style="width: 55%; display: block; margin: 0 auto;" />
-</figure>
-<figcaption style="text-align: center;">Given appropriate fixed function bases, under fairly general assumptions, functions can be projected into a finite dimensional space with any desired precision: $$f=\sum_{i=0}^{k} c_i f_i$$. We can learn the mapping between the (finite) coefficients of the input and output functions. A particular work that follows this flow is Spectral Neural Operators. </figcaption>
-
-Many numerical schemes can be represented by this diagram as well.
-
-| Method | Encoder | Approximator | Example Reconstructor |
-| --- | --- | --- | --- |
-| Finite Difference | Point Values | Numerical Scheme | Polynomial Interpolantion |
-| Finite Element | Node Values | Numerical Scheme | Galerkin Basis |
-| Finite Volume | Cell Averages | Numerical Scheme | Polynomial Interpolantion |
-| Spectral Methods | Fourier Coefs. | Numerical Scheme | Fourier Basis |
-
-How we make choices of encoders, reconstructors (decoders), and approximators gives rise to different neural operators with different pros and cons.
-
-| Method | Encoder | Approximator | Example Reconstructor |
-| CNN-based Networks | Grid Point Values | DNN | Interpolantion |
-| SNO [1] | Fourier/Chebyshev Coefs. | DNN | Fourier/Chebyshev Basis |
-| DeepOnet [2] | Sensor Point Values | Branch Net (DNN) | Trunk Net (DNN) |
-| PCA-Net [3] | PCA | DNN | PCA |
-| IAE-Net [4] | Auto-encoder | DNN | Auto-decoder |
-| CORAL [5] | Implicit Neural Representation (DNN) | DNN | Implicit Neural Representation (DNN) |
-
-### 2.2. Infinite-dimensional Learning
-
-For some of the methods we previously discussed, such as CNN-based models, the network is highly dependent on the resolution of the data or sensor locations. 
-
-<figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o1_operator_learning/cnn_resolution.png" style="width: 55%; display: block; margin: 0 auto;" />
-</figure>
-<figcaption style="text-align: center;">In CNN-based methods, fixed size kernels converge to a point-wise operator as the resolution increases. </figcaption>
-
-Another perspective on operator learning is to think in terms of the continuum. 
-
-<div style="display: flex; justify-content: center; align-items: center; border: 2px solid black; padding: 20px; max-width: 600px; margin: 0 auto; text-align: center;">
-  <span style="color: red;"><em>Since we are learning an operator, the network should be independent of the discretization of the input and output functions, and the learned parameters should be transferable between discretizations.</em></span>
-</div>
-
-In this perspective, we parameterize the model in infinite-dimensional spaces, so it learns continuous functions instead of discretized vectors.
-
-In a standard deep neural network, a layer can be written as:
+Convolution can be efficiently carried out as element-wise multiplication in the frequency domain:
 
 $$
-\text { Input: } v _ {t}
-\longrightarrow
-\text {Linear Transformation: } W^Tv _ {t}+b
-\longrightarrow
-\text { Non-linearity } \longrightarrow  \text { Output: }v _ {t+1}
+(\mathcal{K} v)(x)=\mathcal{F}^{-1}(\mathcal{F} \kappa \cdot \mathcal{F} v)(x),
 $$
 
-where the input, $v_{t}$, and the output, $v_{t+1}$, are both vectors. 
+where $$\mathcal{F}$$ and $$\mathcal{F}^{-1}$$ are the Fourier transform and its inverse, respectively. FNO directly learns $$\mathcal{F} \kappa$$ in the frequency domain instead of learning the kernel $$\kappa$$ in physical space. The Fourier transform captures global information effectively and efficiently, leading to superior performance for FNO. 
 
-However, we wish to learn continuous functions instead of discretized vectors. We need to adjust the formulation of our linear layers as it has to be able to take functions as input:
+### 1.2. FNO Architecture
 
-$$v_{t}(x)
-\longrightarrow
-\text {Integral Linear Operator: } \int\kappa(x, y) v_t(y)dy + b(x)\longrightarrow
-\text { Non-linearity } \longrightarrow  v_{t+1}(x)$$
-
-Now our vector $v_t$ is replaced by a function $v_t(x)$. We reformulate the linear layers as *kernel integral operators*. We are able to take inputs at different discretizations (e.g. 128x128, or 256x256) representing the same function, hence allowing the neural operator to be *discretization independent*. It learns the continuous functions instead of discretized vectors.
-
-A standard deep neural network can be written as:
-
-**Instantiations of Integral Neural Operator Layers:**
-
-- GNO (Graph): Assuming a uniform distribution of $y$, the integral can be approximated by a sum
-
-$$v(x) = \int \kappa(x, y) v(y) d y \approx \frac{1}{|N(x)|} \sum _ {y _ i \in N(x)} k\left(x, y _ i\right) v\left(y _ i\right) \approx \frac{1}{|B(x, r)|} \sum _ {y _ i \in B(x, r)} k\left(x, y _ i\right) v\left(y _ i\right).$$
-
-- LNO (Laplace):
-
-$$\sum_{j=1}^r\left\langle\psi^{(j)}, \nu\right\rangle \varphi^{(j)}(x)$$
-
-- FNO (Fourier): Imposing $\kappa(x, y)=\kappa(x-y)$ (translation invariance), which is a natural choice from the perspective of fundamental solutions
-
+Let $$\mathcal{A}\left(\Omega, \mathbb{R}^{d _ a}\right)$$ and $$\mathcal{U}\left(\Omega, \mathbb{R}^{d _ u}\right)$$ be two appropriate function spaces defined on bounded domain $$\Omega \subset \mathbb{R}^d$$. The Fourier neural operator $$\mathcal{G}: \mathcal{A} \rightarrow \mathcal{U}$$ is defined as a compositional mapping between functions spaces:
+ 
 $$
-\begin{array}{rr}
-\text { Integral Linear Operator } & \int \kappa(x, y) v(y) d y \\
-\begin{array}{r}
-\text { Convolution Operator } \\
-\end{array} & \int \kappa(x-y) v(y) d y \\
-\text { Solving Convolution in Fourier domain } & \mathcal{F}^{-1}(\mathcal{F}(\kappa) \cdot \mathcal{F}(v))
-\end{array}
+\mathcal{G} (a):= Q \circ \mathcal{L} _ {L} \circ \mathcal{L} _ {L-1} \circ \cdots \circ \mathcal{L} _ {1} \circ P(a).
 $$
 
-> More details and simple, but complete, implementations of DeepONet and FNO can be found in these two blogs: 
+The input function $$a \in \mathcal{A}$$ is lifted to the latent space of $$R^{d _ {v _ 0}}$$-valued (usually $$d _ {v _ 0} > d _ a$$) functions through a lifting layer acting locally:
+
+$$
+P: \left\{a: \Omega \rightarrow \mathbb{R}^{d _ a}\right\} \mapsto\left\{v _ 0: \Omega \rightarrow \mathbb{R}^{d _ {v _ 0}}\right\}.
+$$
+Lifting layer usually is implemented as a linear layer represented by a matrix $$P\in \mathbb{R}^{d _ v \times d _ a}$$ or as a point-wise multi-layer perceptron ($$1$$ by $$1$$ convolution layers) with activation function $$\sigma$$. 
+
+Then the result goes through $$L$$ Fourier layers:
+
+$$
+ \mathcal{L} _ \ell(v)(x)=\sigma\bigg(W _ \ell v(x) + b _ \ell(x) + \mathcal{K} _ {\ell}v(x)
+\bigg), \quad \ell = 1, 2, \ldots, L,
+$$
+
+where, $$\sigma$$ is a non-linear activation function, $$W _ {\ell}$$ acts locally and can be represented by a matrix $$ \in \mathbb{R}^{d _ {v _ {\ell-1}} \times d _ {v _ \ell}}$$, $$b _ {\ell}(x) \in \mathcal{U}\left(\Omega ; \mathbb{R}^{d _ v}\right)$$ is the bias function (usually a constant function for easy implementation), and 
+
+$$
+\mathcal{K} _ {\ell}v(x) = \mathcal{F}^{-1} \Big(P _ {\ell}(k) \cdot \mathcal{F}(v)(k)\Big)(x)
+$$
+
+is a linear but non-local convolution operator carried out in the Fourier space with $$P _ {\ell}: \mathbb{Z}^d \rightarrow \mathbb{C}^{d _ v \times d _ v}$$ being the Fourier coefficients of the convolution kernels. We will denote the output of the $$\ell$$-th Fourier layer by $$v _ {\ell}$$.
+
+The output function is obtained from the projection layer acting locally, similar to the lifting layer:
+
+$$
+Q: \left\{v _ L: \Omega \rightarrow \mathbb{R}^{d _ {v _ {L}}}\right\} \mapsto\left\{u: \Omega \rightarrow \mathbb{R}^{d _ {u}}\right\}.
+$$
+
+For simplicity, we will assume that all the inputs and outputs to the Fourier layers have the same channel dimension, i.e., $$d _ {v _ 0} = d _ {v _ 1} = \ldots d _ {v _ L} = d _ c$$. 
+
+In practice, the FNO, as well as all the intermediate layers, takes discretizations of functions as inputs and produces discretizations of functions as outputs. Therefore, this discrete implementation is terms as the Pseudo Fourier Neural Operators, readers are referred to [2] for more details.
+
+## 2. Implementation
+
+1. Define the `DenseNet` class for both branch and trunk networks (you can also other networks too, e.g. CNN-based networks for regular grid data)
+
+```python
+class DenseNet(nn.Module):
+    """
+    A fully connected neural network (MLP) with ReLU activations between layers, except the last one.
+    """
+    def __init__(self, layers):
+        super(DenseNet, self).__init__()
+
+        self.n_layers = len(layers) - 1
+        assert self.n_layers >= 1
+        self.layers = nn.ModuleList()
+        for j in range(self.n_layers):
+            self.layers.append(nn.Linear(layers[j], layers[j+1]))
+            if j != self.n_layers - 1:
+                self.layers.append(nn.ReLU())
+
+    def forward(self, x):
+        for _, l in enumerate(self.layers):
+            x = l(x)
+        return x
+```
+
+2. The branch network takes the input function values at fixed sensor locations as input and the trunk network take spatiotemporal locations as input
+
+```python
+class DeepONet(nn.Module):
+    def __init__(self, branch_layer, trunk_layer):
+        super(DeepONet, self).__init__()
+        self.branch = DenseNet(branch_layer)
+        self.trunk = DenseNet(trunk_layer)
+
+    def forward(self, a, grid):
+        b = self.branch(a)
+        t = self.trunk(grid)
+        return torch.einsum('bp,np->bn', b, t)
+
+branch_layers = [250, 250, 250, 250, 250]
+trunk_layers = [250, 250, 250, 250, 250]
+model = DeepONet(branch_layer=[a_num_points] + branch_layers,
+                   trunk_layer=[d] + trunk_layers).to(device)
+				   
+# Note: a_num_points is the number of sensor locations for observing the input function a
+# and u_dim is the spatiotemporal dimension of the output function u, e.g. 2 for 2D BVP (no time). 
+```	
+		
+> Full implementation can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Neural_PDE_Solvers).
+
+
+
+On universal approximation and error bounds for Fourier Neural Operators
 
 ## References
 
-[1] Spectral neural operators, V. Fanaskov et al.
+[1] Fourier Neural Operator for Parametric Partial Differential Equations, Zongyi Li et al.
 
-[2] DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators, Lu Lu et al.
-
-[3] Model reduction and neural networks for parametric PDEs, Kaushik Bhattachary et al.
-
-[4] Integral autoencoder network for discretization-invariant learning, Yong Zheng Ong et al.
-
-[5] Operator learning with neural fields: Tackling PDEs on general geometries, Louis Serrano et al.
-
-
-
-
-## Other Useful Resources for Starters
-
-### Lecture Recordings
-1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
-2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
-
-### Youtube Channels/Talks
-1. [Graphs and Geometry Reading Group](https://www.youtube.com/playlist?list=PLoVkjhDgBOt2UwOm70DAuxHf1Jc9ijmzl)
-2. [Euclidean Neural Networks for Learning from Physical Systems](https://www.youtube.com/watch?v=ANyOgrnCdGk)
-3. [A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems](https://www.youtube.com/watch?v=BUe45d5wrfc)
-
-### Architectures
-1. [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo/tree/main) provides unified implementations of several popular geometric GNN architectures
+[2] On Universal Approximation and Error Bounds for Fourier Neural Operators, Nikola Kovachki et al.

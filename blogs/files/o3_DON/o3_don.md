@@ -71,7 +71,7 @@ class DenseNet(nn.Module):
             self.layers.append(nn.Linear(layers[j], layers[j+1]))
             if j != self.n_layers - 1:
                 self.layers.append(nn.ReLU())
-                
+
     def forward(self, x):
         for _, l in enumerate(self.layers):
             x = l(x)
@@ -91,11 +91,14 @@ class DeepONet(nn.Module):
         b = self.branch(a)
         t = self.trunk(grid)
         return torch.einsum('bp,np->bn', b, t)
-		
-branch_layers = [250, 250, 250, 250, 250, 250, 250, 250, 250, 250]
-trunk_layers = [250, 250, 250, 250, 250, 250, 250, 250, 250, 250]
-# a_num_points: number of sensor locations for observing the input function a; u_dim: the spatiotemporal dimension of the output, e.g. 2 for 2D BVP (no time). 
-model = DeepONetCP(branch_layer=[a_num_points] + branch_layers, trunk_layer=[u_dim] + trunk_layers).to(device)
+
+branch_layers = [250, 250, 250, 250, 250]
+trunk_layers = [250, 250, 250, 250, 250]
+model = DeepONet(branch_layer=[a_num_points] + branch_layers,
+                   trunk_layer=[d] + trunk_layers).to(device)
+				   
+# Note: a_num_points is the number of sensor locations for observing the input function a
+# and u_dim is the spatiotemporal dimension of the output function u, e.g. 2 for 2D BVP (no time). 
 ```	
 		
 > Full implementation can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Neural_PDE_Solvers).
@@ -108,18 +111,8 @@ model = DeepONetCP(branch_layer=[a_num_points] + branch_layers, trunk_layer=[u_d
 [2] Operator learning with neural fields: Tackling PDEs on general geometries, Louis Serrano et al.
 
 
-
-
 ## Other Useful Resources for Starters
 
 ### Lecture Recordings
-1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
-2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
-
-### Youtube Channels/Talks
-1. [Graphs and Geometry Reading Group](https://www.youtube.com/playlist?list=PLoVkjhDgBOt2UwOm70DAuxHf1Jc9ijmzl)
-2. [Euclidean Neural Networks for Learning from Physical Systems](https://www.youtube.com/watch?v=ANyOgrnCdGk)
-3. [A Hitchhiker's Guide to Geometric GNNs for 3D Atomic Systems](https://www.youtube.com/watch?v=BUe45d5wrfc)
-
-### Architectures
-1. [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo/tree/main) provides unified implementations of several popular geometric GNN architectures
+1. [Introduction to Scientific Machine Learning - Purdue](https://www.youtube.com/playlist?list=PLUwQEimVf25Q-WjXNQT0aQjupfk70hxlx)
+2. [Deep Learning in Scientific Computing 2023 - ETH Zürich](https://www.youtube.com/playlist?list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm)

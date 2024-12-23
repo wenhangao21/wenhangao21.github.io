@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Geometric GNNs"
+title: "PINN"
 author_profile: false
 ---
 
@@ -36,7 +36,7 @@ $$
   <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o2_PINN/pinn.png" style="width: 55%; display: block; margin: 0 auto;" />
 </figure>
 
-## 2. Implementation
+## 2. Sample Implementation
 
 1. Use a feedforward neural network (fully connected network) to approximate the solution $u(x, y)$.
 

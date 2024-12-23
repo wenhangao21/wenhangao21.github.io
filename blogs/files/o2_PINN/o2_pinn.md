@@ -111,13 +111,3 @@ loss = loss_1 + lambda_term * loss_2
 [1] Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations, M. Raissi et al.
 
 
-## Other Useful Resources for Starters
-
-### Lecture Recordings
-1. [First Italian School on Geometric Deep Learning](https://www.youtube.com/playlist?list=PLn2-dEmQeTfRQXLKf9Fmlk3HmReGg3YZZ) (Very nice mathematical prerequisites)
-2. [Group Equivariant Deep Learning (UvA - 2022)](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd)
-3. [Introduction to Functional Analysis - MIT](https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/pages/syllabus/)
-
-### Youtube Channels/Talks
-1. [ML for Solving PDEs: Neural Operators on Function Spaces by Prof. Anima Anandkumar](https://www.youtube.com/watch?v=y5EJr4ofGOc)
-2. [CRUNCH Seminar](https://www.youtube.com/channel/UC2ZZB80udkRvWQ4N3a8DOKQ)

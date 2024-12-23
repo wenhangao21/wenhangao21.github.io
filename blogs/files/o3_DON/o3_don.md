@@ -6,9 +6,11 @@ author_profile: false
 
 # Operator Learning
 
-**TL;DR:** This blog briefly introduces the concept of operator learning, which maps between infinite-dimensional function spaces.
+**TL;DR:** This blog introduces a basic DeepONet (it has a lot of variants) and its implementation. 
 
-This tutorial aims to **organize concepts for newcomers**.
+- The full implementation can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Neural_PDE_Solvers).
+
+- It is assumed that you are familiar with the basics of operator learning. If not, please read [this](https://wenhangao21.github.io/blogs/files/o1_operator_learning/o1_operator_learning/) first.
 
 ## 1. Preliminary
 

@@ -38,7 +38,7 @@ $$
 
 ## 2. Sample Implementation
 
-1. Use a feedforward neural network (fully connected network) to approximate the solution $u(x, y)$.
+- 1. Use a feedforward neural network (fully connected network) to approximate the solution $u(x, y)$.
 
 ```python
 class FNN(torch.nn.Module): 
@@ -57,7 +57,7 @@ class FNN(torch.nn.Module):
         return y
 ```
 
-2. Sample points in the domain and on the boundary, respectively.
+- 2. Sample points in the domain and on the boundary, respectively.
 
 ```python
 def generate_points_in_the_domain(N_1):
@@ -77,7 +77,7 @@ def generate_points_on_the_boundary(N_2):
 x_1 = generate_points_in_the_domain(N_1)
 x_2 = generate_points_on_the_boundary(N_2)
 ```
-3. Calculate the Laplacian $\Delta u(x, y)$ (second derivatives with respect to $x$ and $y$ ) using automatic differentiation.
+- 3. Calculate the Laplacian $\Delta u(x, y)$ (second derivatives with respect to $x$ and $y$ ) using automatic differentiation.
 
 ```python
 # calculate nabla u
@@ -91,14 +91,14 @@ nabla = gradients(network_solution_1, x_1)
 delta = gradients(nabla[:, 0],x_1)[:, 0] + gradients(nabla[:, 1], x_1)[:, 1]
 ```
 
-4. Define the loss functions.
+- 4. Define the loss functions.
 
 ```python
 loss_1 = torch.mean(torch.square(delta - 5))
 loss_2 = torch.mean(torch.square(network_solution_2 - 1))
 ```
 
-5. Training the model to minimize the total loss, which is a combination of the residual and boundary losses (with a weighting term lambda).
+- 5. Training the model to minimize the total loss, which is a combination of the residual and boundary losses (with a weighting term lambda).
 
 ```python
 loss = loss_1 + lambda_term * loss_2

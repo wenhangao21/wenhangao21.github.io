@@ -27,8 +27,10 @@ DeepONet consists of two subnetworks:
 	- These functions serve as the function basis of the final output function. 
 
 <figure style="text-align: center;">
-  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o3_DON/unstacked_don.png" style="width: 45%; display: block; margin: 0 auto;" />
+  <img alt="Image" src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/o3_DON/unstacked_don.png" style="width: 40%; display: block; margin: 0 auto;" />
 </figure>
+<figcaption style="text-align: center;">Figure adopted from [1]. </figcaption>
+
 
 The final output is the assemble of the function coefficients and basis functions:
 
@@ -54,7 +56,7 @@ holds for all $$u \in V$$ and $$y \in K _ 2$$.
 
 ## 2. Implementation
 
-1. Define the `DenseNet` class for both branch and trunk networks (you can also other networks too, e.g. CNN-based networks for regular grid data)
+- Define the `DenseNet` class for both branch and trunk networks (you can also other networks too, e.g. CNN-based networks for regular grid data)
 
 ```python
 class DenseNet(nn.Module):
@@ -78,7 +80,7 @@ class DenseNet(nn.Module):
         return x
 ```
 
-2. The branch network takes the input function values at fixed sensor locations as input and the trunk network take spatiotemporal locations as input
+- The branch network takes the input function values at fixed sensor locations as input and the trunk network take spatiotemporal locations as input
 
 ```python
 class DeepONet(nn.Module):

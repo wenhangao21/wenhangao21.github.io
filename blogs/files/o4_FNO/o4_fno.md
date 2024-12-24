@@ -97,7 +97,7 @@ The universal approximation property of the Fourier Neural Operator (FNO) is est
 
 ## 2. Implementation
 
-> Note: The model is adopted from [1], and detailed explanations are added as comments here. The full code can be found [here](https://github.com/wenhangao21/fourier_neural_operator), which is a fork of the original authors' repository. If you are not familiar with einsum (Einstein Summation), this [StackOverflow post](https://stackoverflow.com/questions/26089893/understanding-numpys-einsum) provides a good explanation.
+> Note: The model is adopted from [1], and detailed explanations are added as comments here. The full implementation can be found [here](https://github.com/wenhangao21/fourier_neural_operator), which is a fork of the original authors' repository. If you are not familiar with einsum (Einstein Summation), this [StackOverflow post](https://stackoverflow.com/questions/26089893/understanding-numpys-einsum) provides a good explanation.
 
 1\. Implement global continuous convolution in the Fourier space with Fast Fourier Transforms (FFTs).
 
@@ -258,7 +258,6 @@ class FNO2d(nn.Module):
 
 ```	
 		
-> Full implementation can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Neural_PDE_Solvers).
 
 
 

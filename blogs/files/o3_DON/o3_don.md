@@ -56,7 +56,7 @@ holds for all $$u \in V$$ and $$y \in K _ 2$$.
 
 ## 2. Implementation
 
-- Define the `DenseNet` class for both branch and trunk networks (you can also other networks too, e.g. CNN-based networks for regular grid data)
+1\. Define the `DenseNet` class for both branch and trunk networks (you can also other networks too, e.g. CNN-based networks for regular grid data)
 
 ```python
 class DenseNet(nn.Module):
@@ -80,7 +80,7 @@ class DenseNet(nn.Module):
         return x
 ```
 
-- The branch network takes the input function values at fixed sensor locations as input and the trunk network take spatiotemporal locations as input
+2\. The branch network takes the input function values at fixed sensor locations as input and the trunk network take spatiotemporal locations as input
 
 ```python
 class DeepONet(nn.Module):

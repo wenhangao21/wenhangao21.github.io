@@ -13,9 +13,16 @@ I'm a third year Ph.D. student in Applied Mathematics at Stony Brook University 
 
 Previously, I obtained a Bachelor of Science degree from [Stony Brook University](https://www.stonybrook.edu/) in both [applied mathematics](https://www.stonybrook.edu/commcms/ams/)📙 and [pure mathematics](http://www.math.stonybrook.edu/)📕.
 
-I'm interested in Neural Operators, Generative Models, and AI for Science; I'm also broadly interested in Machine Learning, discrete math, graph theory, and many other topics in applied mathematics and computer science. 👀
+My research focuses on **Geometric Deep Learning, Generative Models, Neural Operators, and AI for Science in general**.
 
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
+
+Education
+======
+* Computer Science and Information Security (3.97/4.0); Queensborough Community College, Aug. 2018 - May 2019
+* B.S. Mathematics; Applied Mathematics & Statistics (3.97/4.0); Stony Brook University, Aug. 2019 - Dec. 2021
+* Ph.D. Operations Research (4.0/4.0); Stony Brook University, Aug. 2022 - TBD
+
 
 # News
 * November 2024: Passed the preliminary exam in AMS. [Slides](https://wenhangao21.github.io/files/Wenhan_Prelim_Public.pdf)

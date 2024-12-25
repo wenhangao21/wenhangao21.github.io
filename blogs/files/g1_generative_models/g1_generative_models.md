@@ -4,11 +4,11 @@ title: "Generative Models"
 author_profile: false
 ---
 
-# Operator Learning
+# Deep Generative Models
 
 **TL;DR:** This blog provides an overview of (deep) generative models and a few foundational mathematical concepts.
 
-## 1. Introduction: Deep Generative Models
+## 1. Introduction
 
 A statistical generative model is a probability distribution $p(x)$.
 <figure style="text-align: center;">
@@ -199,6 +199,7 @@ Oftentimes, we assume a simple probability distribution $p(x)$ over the input. C
 ## Other Useful Resources for Starters
 
 ### Lecture Recordings
-1. [Introduction to Scientific Machine Learning - Purdue](https://www.youtube.com/playlist?list=PLUwQEimVf25Q-WjXNQT0aQjupfk70hxlx)
-2. [Deep Learning in Scientific Computing 2023 - ETH Zürich](https://www.youtube.com/playlist?list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm)
+1. [Stanford CS236 Deep Generative Models (2023)](https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8)
+2. [A Course on Generative AI - Diffusion Models]https://www.youtube.com/playlist?list=PL0H3pMD88m8XPBlWoWGyal45MtnwKLSkQ)
+
 

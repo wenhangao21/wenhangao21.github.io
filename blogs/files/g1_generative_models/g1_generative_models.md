@@ -93,18 +93,18 @@ $$p(x)=p \left( x _ 1, x _ 2, \ldots, x _ {784} \right) =\prod _ {i=1}^{784} p\l
 
 ### 2.4. Entropy, Cross-entropy, and KL Divergence
 
-- Entropy $H(p)$ is a measure of the uncertainty in the distribution.
+- Entropy $H(p)$ is a measure of the uncertainty in the distribution:
 
 	$$
-	H(p)=\mathbb{E} _ {X \sim p}[-\log p(X)]
+	H(p)=\mathbb{E} _ {X \sim p}[-\log p(X)].
 	$$
 	
    - Non-negativity: $H(p) \geq 0$, with equality if and only if $p$ is a degenerate distribution (all the probability mass is on one outcome).
 
--  Cross-entropy $H(p, q)$ measures the expected number of bits needed to encode data from $p$ using the distribution $q$.
+-  Cross-entropy $H(p, q)$ measures the expected number of bits needed to encode data from $p$ using the distribution $q$:
 
 	$$
-	H(p, q)=\mathbb{E} _ {X \sim p}[-\log q(X)]
+	H(p, q)=\mathbb{E} _ {X \sim p}[-\log q(X)].
 	$$
 	
    - Non-negativity: Cross-entropy is always non-negative.
@@ -112,10 +112,10 @@ $$p(x)=p \left( x _ 1, x _ 2, \ldots, x _ {784} \right) =\prod _ {i=1}^{784} p\l
    - Lower Bound: The cross-entropy $H(p, q)$ is greater than or equal to the entropy $H(p)$, i.e., $H(p, q) \geq H(p)$.
    - Equality: $H(p, q)=H(p)$ if and only if $p=q$, i.e., when the distributions are the same.
 
-- KL Divergence $D _ {\mathrm{KL}}(p \| q)$ : is a measure of how one probability distribution diverges from another.
+- KL Divergence $D _ {\mathrm{KL}}(p \| q)$ : is a measure of how one probability distribution diverges from another:
 
 	$$
-	D _ {\mathrm{KL}}(p \| q)=\mathbb{E} _ {X \sim p}\left[\log \frac{p(X)}{q(X)}\right]
+	D _ {\mathrm{KL}}(p \| q)=\mathbb{E} _ {X \sim p}\left[\log \frac{p(X)}{q(X)}\right].
 	$$
 	
    - Non-negativity: $D _ {\mathrm{KL}}(p \| q) \geq 0$, with equality if and only if $p=q$. This is a consequence of Jensen's inequality.
@@ -123,7 +123,7 @@ $$p(x)=p \left( x _ 1, x _ 2, \ldots, x _ {784} \right) =\prod _ {i=1}^{784} p\l
    - Relation to Cross-Entropy: The KL divergence can be expressed as the difference between the cross-entropy and the entropy:
 
   $$
-  D _ {\mathrm{KL}}(p \| q)=H(p, q)-H(p)。
+  D _ {\mathrm{KL}}(p \| q)=H(p, q)-H(p).
   $$
   
 ### 2.5. Log-likelihoods and KL Divergence of Bernouli and Gaussion

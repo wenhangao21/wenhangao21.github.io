@@ -35,7 +35,7 @@ With probability distribution $p(x)$, we can do the following:
 </figure>
 <figcaption style="text-align: center;">Figure adopted from [Stanford CS236 - Fall 2023](https://deepgenerativemodels.github.io/syllabus.html). </figcaption>
 
-## 2. Concepts and Mathematical Preliminaries
+## 2. Useful Concepts and Mathematical Preliminaries
 
 ### 2.1. Control Signals
 
@@ -49,8 +49,8 @@ The data distribution $p(x)$ can then be factorized through the control signal $
 $$p(x)=\int p(x \mid z) p(z) d z$$
 
 The model splits the task of generating data into two parts: 
-	1. Generating the latent variable $z$.
-	2. Generating a sample $x$ conditioned on $z$.
+1. Generating the latent variable $z$.
+2. Generating a sample $x$ conditioned on $z$.
 	
 This allows the model to *disentangle factors of variation in the data* (e.g., shape, color, orientation) and represent them explicitly in the latent space.
 

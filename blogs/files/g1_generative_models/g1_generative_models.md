@@ -83,8 +83,6 @@ $$
 P(Y \mid X)=\frac{P(X \mid Y) P(Y)}{P(X)}=\frac{P(X, Y)}{P(X)}.
 $$
 
-
-
 ### 2.3. Concrete Example: Data Distribution
 
 The MNIST consists of grayscale images with pixel values between $0$ and $255$. We can normalize them to $[0,1]$.
@@ -99,6 +97,41 @@ $$
 
 
 > Note: Obviously, pixels are not independent, but we make this assumption. Here, we assume Bernoulli distributions, however, you can use other distributions as well; Gaussian is another common choice. Later, we will discuss the log-likelihood and KL divergence of Bernoulli and Gaussian distributions, which will help clarify the rationale behind modeling images as Bernoulli or Gaussian variables.
+
+### 2.4. Entropy, Cross-entropy, and KL Divergence
+
+- Entropy $H(p)$ is a measure of the uncertainty in the distribution.
+
+	$$
+	H(p)=\mathbb{E} _ {X \sim p}[-\log p(X)]
+	$$
+	
+  - Non-negativity: $H(p) \geq 0$, with equality if and only if $p$ is a degenerate distribution (all the probability mass is on one outcome).
+
+-  Cross-entropy $H(p, q)$ measures the expected number of bits needed to encode data from $p$ using the distribution $q$.
+
+	$$
+	H(p, q)=\mathbb{E} _ {X \sim p}[-\log q(X)]
+	$$
+	
+  - Non-negativity: Cross-entropy is always non-negative.
+  - Asymmetric: Cross-entropy is not symmetric, i.e., $H(p, q) \neq H(q, p)$.
+  - Lower Bound: The cross-entropy $H(p, q)$ is greater than or equal to the entropy $H(p)$, i.e., $H(p, q) \geq H(p)$.
+  - Equality: $H(p, q)=H(p)$ if and only if $p=q$, i.e., when the distributions are the same.
+
+- KL Divergence $D _ {\mathrm{KL}}(p \| q)$ : is a measure of how one probability distribution diverges from another.
+
+	$$
+	D _ {\mathrm{KL}}(p \| q)=\mathbb{E} _ {X \sim p}\left[\log \frac{p(X)}{q(X)}\right]
+	$$
+	
+  - Non-negativity: $D _ {\mathrm{KL}}(p \| q) \geq 0$, with equality if and only if $p=q$. This is a consequence of Jensen's inequality.
+  - Asymmetry: KL divergence is not symmetric, meaning $D _ {\mathrm{KL}}(p \| q) \neq D _ {\mathrm{KL}}(q \| p)$.
+  - Relation to Cross-Entropy: The KL divergence can be expressed as the difference between the cross-entropy and the entropy:
+
+  $$
+  D _ {\mathrm{KL}}(p \| q)=H(p, q)-H(p)。
+  $$
 
 
 ## References

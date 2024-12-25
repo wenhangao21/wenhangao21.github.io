@@ -132,6 +132,75 @@ $$
   $$
   D _ {\mathrm{KL}}(p \| q)=H(p, q)-H(p)。
   $$
+  
+### 2.5. Log-likelihoods and KL Divergence of Bernouli and Gaussion
+
+Oftentimes, we assume a simple probability distribution $p(x)$ over the input. Common choices include (independent) Gaussian and Bernoulli. We are interested in learning a distribution parametrized by $$p _ \theta(x)$$ through maximum likelihood learning or minimizing the KL divergence; here  $\theta$ are the parameters of the distribution, which can be given by a neural network.
+
+- **Log Likelihood for Multivariate Bernoulli**
+  - For a multivariate Bernoulli distribution, the log likelihood of observing $x\in\{0,1\}^D$ or $x\in [0,1]^D$ is:
+    
+  $$
+  p(x ; \theta)  =\prod _ {i=1}^n \theta _ i^{x _ i}\left(1-\theta _ i\right)^{1-x _ i} .
+  $$
+  
+  - The log-likelihood is:
+    
+  $$
+  \log p(x ; \theta)  =\sum _ {i=1}^n\left(x _ i \log \theta _ i+\left(1-x _ i\right) \log \left(1-\theta _ i\right)\right),
+  $$
+  
+  where $\theta$ are the parameters of the bournoli distribution.
+
+  **This is essentially the form of the cross-entropy loss.**
+
+
+- **Log Likelihood for Multivariate Gaussian**
+  - For a multivariate Gaussian distribution $$x \sim \mathcal{N}(\mu, \Sigma)$$ with mean vector $$\mu \in \mathbb{R}^D$$ and covariance matrix $$\Sigma \in \mathbb{R}^{D \times D}$$ (that is $$\theta = [\mu,\Sigma]$$), the probability density function is given by:
+    
+  $$
+  p(x ; \mu, \Sigma)=\frac{1}{(2 \pi)^{D / 2}|\Sigma|^{1 / 2}} \exp \left(-\frac{1}{2}(x-\mu)^{\top} \Sigma^{-1}(x-\mu)\right) .
+  $$
+
+  - Assuming $\Sigma$ is diagonal:
+    
+  $$
+  p(x ; \mu, \Sigma)=\frac{1}{(2 \pi)^{D / 2} \prod _ {i=1}^D \sigma _ i} \exp \left(-\frac{1}{2} \sum _ {i=1}^D \frac{\left(x _ i-\mu _ i\right)^2}{\sigma _ i^2}\right) .
+  $$
+  
+  - The log-likelihood is:
+    
+  $$
+  \begin{aligned}
+  \log p(x ; \mu, \Sigma) & =\log \left(\frac{1}{(2 \pi)^{D / 2} \prod _ {i=1}^D \sigma _ i}\right)-\frac{1}{2} \sum _ {i=1}^D \frac{\left(x _ i-\mu _ i\right)^2}{\sigma _ i^2} \\
+  & =-\frac{D}{2} \log (2 \pi)-\sum _ {i=1}^D \log \sigma _ i-\frac{1}{2} \sum _ {i=1}^D \frac{\left(x _ i-\mu _ i\right)^2}{\sigma _ i^2}
+  \end{aligned}
+  $$
+  
+  - The log-likelihood consists of $3$ terms:
+    1. A constant term $$-\frac{D}{2} \log (2 \pi)$$.
+    2. A term that depends on the variances, $$-\frac{1}{2} \sum _ {i=1}^D \log \sigma _ i^2$$.
+    3. A term related to MSE that penalizes deviations from the mean, weighted by the inverse variances, $$-\frac{1}{2} \sum _ {i=1}^D \frac{\left(x _ i-\mu _ i\right)^2}{\sigma _ i^2}$$.
+
+- **KL Divergence for Two Multivariate Gaussians**
+  - If $$p \sim \mathcal{N}\left(\mu _ p, \Sigma _ p\right)$$ and $$q \sim \mathcal{N}\left(\mu _ q, \Sigma _ q\right)$$, then
+    
+  $$
+  KL\left(p\left(x ; \mu _ p, \Sigma _ p\right) \| q\left(x ; \mu _ q, \Sigma _ q\right)\right)=\frac{1}{2}\left(\log \frac{\left|\Sigma _ q\right|}{\left|\Sigma _ p\right|}-D+\operatorname{tr}\left(\Sigma _ q^{-1} \Sigma _ p\right)+\left(\mu _ q-\mu _ p\right)^{\top} \Sigma _ q^{-1}\left(\mu _ q-\mu _ p\right)\right) .
+  $$
+  
+  - Assuming Diagonal Covariance Matrices:
+    
+  $$
+  D _ {K L}\left(p\left(x ; \mu _ p, \Sigma _ p\right) \| q\left(x ; \mu _ q, \Sigma _ q\right)\right)=\frac{1}{2} \sum _ {i=1}^D\left(\log \frac{\sigma _ {q, i}^2}{\sigma _ {p, i}^2}-1+\frac{\sigma _ {p, i}^2}{\sigma _ {q, i}^2}+\frac{\left(\mu _ {p, i}-\mu _ {q, i}\right)^2}{\sigma _ {q, i}^2}\right).
+  $$
+
+  - The KL divergence consists of 3 terms:
+    1. $$\frac{1}{2} \sum _ {i=1}^D \log \frac{\sigma _ {q, i}^2}{\sigma _ {p, i}^2}$$: Accounts for the difference in variances.
+    2. $$\frac{1}{2} \sum _ {i=1}^D \frac{\sigma _ {p, i}^2}{\sigma _ {q, i}^2}$$: Measures the scaling difference in variances between the two distributions.
+    3. $$\frac{1}{2} \sum _ {i=1}^D \frac{\left(\mu _ {p, i}-\mu _ {q, i}\right)^2}{\sigma _ {q, i}^2}$$ : Penalizes differences in the means between $p$ and $q$ in terms of MSE, normalized by the variance of $q$.
+
+  **If the variances in the Gaussian distributions are fixed (i.e., they are constants and not learnable parameters), then maximizing the log likelihood or minimizing the KL divergence between the true distribution and the predicted distribution reduces to optimizing the mean squared error (MSE) between the means of the distributions.**
 
 
 ## References

@@ -56,7 +56,7 @@ holds for all $$u \in V$$ and $$y \in K _ 2$$.
 
 ## 2. Implementation
 
-1\. Define the `DenseNet` class for both branch and trunk networks (you can also other networks too, e.g. CNN-based networks for regular grid data)
+1\. Define the `DenseNet` class for both branch and trunk networks (you can use other networks in practice, e.g. CNN-based networks for regular grid data)
 
 ```python
 class DenseNet(nn.Module):

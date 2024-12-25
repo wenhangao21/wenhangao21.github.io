@@ -260,9 +260,6 @@ class FNO2d(nn.Module):
 		
 
 
-
-On universal approximation and error bounds for Fourier Neural Operators
-
 ## References
 
 [1] Fourier Neural Operator for Parametric Partial Differential Equations, Zongyi Li et al.

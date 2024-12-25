@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Operator Learning"
+title: "Generative Models"
 author_profile: false
 ---
 
@@ -193,26 +193,7 @@ Oftentimes, we assume a simple probability distribution $p(x)$ over the input. C
     2. $$\frac{1}{2} \sum _ {i=1}^D \frac{\sigma _ {p, i}^2}{\sigma _ {q, i}^2}$$: Measures the scaling difference in variances between the two distributions.
     3. $$\frac{1}{2} \sum _ {i=1}^D \frac{\left(\mu _ {p, i}-\mu _ {q, i}\right)^2}{\sigma _ {q, i}^2}$$ : Penalizes differences in the means between $p$ and $q$ in terms of MSE, normalized by the variance of $q$.
 
-  **If the variances in the Gaussian distributions are fixed (i.e., they are constants and not learnable parameters), then maximizing the log likelihood or minimizing the KL divergence between the true distribution and the predicted distribution reduces to optimizing the mean squared error (MSE) between the means of the distributions.**
-
-
-## References
-
-[1] Spectral neural operators, V. Fanaskov et al.
-
-[2] DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators, Lu Lu et al.
-
-[3] Model reduction and neural networks for parametric PDEs, Kaushik Bhattachary et al.
-
-[4] Integral autoencoder network for discretization-invariant learning, Yong Zheng Ong et al.
-
-[5] Operator learning with neural fields: Tackling PDEs on general geometries, Louis Serrano et al.
-
-[6] Neural Operator: Graph Kernel Network for Partial Differential Equations, Zongyi Li et al.
-
-[7] LNO: Laplace Neural Operator for Solving Differential Equations, Qianying Cao et al.
-
-[8] Fourier Neural Operator for Parametric Partial Differential Equations, Zongyi Li et al.
+  > Note: If the variances in the Gaussian distributions are fixed (i.e., they are constants and not learnable parameters), then maximizing the log likelihood or minimizing the KL divergence between the true distribution and the predicted distribution reduces to optimizing the mean squared error (MSE) between the means of the distributions.
 
 
 ## Other Useful Resources for Starters

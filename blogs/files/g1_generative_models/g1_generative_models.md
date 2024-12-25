@@ -194,6 +194,46 @@ Oftentimes, we assume a simple probability distribution $p(x)$ over the input. C
     3. $$\frac{1}{2} \sum _ {i=1}^D \frac{\left(\mu _ {p, i}-\mu _ {q, i}\right)^2}{\sigma _ {q, i}^2}$$ : Penalizes differences in the means between $p$ and $q$ in terms of MSE, normalized by the variance of $q$.
 
   > Note: If the variances in the Gaussian distributions are fixed (i.e., they are constants and not learnable parameters), then maximizing the log likelihood or minimizing the KL divergence between the true distribution and the predicted distribution reduces to optimizing the mean squared error (MSE) between the means of the distributions.
+  
+### 2.6. The Reparametrization Trick
+
+When we want to optimize a function involving stochastic variables, we face an issue because gradients cannot directly flow through sampling operations.
+
+- Specifically, consider an objective function $\mathcal{L}(\theta)$ that depends on a random variable $z$ sampled from a distribution parameterized by $\theta$:
+  
+$$
+\mathcal{L}(\theta)=\mathbb{E} _ {z \sim q _ \theta(z)}[f(z)].
+$$
+
+- Our goal is to optimize $\theta$ (which can be given by a neural network, we can just back-propogate). For gradient-based optimization, we want to compute
+  
+$$
+\nabla _ \theta \mathcal{L}(\theta) = \nabla _ \theta \mathbb{E} _ {z \sim q _ \theta(z)}[f(z)].
+$$
+
+- However, the sampling operation $z \sim$ $q _ \theta(z)$ introduces randomness that interrupts the gradient flow; another way to see this is that **$z$ is not a deterministic function of $\theta$**.
+
+  - The issue arises because the sampled value $z$ is treated as a "constant" once sampled, and the gradient of a constant with respect to the distribution's parameters $\theta$ is zero.
+
+  - When you sample $z$ from a probability distribution $q _ \theta(z)$, like $z \sim \mathcal{N}\left(\mu, \sigma^2\right)$, the random variable $z$ is drawn based on the parameters $\theta=(\mu, \sigma)$ (mean and standard deviation). The sampling process itself is a discrete event, meaning once the sample $z$ is obtained, it becomes a fixed value.
+    - Suppose $\mu=2, \sigma=1$, and you sample $z=2.5$.
+    - Once $z=2.5$ is drawn, it's just a fixed number. There's no obvious relationship left between this fixed value $2.5$ and the parameters $\mu$ and $\sigma$ anymore.
+    - The gradient of a constant with respect to any parameter is always zero:
+      
+    $$
+    \nabla _ \mu z=0 \quad \text { and } \quad \nabla _ \sigma z=0.
+    $$
+
+- The reparameterization trick allows us to **express the random variable $z$ as a deterministic function of the parameters $\theta$** and a separate random variable $\epsilon$.
+  - Now, the randomness is removed, and $f$ can be written as a function of $\theta$, allowing gradient to flow.
+    - $z=\mu+\sigma \cdot \epsilon, \epsilon \sim \mathcal{N}(0,1)$
+    - The gradient is no longer zero:
+      
+    $$
+    \nabla _ \mu z=\nabla _ \mu(\mu+\sigma \cdot \epsilon)=1 \quad \text { and } \quad \nabla _ \sigma z=\nabla _ \sigma(\mu+\sigma \cdot \epsilon)=\epsilon .
+    $$
+    
+    - This enables the gradient to flow, allowing optimization of $f$ with respect to $\mu$ and $\sigma$.
 
 
 ## Other Useful Resources for Starters

@@ -240,6 +240,6 @@ $$
 
 ### Lecture Recordings
 1. [Stanford CS236 Deep Generative Models (2023)](https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8)
-2. [A Course on Generative AI - Diffusion Models]https://www.youtube.com/playlist?list=PL0H3pMD88m8XPBlWoWGyal45MtnwKLSkQ)
+2. [A Course on Generative AI - Diffusion Models](https://www.youtube.com/playlist?list=PL0H3pMD88m8XPBlWoWGyal45MtnwKLSkQ)
 
 

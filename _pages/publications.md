@@ -22,5 +22,4 @@ author_profile: true
 * One paper on designing enhanced kernels for localized effects and interactions in FNO; **Preprint**; **W.Gao**, J.Luo, R.Xu, Y.Liu
 
 # Other Publications
-
-*　Xufeng Liu, Dongsheng Luo, **Wenhan Gao**, Yi Liu, 3DGraphX: Explaining 3D Molecular Graph Models via Incorporating Chemical Priors, The 31st SIGKDD Conference on Knowledge Discovery and Data Mining (KDD), 2025.
+- Xufeng Liu, Dongsheng Luo, **Wenhan Gao**, Yi Liu, 3DGraphX: Explaining 3D Molecular Graph Models via Incorporating Chemical Priors, The 31st SIGKDD Conference on Knowledge Discovery and Data Mining (KDD), 2025.

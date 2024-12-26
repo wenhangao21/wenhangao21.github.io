@@ -6,7 +6,7 @@ author_profile: false
 
 # Group Convolution Neural Networks
 
-**TL;DR:** This blog introduces group convolutional neural networks (Group CNNs) <abbr title="[1] Group Equivariant Convolutional Networks by Taco S. Cohen and Max Welling&#10;[2] Steerable CNNs by Taco S. Cohen and Max Welling">[1,2].</abbr>, which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. It aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
+**TL;DR:** This blog introduces group convolutional neural networks (Group CNNs) <abbr title="[1] Group Equivariant Convolutional Networks by Taco S. Cohen and Max Welling&#10;[2] Steerable CNNs by Taco S. Cohen and Max Welling">[1,2]</abbr>, which guarantee symmetries in neural networks; for example, a rotated cat is guaranteed to be classified as a cat under Group CNNs, i.e., symmetries over the rotation group. It aims to **simplify abstract concepts for newcomers**. Coding examples are provided to illustrate these concepts. The code is **much simpler** compared to complex libraries, but it **includes the essential functionalities needed to grasp the underlying concepts**.
 
 - The toy implementation along with some slides can be found [here](https://github.com/wenhangao21/Tutorials/tree/main/Equivariance).
 

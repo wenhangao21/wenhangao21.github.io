@@ -126,7 +126,7 @@ $$p(x)=p \left( x _ 1, x _ 2, \ldots, x _ {784} \right) =\prod _ {i=1}^{784} p\l
   D _ {\mathrm{KL}}(p \| q)=H(p, q)-H(p).
   $$
   
-### 2.5. Log-likelihoods and KL Divergence of Bernouli and Gaussion
+### 2.5. Log-likelihoods and KL Divergence of Bernouli and Gaussian
 
 Oftentimes, we assume a simple probability distribution $p(x)$ over the input. Common choices include (independent) Gaussian and Bernoulli. We are interested in learning a distribution parametrized by $$p _ \theta(x)$$ through maximum likelihood learning or minimizing the KL divergence; here  $\theta$ are the parameters of the distribution, which can be given by a neural network.
 
@@ -237,6 +237,9 @@ $$
 
 
 ## Other Useful Resources for Starters
+
+### Books 
+
 
 ### Lecture Recordings
 1. [Stanford CS236 Deep Generative Models (2023)](https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8)

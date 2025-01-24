@@ -26,7 +26,7 @@ Education
 
 # News
 * January 2025: First author on a paper accepted by ICLR 2025 on [discretization mismatch errors in neural operators](https://openreview.net/forum?id=J9FgrqOOni). 
-* December 2024: Accepted an offer from [Visa Research](https://usa.visa.com/about-visa/visa-research.html) to work as an intern and staff research scientist over the summer.
+* December 2024: Accepted an offer from [Visa Research](https://usa.visa.com/about-visa/visa-research.html) to work as an intern staff research scientist over the summer.
 * November 2024: Passed the preliminary exam in AMS. [Slides](https://wenhangao21.github.io/files/Wenhan_Prelim_Public.pdf)
 * October 2024: Received the NeurIPS Scholar Award, see you in Vancouver.
 * September 2024: Co-first author on a paper, in collaboration with FSU, accepted by NeurIPS on [symmetries for molecular GNN active learning](https://www.cs.fsu.edu/dr-shayok-chakraborty-has-a-paper-accepted-at-neurips-2024/)!

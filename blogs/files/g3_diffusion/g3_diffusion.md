@@ -3,7 +3,7 @@ layout: blog
 title: "Diffusion"
 author_profile: false
 ---
+# Diffusion 
+**TL;DR:** This write-up contains all the mathematical derivation and intuition for understanding diffussion models. Topics include DDPM, DDIM, Score Matching, SDE and Probability Flow. 
 
-<object data="g3_diffusion/Diffusion.pdf" width="1000" height="1000" type='application/pdf'></object>
-
-<embed src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g3_diffusion/Diffusion.pdf" type="application/pdf" />
+The write-up can be found at this link: [https://github.com/wenhangao21/wenhangao21.github.io/blob/main/blogs/files/g3_diffusion/Diffusion.pdf](https://github.com/wenhangao21/wenhangao21.github.io/blob/main/blogs/files/g3_diffusion/Diffusion.pdf)

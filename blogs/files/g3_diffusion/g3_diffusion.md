@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "PINN"
+title: "Diffusion"
 author_profile: false
 ---
 

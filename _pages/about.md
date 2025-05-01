@@ -50,5 +50,5 @@ Education
 
 
 # First or Co-first Author Preprints
-* One paper that reveals neural operators can learn hidden physics from data; In Submission to ICML 25; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu
-* One paper addressing the misalignment between optimized masks and actual explanatory subgraphs in 3D GNNs; In Submission; X.Liu\*, **W.Gao\***, Y.Liu
+* One paper that reveals neural operators can learn hidden physics from data; In Submission to NeurIPS 25; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu
+* One paper addressing the misalignment between optimized masks and actual explanatory subgraphs in 3D GNNs; In Submission to TPAMI; X.Liu\*, **W.Gao\***, Y.Liu

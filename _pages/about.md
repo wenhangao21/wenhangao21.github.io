@@ -25,6 +25,8 @@ Education
 
 
 # News
+* May 2025: Co-first author on a paper accepted by ICML 2025 on 3D GNN explanation (XAI)!
+* April 2025: First author on a paper accepted by TMLR on [expressive neural operators](https://openreview.net/forum?id=B0E2yjrNb8)!
 * January 2025: First author on a paper accepted by ICLR 2025 on [discretization mismatch errors in neural operators](https://openreview.net/forum?id=J9FgrqOOni). 
 * December 2024: Accepted an offer from [Visa Research](https://usa.visa.com/about-visa/visa-research.html) to work as an intern staff research scientist over the summer.
 * November 2024: Passed the preliminary exam in AMS. [Slides](https://wenhangao21.github.io/files/Wenhan_Prelim_Public.pdf)
@@ -49,6 +51,4 @@ Education
 
 # First or Co-first Author Preprints
 * One paper that reveals neural operators can learn hidden physics from data; In Submission to ICML 25; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu
-* One paper that proposes a principled explanation method for 3D GNNs (explainable AI); In Submission to ICML 25; J.Qu\*, **W.Gao\***, J.Zhang, X.Liu, H.Wei, H.Ling, Y.Liu
 * One paper addressing the misalignment between optimized masks and actual explanatory subgraphs in 3D GNNs; In Submission; X.Liu\*, **W.Gao\***, Y.Liu
-* One paper on designing enhanced kernels for localized effects and interactions in FNO; In Submission; **W.Gao**, J.Luo, R.Xu, Y.Liu

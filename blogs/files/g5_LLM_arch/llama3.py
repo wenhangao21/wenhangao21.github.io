@@ -1,4 +1,5 @@
 # Adopted from the original implementation: https://github.com/meta-llama/llama3/blob/main/llama/model.py
+# Contact Wenhan -> wenhanacademia@gmail.com if you spot any error
 from pathlib import Path
 import tiktoken
 from tiktoken.load import load_tiktoken_bpe

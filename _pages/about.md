@@ -25,7 +25,7 @@ Education
 
 
 # News
-* October 2025: Gave a talk at the Institute for Advanced Computational Science (IACS-Stony Brook) on AI for Science. [Website](https://calendar.stonybrook.edu/site/iacs/event/iacs-student-seminar-speaker-wenhan-gao-applied-mathematics--statistics/);[Slides](https://wenhangao21.github.io/files/Wenhan_IACS_Student_Seminar_102025.pdf)
+* October 2025: Gave a talk at the Institute for Advanced Computational Science (IACS-Stony Brook) on AI for Science. [Abstract](https://calendar.stonybrook.edu/site/iacs/event/iacs-student-seminar-speaker-wenhan-gao-applied-mathematics--statistics/);[Slides](https://wenhangao21.github.io/files/Wenhan_IACS_Student_Seminar_102025.pdf)
 * May 2025: Co-first author on a paper accepted by ICML 2025 on 3D GNN explanation (XAI)!
 * April 2025: First author on a paper accepted by TMLR on [expressive neural operators](https://openreview.net/forum?id=B0E2yjrNb8)!
 * January 2025: First author on a paper accepted by ICLR 2025 on [discretization mismatch errors in neural operators](https://openreview.net/forum?id=J9FgrqOOni). 

@@ -98,7 +98,7 @@ $$\underbrace{u(X_t, r, t)}_{\text{avg. vel.}}= \underbrace{v(X_t, t)}_{\text{in
 **Takeaway:**
 
 * Given the instantaneous velocity $v(X_t, t)$ and the rate of change of the average velocity $\frac{d}{dt} u(X_t, r, t)$, we can determine the average velocity $u(X_t, r, t)$.
-* We can parametrize $u$ using a neural network and train it to match the LHS. by the conditional instantaneous velocity $v(X_t, t | X_1, X_0)$. Note that the time derivative can be computed through Autograd. 
+* We can parametrize $u$ using a neural network and train it to match the LHS. by the conditional instantaneous velocity $v(X_t, t \mid X_1, X_0)$. Note that the time derivative can be computed through Autograd. 
   - Note that this time derivative is implicit; Autograd can only directly compute explicit (partial) derivatives. You can convert it with a chain rule and compute it by Jacobian Vector Product (`torch.autograd.functional.jvp`). See details at [this blog](https://github.com/wenhangao21/Concept2Code-papers-in-30-minutes/blob/main/mean_flow/Mean_flow.ipynb). 
 
 

@@ -4,7 +4,7 @@ title: "Generative Models"
 author_profile: false
 ---
 
-# Deep Generative Models
+# Mean Flow Explained with High School Math
 
 **TL;DR:** This blog explains the high-level ideas of [mean flow](https://arxiv.org/pdf/2505.13447) with different levels of math.
 

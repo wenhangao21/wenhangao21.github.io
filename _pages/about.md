@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 # About me
-I'm a third year Ph.D. student in Applied Mathematics at Stony Brook University supervised by [Professor Yi Liu](https://jacoblau0513.github.io/). 
+I'm a fourth year Ph.D. student in Applied Mathematics at Stony Brook University supervised by [Professor Yi Liu](https://jacoblau0513.github.io/). 
 
 Previously, I obtained a Bachelor of Science degree from [Stony Brook University](https://www.stonybrook.edu/) in both [applied mathematics](https://www.stonybrook.edu/commcms/ams/)📙 and [pure mathematics](http://www.math.stonybrook.edu/)📕. During my undergraduate years, I was fortunate to conduct research under the guidance of Dr. Chunmei Wang (Department of Mathematics, University of Florida) and Dr. Haizhao Yang (Department of Mathematics, University of Maryland).
 

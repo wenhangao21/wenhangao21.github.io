@@ -30,12 +30,12 @@ pi_0 = sample_pi_0(N=5_000)
 grid_size, scale = 4, 2
 pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
 ```
-<figure id="figure-1" style="margin: 0 auto 1em auto; text-align: center;">
+<figure id="figure-1" style="text-align: center;">
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png" width="500"> 
   </div>
   
-  <figcaption>
+  <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-1">Figure 1</a>.
     Source distribution and target distribution.
   </figcaption>

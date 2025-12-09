@@ -8,7 +8,7 @@ author_profile: false
 
 **TL;DR:** This write-up contains the minimum essential concepts and simple code to understand flow matching.
 
-The notebook version with full code can be access [here](). If you have any questions or notice any errors, please contact [Wenhan Gao](https://wenhangao21.github.io/).
+The notebook version with the full code can be accessed [here](). If you have any questions or notice any errors, please contact [me](https://wenhangao21.github.io/).
 
 ## Problem Formulation
 
@@ -65,7 +65,7 @@ axes[1].set_title("Target Distribution: $X_1$")
 plt.tight_layout()
 plt.show()
 ```
-<figure id="figure-1" style="margin: 0 auto 1em auto;" text-align: center;>
+<figure id="figure-1" style="margin: 0 auto 1em auto; text-align: center;">
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png" width="500"> 
   </div>
@@ -87,7 +87,7 @@ where $v\left(X_t, t\right)$ is called the velocity field. Given the source data
 ## Interpolants
 There are infinitely many ways to define the vector field $v$:
 
-<figure id="figure-2" style="margin: 0 auto 1em auto;" text-align: center;>
+<figure id="figure-2" style="margin: 0 auto 1em auto; text-align: center;">
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png" width="500"> 
   </div>
@@ -196,6 +196,8 @@ def sample_mean_flow(flow_model, N, T):
         x = x + v_pred * 1. / T # reverse integration as we learn the velocity from data to noise
     return x
 ```
+
+Generated Samples:
 
 <figure id="figure-3" style="margin: 0 auto 1em auto; text-align: center;">
   <div style="display: flex; justify-content: center;">

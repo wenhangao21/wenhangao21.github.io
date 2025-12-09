@@ -53,7 +53,7 @@ where $v\left(X_t, t\right)$ is called the velocity field. Given the source data
 ## Interpolants
 There are infinitely many ways to define the vector field $v$:
 
-<figure id="figure-2" style="text-align:center;">
+<figure id="figure-2" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png"
     style="display:block; margin:auto; max-width:700px;"
@@ -64,6 +64,8 @@ There are infinitely many ways to define the vector field $v$:
     Image from <a href="https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html">Tor Fjelde et al., 2024</a>.
   </figcaption>
 </figure>
+
+
 
 
 To define a specific $v$, we leverage an interpolation process with a time schedule $\alpha_t$ and $\beta_t$:
@@ -163,7 +165,7 @@ def sample_mean_flow(flow_model, N, T):
 
 Generated Samples:
 
-<figure id="figure-3" style="text-align:center;">
+<figure id="figure-3" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png"
     style="display:block; max-width:250px; margin:auto;"
@@ -178,7 +180,7 @@ Generated Samples:
 
 ## Additional Visualization
 
-<figure id="figure-4" style="text-align:center;">
+<figure id="figure-4" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/pi_0_to_pi_1.png"
     style="display:block; margin:auto; max-width:800px;"
@@ -190,7 +192,7 @@ Generated Samples:
 </figure>
 
 
-<figure id="figure-5" style="text-align:center;">
+<figure id="figure-5" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples_different_ite.png"
     style="display:block; margin:auto; max-width:1000px;"

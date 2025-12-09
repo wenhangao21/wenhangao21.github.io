@@ -19,28 +19,6 @@ The notebook version with the full code can be accessed [here](). If you have an
 **Code:** We will use the standard Gaussian distribution as the source distribution and the “checkerboard distribution” as the target distribution. Let’s set up these two distributions.
 
 ```python
-def sample_checkerboard(N=1000, grid_size=4, scale=2.0):
-    """
-    Generate samples from a 2D checkerboard distribution.
-    This function divides the square domain [-scale, scale] × [-scale, scale]
-    into a grid of `grid_size × grid_size` equally sized square cells.
-    """
-    grid_length = 2 * scale / grid_size
-    # Randomly choose integer tile coordinates
-    gx = np.random.randint(0, grid_size, size=N)
-    gy = np.random.randint(0, grid_size, size=N)
-    mask = ((gx % 2) ^ (gy % 2)).astype(bool) # Keep only tiles where (even, odd) or (odd, even) — XOR rule
-    while not np.all(mask): # Resample indices until all entries satisfy the checkerboard mask
-        bad = np.where(~mask)[0]
-        gx[bad] = np.random.randint(0, grid_size, size=len(bad))
-        gy[bad] = np.random.randint(0, grid_size, size=len(bad))
-        mask = ((gx % 2) ^ (gy % 2)).astype(bool)
-    # Sample uniformly inside each chosen tile
-    offsets = np.random.rand(N, 2) * grid_length
-    xs = -scale + gx * grid_length + offsets[:, 0]
-    ys = -scale + gy * grid_length + offsets[:, 1]
-    return np.stack([xs, ys], axis=1).astype(np.float32)
-
 def sample_pi_0(N=1000):
   return np.random.randn(N, 2).astype(np.float32)
 
@@ -51,24 +29,12 @@ def sample_pi_1(N=1000, grid_size=4, scale=2.0):
 pi_0 = sample_pi_0(N=5_000)
 grid_size, scale = 4, 2
 pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
-# Plot
-fig, axes = plt.subplots(1, 2, figsize=(6, 3))
-axes[0].scatter(pi_0[:, 0], pi_0[:, 1], c='purple', s=5)
-axes[0].set_aspect('equal', 'box')
-axes[0].set_title("Source Distribution: $X_0$")
-axes[1].scatter(pi_1[:, 0], pi_1[:, 1], c='red', s=5)
-axes[1].set_xlim(-scale, scale)
-axes[1].set_ylim(-scale, scale)
-axes[1].set_aspect('equal', 'box')
-axes[1].set_title("Target Distribution: $X_1$")
-
-plt.tight_layout()
-plt.show()
 ```
 <figure id="figure-1" style="margin: 0 auto 1em auto; text-align: center;">
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png" width="500"> 
   </div>
+  
   <figcaption>
     <a href="#figure-1">Figure 1</a>.
     Source distribution and target distribution.
@@ -91,6 +57,7 @@ There are infinitely many ways to define the vector field $v$:
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png" width="500"> 
   </div>
+  
   <figcaption>
     <a href="#figure-2">Figure 2</a>.
     Two different velocity fields that lead to the same endpoint distributions. Image from <a href="https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html">Tor Fjelde et al., 2024</a>.
@@ -203,6 +170,7 @@ Generated Samples:
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png" width="300"> 
   </div>
+  
   <figcaption>
     <a href="#figure-3">Figure 3</a>.
     Samples from the learned target distribution by flow matching.
@@ -215,6 +183,7 @@ Generated Samples:
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/pi_0_to_pi_1.png" width="500"> 
   </div>
+  
   <figcaption>
     <a href="#figure-4">Figure 4</a>.
     Visualization of the learned intermediate distributions $\pi_t$.
@@ -225,6 +194,7 @@ Generated Samples:
   <div style="display: flex; justify-content: center;">
     <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples_different_ite.png" width="600"> 
   </div>
+  
   <figcaption>
     <a href="#figure-5">Figure 5</a>.
     Visualization of the learned target distribution at different training iterations.

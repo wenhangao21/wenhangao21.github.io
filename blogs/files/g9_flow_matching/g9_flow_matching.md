@@ -166,13 +166,14 @@ Generated Samples:
 <figure id="figure-3" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png"
-    style="display:block; margin:auto; max-width:250px; margin:auto;"
+    style="display:block; max-width:250px; margin:auto;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-3">Figure 3</a>.
     Samples from the learned target distribution by flow matching.
   </figcaption>
 </figure>
+
 
 
 ## Additional Visualization

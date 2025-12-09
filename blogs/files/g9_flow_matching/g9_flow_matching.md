@@ -8,7 +8,8 @@ author_profile: false
 
 **TL;DR:** This write-up contains the minimum essential concepts and simple code to understand flow matching.
 
-The notebook version with the full code can be accessed [here](). If you have any questions or notice any errors, please contact [me](https://wenhangao21.github.io/).
+The notebook version with the full code can be accessed [here](https://github.com/wenhangao21/Tutorials/tree/main/Generative_Models/flow_matching). 
+If you have any questions or notice any errors, please contact [me](https://wenhangao21.github.io/).
 
 ## Problem Formulation
 

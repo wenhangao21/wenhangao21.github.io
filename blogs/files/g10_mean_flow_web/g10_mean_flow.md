@@ -11,7 +11,7 @@ author_profile: false
 The notebook version with the full code can be accessed [here](https://github.com/wenhangao21/Tutorials/tree/main/Generative_Models/flow_matching). 
 If you have any questions or notice any errors, please contact [me](https://wenhangao21.github.io/).
 
-## 1. Problem Formulation
+## Problem Formulation
 
 **Given samples from two distributions $\pi_0$ and $\pi_1$, we aim to find a transport map $\mathcal{T}$ such that, when $X_0 \sim \pi_0$, then $X_1 = \mathcal{T}(Z_0) \sim \pi_1$.**
 - $\pi_0$ is the source distribution, and $\pi_1$ is the target distribution.
@@ -42,7 +42,7 @@ pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
 </figure>
 
 
-## 2. Transport Map: ODEs
+## Transport Map: ODEs
 In flow models, the mapping $\mathcal{T}$ is implicitly defined by an ordinary differential equation (ODE):
 
 $$
@@ -51,7 +51,7 @@ $$
 
 where $v\left(X_t, t\right)$ is called the velocity field. Given the source data $X_0 \sim \pi_0$, we can generate the target data $X_1 \sim \pi_1$ by following the ODE.
 
-## 3. Interpolants
+## Interpolants
 There are infinitely many ways to define the vector field $v$:
 
 <figure id="figure-2" style="display:block; text-align:center;">
@@ -78,7 +78,7 @@ $$
 where $t \in[0,1], \alpha_0=\beta_1=1, \alpha_1=\beta_0=0$, and $\{X_t\}_t$ denotes the resulting trajectory. 
 A common choice of interpolant is the linear interpolant, given by $\alpha_t=1-t$ and $\beta_t=t$.
 
-## 4. Conditional Velocity
+## Conditional Velocity
 Differentiate both sides with respect to $t$ gives us an "ODE":
 
 $$
@@ -88,7 +88,7 @@ $$
 where $v_s$ is the conditional velocity of a sample trajectory conditioned on the endpoints $X_0$ and $X_1$. 
 **This ODE is not generative because the endpoints must be given.**
 
-## 5. Learning the Velocity
+## Learning the Velocity
 To resolve the non-generative issue, we learn a velocity field $v_\theta\left(X_t, t\right)$ such that the generative ODE $\frac{d}{d t} X_t=v_\theta\left(X_t, t\right)$ can approximate the previous non-generative process as closely as possible.
 
 The simplest way to do this is to minimize the squared error between the two systems' velocity fields:
@@ -143,7 +143,7 @@ def train_flow_matching(flow_model, n_iterations=5_001, lr=3e-3, batch_size=4096
     return flow_model, losses
 ```
 
-## 6. Sampling with Learned Velocity
+## Sampling with Learned Velocity
 Once the velocity field $v_\theta\left(X_t, t\right)$ is learned, we can simulate samples from $\pi_1$ given samples from $\pi_0$ by solving the ODE:$
 \frac{d}{d t} X_t=v_\theta\left(X_t, t\right),~X_0 \sim \pi_0,~t \in[0,1]$. One way to solve it is using the [forward Euler method](https://en.wikipedia.org/wiki/Euler_method):
 
@@ -179,7 +179,7 @@ Generated Samples:
 
 
 
-## 7. Additional Visualization
+## Additional Visualization
 
 <figure id="figure-4" style="display:block; text-align:center;">
   <img
@@ -205,7 +205,7 @@ Generated Samples:
 </figure>
 
 
-## 8. Marginal Velocity
+## Marginal Velocity
 Although the regression target for each sample is the conditional velocity $\alpha_t^{\prime} X_0+\beta_t^{\prime} X_1$. The **underlying unique regression target** is the marginal velocity $v\left(X_t, t\right)=\mathbb{E}_{X_0, X_1 \mid X_t, t}\left[\alpha_t^{\prime} X_0+\beta_t^{\prime} X_1\right]$. To see this:
 
 $$\begin{aligned} \mathcal{L} & =\mathbb{E}_{X_0, X_1, t}\left[\left\|v_s\left(X_t, t \mid X_0, X_1 \right) - v_\theta(X_t, t)\right\|^2\right] \\ & =\mathbb{E}_{X_t, t}\left[\mathbb{E}_{X_0, X_1 \mid X_t, t}\left[\left\|\alpha_t^{\prime} X_0+\beta_t^{\prime} X_1 - v_\theta(X_t,t) \right\|^2\right]\right] .\end{aligned}$$

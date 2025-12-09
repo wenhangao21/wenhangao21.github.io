@@ -54,16 +54,19 @@ where $v\left(X_t, t\right)$ is called the velocity field. Given the source data
 ## Interpolants
 There are infinitely many ways to define the vector field $v$:
 
-<figure id="figure-2" style="margin: 0 auto 1em auto; text-align: center;">
-  <div style="display: flex; justify-content: center;">
-    <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png" width="500"> 
-  </div>
-  
-  <figcaption>
+<figure id="figure-2" style="text-align:center;">
+  <img
+    src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png"
+    width="500"
+    style="display:block; margin-left:auto; margin-right:auto;"
+  >
+  <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-2">Figure 2</a>.
-    Two different velocity fields that lead to the same endpoint distributions. Image from <a href="https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html">Tor Fjelde et al., 2024</a>.
+    Two different velocity fields that lead to the same endpoint distributions.
+    Image from <a href="https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html">Tor Fjelde et al., 2024</a>.
   </figcaption>
 </figure>
+
 
 To define a specific $v$, we leverage an interpolation process with a time schedule $\alpha_t$ and $\beta_t$:
 
@@ -162,16 +165,18 @@ def sample_mean_flow(flow_model, N, T):
 
 Generated Samples:
 
-<figure id="figure-3" style="margin: 0 auto 1em auto; text-align: center;">
-  <div style="display: flex; justify-content: center;">
-    <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png" width="300"> 
-  </div>
-  
-  <figcaption>
+<figure id="figure-3" style="text-align:center;">
+  <img
+    src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png"
+    width="300"
+    style="display:block; margin-left:auto; margin-right:auto;"
+  >
+  <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-3">Figure 3</a>.
     Samples from the learned target distribution by flow matching.
   </figcaption>
 </figure>
+
 
 ## Additional Visualization
 

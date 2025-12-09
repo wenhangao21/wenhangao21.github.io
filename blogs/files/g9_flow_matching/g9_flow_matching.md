@@ -33,7 +33,7 @@ pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
 <figure id="figure-1" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png"
-    width="500"
+    width="200"
     style="display:block; margin-left:auto; margin-right:auto;"
   >
 
@@ -57,7 +57,7 @@ There are infinitely many ways to define the vector field $v$:
 <figure id="figure-2" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png"
-    width="500"
+    width="400"
     style="display:block; margin-left:auto; margin-right:auto;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
@@ -168,7 +168,7 @@ Generated Samples:
 <figure id="figure-3" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png"
-    width="300"
+    width="200"
     style="display:block; margin-left:auto; margin-right:auto;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
@@ -180,27 +180,31 @@ Generated Samples:
 
 ## Additional Visualization
 
-<figure id="figure-4" style="margin: 0 auto 1em auto; text-align: center;">
-  <div style="display: flex; justify-content: center;">
-    <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/pi_0_to_pi_1.png" width="500"> 
-  </div>
-  
-  <figcaption>
+<figure id="figure-4" style="text-align:center;">
+  <img
+    src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/pi_0_to_pi_1.png"
+    width="600"
+    style="display:block; margin-left:auto; margin-right:auto;"
+  >
+  <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-4">Figure 4</a>.
     Visualization of the learned intermediate distributions $\pi_t$.
   </figcaption>
 </figure>
 
-<figure id="figure-5" style="margin: 0 auto 1em auto; text-align: center;">
-  <div style="display: flex; justify-content: center;">
-    <img src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples_different_ite.png" width="600"> 
-  </div>
-  
-  <figcaption>
+
+<figure id="figure-5" style="text-align:center;">
+  <img
+    src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples_different_ite.png"
+    width="800"
+    style="display:block; margin-left:auto; margin-right:auto;"
+  >
+  <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-5">Figure 5</a>.
     Visualization of the learned target distribution at different training iterations.
   </figcaption>
 </figure>
+
 
 ## Marginal Velocity
 Although the regression target for each sample is the conditional velocity $\alpha_t^{\prime} X_0+\beta_t^{\prime} X_1$. The **underlying unique regression target** is the marginal velocity $v\left(X_t, t\right)=\mathbb{E}_{X_0, X_1 \mid X_t, t}\left[\alpha_t^{\prime} X_0+\beta_t^{\prime} X_1\right]$. To see this:

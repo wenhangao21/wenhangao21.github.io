@@ -131,8 +131,8 @@ def train_flow_matching(flow_model, n_iterations=5_001, lr=3e-3, batch_size=4096
         x1 = torch.from_numpy(sample_pi_1(N=batch_size)).to(device)
         x0 = torch.from_numpy(sample_pi_0(N=batch_size)).to(device)
         t = torch.rand((x1.shape[0], 1), device=device) # randomly sample t
-        x_t = t * x1 + (1.-t) * x0  # swap x0, x1 in the equations above
-        v = x1 - x0  # swap x0, x1 in the equations above
+        x_t = t * x1 + (1.-t) * x0 
+        v = x1 - x0  
         v_pred = flow_model(x_t, t)
         loss = torch.nn.functional.mse_loss(v_pred, v)
         loss.backward()
@@ -160,7 +160,7 @@ def sample_mean_flow(flow_model, N, T):
     for i in (range(T)):
         t = torch.ones((x.shape[0], 1), device=x.device) * (i * dt)
         v_pred = flow_model(x.squeeze(0), t)
-        x = x + v_pred * 1. / T # reverse integration as we learn the velocity from data to noise
+        x = x + v_pred * 1. / T 
     return x
 ```
 

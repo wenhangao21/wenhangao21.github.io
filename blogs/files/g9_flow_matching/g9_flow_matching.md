@@ -138,11 +138,6 @@ def train_flow_matching(flow_model, n_iterations=5_001, lr=3e-3, batch_size=4096
     return flow_model, losses
 ```
 
-```python
-flow_model = MLP_FM(in_dim=2, context_dim=1, h=128, out_dim=2).to(device)
-trained_model_FM, training_losses_FM = train_flow_matching(flow_model=flow_model)
-```
-
 ## Sampling with Learned Velocity
 Once the velocity field $v_\theta\left(X_t, t\right)$ is learned, we can simulate samples from $\pi_1$ given samples from $\pi_0$ by solving the ODE:$
 \frac{d}{d t} X_t=v_\theta\left(X_t, t\right),~X_0 \sim \pi_0,~t \in[0,1]$. One way to solve it is using the [forward Euler method](https://en.wikipedia.org/wiki/Euler_method):

@@ -33,9 +33,8 @@ pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
 <figure id="figure-1" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png"
-    style="display:block; margin:auto; max-width:200px;"
+    style="display:block; margin:auto; max-width:400px;"
   >
-
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-1">Figure 1</a>. Source distribution and target distribution.
   </figcaption>
@@ -57,7 +56,7 @@ There are infinitely many ways to define the vector field $v$:
 <figure id="figure-2" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/flow_matching_different_velocities.png"
-    style="display:block; margin:auto; max-width:400px;"
+    style="display:block; margin:auto; max-width:600px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-2">Figure 2</a>.
@@ -167,7 +166,7 @@ Generated Samples:
 <figure id="figure-3" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples.png"
-    style="display:block; margin:auto; max-width:200px;"
+    style="display:block; margin:auto; max-width:400px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-3">Figure 3</a>.
@@ -181,7 +180,7 @@ Generated Samples:
 <figure id="figure-4" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/pi_0_to_pi_1.png"
-    style="display:block; margin:auto; max-width:600px;"
+    style="display:block; margin:auto; max-width:900px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-4">Figure 4</a>.
@@ -193,7 +192,7 @@ Generated Samples:
 <figure id="figure-5" style="text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples_different_ite.png"
-    style="display:block; margin:auto; max-width:800px;"
+    style="display:block; margin:auto; max-width:1200px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-5">Figure 5</a>.

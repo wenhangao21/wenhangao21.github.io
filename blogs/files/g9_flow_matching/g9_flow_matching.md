@@ -33,7 +33,7 @@ pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
 <figure id="figure-1" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png"
-    style="display:block; margin:auto; max-width:500px;"
+    style="display:block; margin:auto; max-width:500px; margin:auto;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-1">Figure 1</a>. Source distribution and target distribution.

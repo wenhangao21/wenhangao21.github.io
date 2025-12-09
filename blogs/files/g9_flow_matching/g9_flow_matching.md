@@ -183,7 +183,7 @@ Generated Samples:
 <figure id="figure-4" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/pi_0_to_pi_1.png"
-    style="display:block; margin:auto; max-width:800px;"
+    style="display:block; margin:auto; max-width:600px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-4">Figure 4</a>.
@@ -195,7 +195,7 @@ Generated Samples:
 <figure id="figure-5" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/samples_different_ite.png"
-    style="display:block; margin:auto; max-width:1000px;"
+    style="display:block; margin:auto; max-width:800px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-5">Figure 5</a>.

@@ -176,7 +176,7 @@ When training mean flow models, the loss often tends to be non-decreasing and di
 <figure id="figure-2" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g11_improved_mean_flow/loss_curve_MF.png"
-    style="display:block; max-width:250px; margin:auto;"
+    style="display:block; max-width:350px; margin:auto;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
     <a href="#figure-2">Figure 2</a>.
@@ -186,12 +186,15 @@ When training mean flow models, the loss often tends to be non-decreasing and di
 
 ## 6. Improved Mean Flow: Training Objective
 Note that the mean flow identity can be rewritten as:
-\begin{align*}
+
+$$
+\begin{aligned}
 \underbrace{v(X_t, t)}_{\text{instant. vel.}}
     &= \underbrace{u(X_t, r, t)}_{\text{avg. vel.}}
        +
        (t - r) \underbrace{\frac{d}{dt} u(X_t, r, t)}_{\text{time derivative}}.
-\end{align*}
+\end{aligned}
+$$
 
 In this view, if we parameterize $u$ with a neural network $u_\theta$, we can interpret the objective similar to a regular flow-matching loss that approximates the instantaneous velocity with a neural network:
 $$
@@ -253,7 +256,7 @@ The improved mean flow training is more stable:
 
 <figure id="figure-6" style="display:block; text-align:center;">
   <img
-    src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g11_improved_mean_flow/samples_different_ite.png"
+    src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g11_improved_mean_flow/samples_different_ite_FM_MF_iMF.png"
     style="display:block; margin:auto; max-width:800px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">

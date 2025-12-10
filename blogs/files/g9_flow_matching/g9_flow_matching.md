@@ -4,7 +4,7 @@ title: "Generative Models"
 author_profile: false
 ---
 
-# Flow Matching
+# Flow Matching (FM)
 
 **TL;DR:** This write-up contains the minimum essential concepts and simple code to understand flow matching.
 
@@ -107,9 +107,9 @@ $$
 
 1. We setup the velocity network $v_\theta$.
 ```python
-class MLP_FM(nn.Module):
+class MLP(nn.Module):
     def __init__(self, in_dim=2, context_dim=1, h=128, out_dim=2): # context is time
-        super(MLP_FM, self).__init__()
+        super(MLP, self).__init__()
         self.context_dim = context_dim
         self.network = nn.Sequential(nn.Linear(in_dim + context_dim, h), nn.GELU(),
                                      nn.Linear(h, h), nn.GELU(),
@@ -151,16 +151,16 @@ $$X_{t+\Delta t}=X_t+\Delta t \cdot v_\theta\left(X_t, t\right),$$
 
 where $\Delta t = \frac{1}{T}$ with T being the number of steps used in sampling. 
 ```python
-def sample_mean_flow(flow_model, N, T):
+def sample_flow(flow_model, N, T):
     """
-    Generate N samples from pi_1 with the mean flow model in T timesteps.
+    Generate N samples from pi_1 with the flow model in T timesteps.
     """
     x = torch.from_numpy(sample_pi_0(N=N)).to(device)
     dt = 1./T
     for i in (range(T)):
         t = torch.ones((x.shape[0], 1), device=x.device) * (i * dt)
         v_pred = flow_model(x.squeeze(0), t)
-        x = x + v_pred * 1. / T 
+        x = x + v_pred * 1. / T
     return x
 ```
 

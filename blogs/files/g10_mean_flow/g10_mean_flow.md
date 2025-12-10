@@ -34,6 +34,7 @@ pi_0 = sample_pi_0(N=5_000)
 grid_size, scale = 4, 2
 pi_1 = sample_pi_1(N=5_000, grid_size=grid_size, scale=scale)
 ```
+
 <figure id="figure-1" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g9_flow_matching/distributions.png"
@@ -145,7 +146,6 @@ def train_flow(flow_model, n_iterations=5_001, lr=3e-3, batch_size=4096, save_fr
     print(f"Training {flow}")
     optimizer = torch.optim.Adam(flow_model.parameters(), lr=lr)
     losses = []
-    checkpoints = []
     progress_bar = tqdm(range(n_iterations), desc="Training Flow Model", ncols=100)
     for iteration in progress_bar:
         x1 = torch.from_numpy(sample_pi_1(N=batch_size)).to(device)
@@ -290,26 +290,26 @@ def sample_flow(flow_model, N, T, flow="FM", reverse=True):
 
 ## 9. Additional Visualization
 
-<figure id="figure-4" style="display:block; text-align:center;">
+<figure id="figure-5" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g10_mean_flow/pi_0_to_pi_1.png"
     style="display:block; margin:auto; max-width:800px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
-    <a href="#figure-4">Figure 4</a>.
-    Visualization of the learned intermediate distributions $\pi_t$.
+    <a href="#figure-5">Figure 5</a>.
+    Visualization of the learned intermediate distributions $\pi_t$ using flow matching (FM) and mean flow (MF), respectively. 
   </figcaption>
 </figure>
 
 
-<figure id="figure-5" style="display:block; text-align:center;">
+<figure id="figure-6" style="display:block; text-align:center;">
   <img
     src="https://raw.githubusercontent.com/wenhangao21/wenhangao21.github.io/refs/heads/main/blogs/files/g10_mean_flow/samples_different_ite.png"
     style="display:block; margin:auto; max-width:800px;"
   >
   <figcaption style="display:block; margin-top:0.5em;">
-    <a href="#figure-5">Figure 5</a>.
-    Visualization of the learned target distribution at different training iterations.
+    <a href="#figure-6">Figure 6</a>.
+    Visualization of the learned target distribution at different training iterations using flow matching (FM) and mean flow (MF), respectively. 
   </figcaption>
 </figure>
 

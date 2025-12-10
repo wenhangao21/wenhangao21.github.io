@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Generative Models"
+title: "Flow Matching"
 author_profile: false
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Generative Models"
+title: "Mean Flow"
 author_profile: false
 ---
 

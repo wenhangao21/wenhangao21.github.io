@@ -72,7 +72,7 @@ $$
 The mean flow objective is:
 
 $$
-\min _\theta \int_0^1 \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v_s - (t-r) \left[\frac{\partial u_\theta}{\partial X_t}, \frac{\partial u_\theta}{\partial r}, \frac{\partial u_\theta}{\partial t}\right] \cdot [v_s, 0,1] \right)\right\|^2\right] d t.
+\min _\theta \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v_s - (t-r) \left[\frac{\partial u_\theta}{\partial X_t}, \frac{\partial u_\theta}{\partial r}, \frac{\partial u_\theta}{\partial t}\right] \cdot [v_s, 0,1] \right)\right\|^2\right].
 $$
 
 ## 3. Mean Flow → Improved Mean Flow in One Line of Code
@@ -155,15 +155,16 @@ where $\frac{d X_t}{d t} = v, \frac{d t}{d t} = 1$ and $\frac{d r}{d t} = 0$. Th
 The training objective is:
 
 $$
-\min _\theta \int_0^1 \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v(X_t, t) - (t-r) \left[\frac{\partial u}{\partial X_t}, \frac{\partial u}{\partial r}, \frac{\partial u}{\partial t}\right] \cdot [v(X_t, t), 0,1] \right)\right\|^2\right] d t,
+\min _\theta  \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v(X_t, t) - (t-r) \left[\frac{\partial u}{\partial X_t}, \frac{\partial u}{\partial r}, \frac{\partial u}{\partial t}\right] \cdot [v(X_t, t), 0,1] \right)\right\|^2\right],
 $$
+
 where $r=\min \left(s_1, s_2\right), t=\max \left(s_1, s_2\right)$ with $s_1,s_2 \sim \text{Uniform (0,1)}$, $X_t=t X_1+(1-t) X_0$.
 
 **In mean flow, both $v(X_t, t)$ are replaced with the conditional velocity given the end points $v_s=X_1-X_0$:**
 
 
 $$
-\min _\theta \int_0^1 \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v_s - (t-r) \left[\frac{\partial u_\theta}{\partial X_t}, \frac{\partial u_\theta}{\partial r}, \frac{\partial u_\theta}{\partial t}\right] \cdot [v_s, 0,1] \right)\right\|^2\right] d t.
+\min _\theta \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v_s - (t-r) \left[\frac{\partial u_\theta}{\partial X_t}, \frac{\partial u_\theta}{\partial r}, \frac{\partial u_\theta}{\partial t}\right] \cdot [v_s, 0,1] \right)\right\|^2\right].
 $$
 
 **While replacing the first $v$ with $v_s$ is consistent with flow matching, replacing the second $v$ is not justified and leads to unstable training.**
@@ -211,7 +212,7 @@ Similar to regular flow matching, we replace the marginal velocity $v\left(X_t, 
 The improved mean flow objective is:
 
 $$
-\min _\theta \int_0^1 \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v_s - (t-r) \left[\frac{\partial u_\theta}{\partial X_t}, \frac{\partial u_\theta}{\partial r}, \frac{\partial u_\theta}{\partial t}\right] \cdot [u_\theta(X_t, t, t), 0,1] \right)\right\|^2\right] d t.
+\min _\theta \mathbb{E}_{X_0 \sim \pi_0, X_1 \sim \pi_1, r, t}\left[\left\| u_\theta\left(X_t, r, t\right) - \left(v_s - (t-r) \left[\frac{\partial u_\theta}{\partial X_t}, \frac{\partial u_\theta}{\partial r}, \frac{\partial u_\theta}{\partial t}\right] \cdot [u_\theta(X_t, t, t), 0,1] \right)\right\|^2\right].
 $$
 
 The improved mean flow training is more stable:

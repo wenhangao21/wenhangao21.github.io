@@ -11,17 +11,29 @@ redirect_from:
 # About me
 I'm a fourth year Ph.D. student in Applied Mathematics at Stony Brook University supervised by [Professor Yi Liu](https://jacoblau0513.github.io/). 
 
-Previously, I obtained a Bachelor of Science degree from [Stony Brook University](https://www.stonybrook.edu/) in both [applied mathematics](https://www.stonybrook.edu/commcms/ams/)📙 and [pure mathematics](http://www.math.stonybrook.edu/)📕. During my undergraduate years, I was fortunate to conduct research under the guidance of Dr. Chunmei Wang (Department of Mathematics, University of Florida) and Dr. Haizhao Yang (Department of Mathematics, University of Maryland).
+Previously, I obtained a Bachelor of Science degree from [Stony Brook University](https://www.stonybrook.edu/) in both [applied mathematics](https://www.stonybrook.edu/commcms/ams/)📙 and [pure mathematics](http://www.math.stonybrook.edu/)📕. 
+During my undergraduate years, I was fortunate to conduct research under the guidance of Dr. Chunmei Wang (Department of Mathematics, University of Florida) and Dr. Haizhao Yang (Department of Mathematics, University of Maryland).
 
 My research focuses on **Geometric Deep Learning, Generative Models, Neural Operators, and AI for Science in general**.
 
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
 
+
+# Looking for a Job
+I am currently seeking full-time positions starting in Summer 2026, as I was recently informed that I can graduate in Summer 2026.
+My Ph.D. research focuses on AI for Science and generative models. 
+Over the past two years since entering AI research in late 2023, I have publications as first author / co-first / equal contributor in ICLR (1), ICML (1), NeurIPS (1), TMLR (2), and ACL Findings (1). 
+I also currently have three first-author papers in submission to ACL and ICML. 
+I have a strong background in both theory and implementation, and I can learn new topics quickly. 
+Beyond research, I actively write technical blogs (https://wenhangao21.github.io/tech_blogs/) and develop open-source AI tools (https://github.com/wenhangao21/ICLR26_Paper_Finder; 200+ GitHub stars, more than 10k members reached on LinkedIn, more than 1,400+ likes/saves on RedNote). 
+I also have experience translating research into products: my summer internship research has been converted into a patent application and integrated into a larger team pipeline. 
+Please reach out if you are hiring an AI scientist/engineer.
+
 Education
 ======
 * Computer Science and Information Security (3.97/4.0); Queensborough Community College, Aug. 2018 - May 2019
 * B.S. Mathematics; Applied Mathematics & Statistics (3.97/4.0); Stony Brook University, Aug. 2019 - Dec. 2021
-* Ph.D. Operations Research (4.0/4.0); Stony Brook University, Aug. 2022 - TBD
+* Ph.D. Operations Research (4.0/4.0); Stony Brook University, Aug. 2022 - Summer 2026
 
 
 # News
@@ -52,6 +64,6 @@ Education
 
 
 # First or Co-first Author Preprints
-* One paper on LLM-assisted drug editing; Submitted to ICLR 2026; **W.Gao** el al.
+* One paper on LLM-assisted drug editing; In submission to ACL 2026; **W.Gao** el al.
 * One paper on size-consistent diffusion models for 3D molecular generation; Submitted to ICLR 2026; **W.Gao**, J.Qu, Y.Liu
 * One paper that reveals neural operators can learn hidden physics from data; In Submission to ICML 2026; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu

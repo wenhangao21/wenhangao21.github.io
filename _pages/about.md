@@ -19,15 +19,6 @@ My research focuses on **Geometric Deep Learning, Generative Models, Neural Oper
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
 
 
-# Looking for a Job
-I am currently seeking full-time positions starting in Summer 2026, as I was recently informed that I can graduate in Summer 2026.
-My Ph.D. research focuses on AI for Science and generative models. 
-Over the past two years since entering AI research in late 2023, I have publications as first author / co-first / equal contributor in ICLR (1), ICML (1), NeurIPS (1), TMLR (2), and ACL Findings (1). 
-I also currently have three first-author papers in submission to ACL and ICML. 
-I have a strong background in both theory and implementation, and I can learn new topics quickly. 
-Beyond research, I actively write [technical blogs](https://wenhangao21.github.io/tech_blogs/) and develop [open-source AI tools](https://github.com/wenhangao21/ICLR26_Paper_Finder) (200+ GitHub stars, more than 10k members reached on LinkedIn, more than 1,400+ likes/saves on RedNote). 
-I also have experience translating research into products: my summer internship research has been converted into a patent application and integrated into a larger team pipeline. 
-Please reach out if you are hiring an AI scientist/engineer.
 
 Education
 ======

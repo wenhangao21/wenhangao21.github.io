@@ -28,9 +28,9 @@ Education
 
 Teaching
 ======
+- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
 - AMS 595, Fundamentals of Computing (Required course for most M.S. students in Applied Math) Syllabus: [Link](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
 	- Excellence in Teaching Award
-- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
 	
 # News
 * October 2025: Launched [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder), a tool that helps researchers discover relevant literature in selected venues and years, powered by large language models. 

@@ -26,7 +26,12 @@ Education
 * B.S. Mathematics; Applied Mathematics & Statistics (3.97/4.0); Stony Brook University, Aug. 2019 - Dec. 2021
 * Ph.D. Operations Research (4.0/4.0); Stony Brook University, Aug. 2022 - Summer/Fall 2026
 
-
+Teaching
+======
+- AMS 595, Fundamentals of Computing (Required course for most M.S. students in Applied Math) Syllabus: [Link](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
+	- xcellence in Teaching Award
+- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
+	
 # News
 * October 2025: Launched [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder), a tool that helps researchers discover relevant literature in selected venues and years, powered by large language models. 
 * October 2025: Gave a talk at the Institute for Advanced Computational Science (IACS-Stony Brook) on AI for Science. [Abstract](https://calendar.stonybrook.edu/site/iacs/event/iacs-student-seminar-speaker-wenhan-gao-applied-mathematics--statistics/);[Slides](https://wenhangao21.github.io/files/Wenhan_IACS_Student_Seminar_102025.pdf)
@@ -41,7 +46,6 @@ Education
 * August 2024: Finished teaching AMS 326, Numerical Analysis. Congrats to all my students on a job well done! [Syllabus](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf);[Lecture Notes](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
 * August 2024: Mentored undergraduate student Xiang Liu (freshman in CS/AMS), who successfully completed a summer research project on neural operators for climate change through the SUNY SOAR program. Congrats!
 * March 2024: Awarded the Excellence in Student Teaching Award from the AMS department at Stony Brook for Fall 2023!
-* December 2023: Finished teaching the graduate course AMS 595, Fundamentals of Computing. Congrats to all my students on a job well done! [Syllabus](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf);[Lecture Notes](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
 * August 2023: Passed Ph.D. qualifying exam in AMS!
 * February 2023: First author on a paper on [active learning-based sampling for high-dimensional PDEs](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=te4HWo0AAAAJ&citation_for_view=te4HWo0AAAAJ:u5HHmVD_uO8C) published in the Journal of Computational Physics.
 

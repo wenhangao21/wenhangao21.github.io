@@ -17,8 +17,8 @@ Researcher, educator, engineer/developer.
 - **Researcher**: 
 	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/); [Publication](https://wenhangao21.github.io/publications/)
 	- Undergraduate research funded by NSF REU
-			- [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida)
-			- [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)
+		- [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida)
+		- [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)
 	- Interests: Generative Models, Large Language Models, AI for Science
 - **Educator**:
 	- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) 

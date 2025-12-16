@@ -14,7 +14,7 @@ redirect_from:
 
 
 
-- **Research**: 
+- **Researcher**: 
 	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/); [Publication](https://wenhangao21.github.io/publications/)
 	- Undergraduate research funded by NSF REU
 			- [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida)

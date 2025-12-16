@@ -15,7 +15,7 @@ Researcher, educator, engineer/developer.
 
 
 - **Researcher**: 
-	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/); [Publication](https://wenhangao21.github.io/publications/)
+	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/)
 	- Undergraduate research funded by NSF REU
 		- [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida)
 		- [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)

@@ -10,7 +10,7 @@ redirect_from:
 
 # About me
 
-**Researcher** (4th-year Ph.D. student); **educator** (lecturer, technical blog writer); **engineer/developer** (open-source tools, e.g., [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder); blogs with code).
+Researcher, educator, engineer/developer.
 
 
 

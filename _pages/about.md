@@ -15,12 +15,16 @@ redirect_from:
 
 
 - **Research**: 
-	- Ph.D. student in Applied Mathematics at Stony Brook University supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/)
-	- Undergraduate research funded by NSF REU supervised by [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida) and [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)
+	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/); [Publication](https://wenhangao21.github.io/publications/)
+	- Undergraduate research funded by NSF REU
+			- [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida)
+			- [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)
 	- Interests: Generative Models, Large Language Models, AI for Science
 - **Educator**:
-	- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) - Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
-	- AMS 595, Fundamentals of Computing (Required course for most M.S. students in Applied Math) - Syllabus: [Link](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
+	- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) 
+		- Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
+	- AMS 595, Fundamentals of Computing (Required course for most M.S. students in Applied Math) 
+		- Syllabus: [Link](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
 		- Excellence in Teaching Award
 	- [Technical Blogs](https://wenhangao21.github.io/tech_blogs/)
 	

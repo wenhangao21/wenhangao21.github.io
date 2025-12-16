@@ -24,8 +24,8 @@ main:
 #   - title: "Guide"
 #     url: /markdown/
 
-  - title: "Research"
-    url: /research/
+  # - title: "Research"
+  #   url: /research/
 
   # - title: "Teaching"
   #   url: /teaching/

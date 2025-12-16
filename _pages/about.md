@@ -15,7 +15,7 @@ redirect_from:
 
 
 - **Research**: 
-	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/); [publication](https://wenhangao21.github.io/publications/)
+	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/); [Publication](https://wenhangao21.github.io/publications/)
 	- Undergraduate research funded by NSF REU
 			- [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida)
 			- [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)
@@ -31,7 +31,7 @@ redirect_from:
 - **Engineer/Developer:**
 	- [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder) (15,000+ queries; 240+ GitHub stars; 2,000+ likes and saves on RedNote; 13,500+ members reached on LinkedIn)
 	- [Technical Blogs with Code](https://wenhangao21.github.io/tech_blogs/)
-	- Database and web hosting with LLM-based semantic search for [Neural PDE Solvers](https://github.com/bitzhangcy/Neural-PDE-Solver); in preparation; seeking collaborators to help with data acquisition
+	- Database and web hosting with LLM-based semantic search for [Neural PDE Solvers](https://github.com/bitzhangcy/Neural-PDE-Solver); In preparation; Seeking collaborators to help with data acquisition
 
 
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  

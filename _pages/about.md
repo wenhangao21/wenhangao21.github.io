@@ -9,12 +9,26 @@ redirect_from:
 ---
 
 # About me
-I'm a fourth year Ph.D. student in Applied Mathematics at Stony Brook University supervised by [Professor Yi Liu](https://jacoblau0513.github.io/). 
 
-Previously, I obtained a Bachelor of Science degree from [Stony Brook University](https://www.stonybrook.edu/) in both [applied mathematics](https://www.stonybrook.edu/commcms/ams/)📙 and [pure mathematics](http://www.math.stonybrook.edu/)📕. 
-During my undergraduate years, I was fortunate to conduct research under the guidance of Dr. Chunmei Wang (Department of Mathematics, University of Florida) and Dr. Haizhao Yang (Department of Mathematics, University of Maryland).
+**Researcher** (4th-year Ph.D. student); **educator** (lecturer, technical blog writer); **engineer/developer** (open-source tools, e.g., [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder); blogs with code).
 
-My research focuses on **Geometric Deep Learning, Generative Models, Neural Operators, and AI for Science in general**.
+
+
+- **Research**: 
+	- Ph.D. student in Applied Mathematics at Stony Brook University supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/)
+	- Undergraduate research funded by NSF REU supervised by [Dr. Chunmei Wang](https://people.clas.ufl.edu/chunmei-wang/) (Department of Mathematics, University of Florida) and [Dr. Haizhao Yang](https://haizhaoyang.github.io/) (Department of Mathematics, University of Maryland)
+	- Interests: Generative Models, Large Language Models, AI for Science
+- **Educator**:
+	- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) - Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
+	- AMS 595, Fundamentals of Computing (Required course for most M.S. students in Applied Math) - Syllabus: [Link](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
+		- Excellence in Teaching Award
+	- [Technical Blogs](https://wenhangao21.github.io/tech_blogs/)
+	
+- **Engineer/Developer:**
+	- [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder) (15,000+ queries; 240+ GitHub stars; 2,000+ likes and saves on RedNote; 13,500+ members reached on LinkedIn)
+	- [Technical Blogs with Code](https://wenhangao21.github.io/tech_blogs/)
+	- Database and web hosting with LLM-based semantic search for [Neural PDE Solvers](https://github.com/bitzhangcy/Neural-PDE-Solver); In preparation; seeking collaborators to help with data acquisition
+
 
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
 

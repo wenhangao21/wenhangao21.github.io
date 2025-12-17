@@ -33,19 +33,12 @@ Researcher, educator, engineer/developer.
 
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
 
-
-
 Education
 ======
 * Computer Science and Information Security (3.97/4.0); Queensborough Community College, Aug. 2018 - May 2019
 * B.S. Mathematics; Applied Mathematics & Statistics (3.97/4.0); Stony Brook University, Aug. 2019 - Dec. 2021
 * Ph.D. Operations Research (4.0/4.0); Stony Brook University, Aug. 2022 - Summer/Fall 2026
 
-Teaching
-======
-- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) - Syllabus: [Link](https://wenhangao21.github.io/files/AMS326_teaching/AMS_326_Syllabus.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS326_teaching)
-- AMS 595, Fundamentals of Computing (Required course for most M.S. students in Applied Math) - Syllabus: [Link](https://wenhangao21.github.io/files/AMS595_teaching/595_Syllabus_Fall2023.pdf); Lecture Notes: [Link](https://github.com/wenhangao21/wenhangao21.github.io/tree/master/files/AMS595_teaching)
-	- Excellence in Teaching Award
 	
 # News
 * October 2025: Launched [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder), a tool that helps researchers discover relevant literature in selected venues and years, powered by large language models. 

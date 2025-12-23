@@ -1,46 +1,34 @@
 ---
+layout: single
 permalink: /paper_finder/
 title: "AI Conference Paper Finder"
 author_profile: false
-redirect_from: 
-  - /md/
-  - /markdown.html
 ---
 
 <style>
-/* Hide footer */
-.page__footer {
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.page__footer,
+.masthead,
+.initial-content,
+.page {
   display: none !important;
 }
 
-/* Remove layout padding/margins */
-.page,
-.page__content,
-.initial-content,
-main {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* Escape theme width */
-.fullscreen-embed {
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-}
-
-/* Prevent horizontal scroll */
-body {
-  overflow-x: hidden;
+#app-root {
+  position: fixed;
+  inset: 0;
 }
 </style>
 
-<div class="fullscreen-embed">
+<div id="app-root">
   <iframe
     src="https://wenhanacademia-ai-paper-finder.hf.space"
-    style="width:100vw; height:100vh; border:none; display:block;">
+    style="width:100%; height:100%; border:none;">
   </iframe>
 </div>

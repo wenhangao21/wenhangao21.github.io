@@ -11,11 +11,16 @@ redirect_from:
 .page__footer {
   display: none !important;
 }
+
+/* REMOVE left sidebar offset */
+.page {
+  margin-left: 0 !important;
+}
 </style>
 
-<iframe
-  src="https://wenhanacademia-ai-paper-finder.hf.space"
-  style="width:90vw; height:80vh; border:none; display:block;">
-</iframe>
-  
-
+<div style="width:100vw; height:90vh;">
+  <iframe
+    src="https://wenhanacademia-ai-paper-finder.hf.space"
+    style="width:100%; height:100%; border:none;">
+  </iframe>
+</div>

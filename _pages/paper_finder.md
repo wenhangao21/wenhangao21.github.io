@@ -1,3 +1,12 @@
+---
+permalink: /paper_finder/
+title: "AI Conference Paper Finder"
+author_profile: false
+redirect_from: 
+  - /md/
+  - /markdown.html
+---
+
 <style>
 /* 1) Hide footer + remove its spacing */
 .page__footer,

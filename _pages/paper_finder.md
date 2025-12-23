@@ -1,13 +1,5 @@
----
-permalink: /paper_finder/
-title: "AI Conference Paper Finder"
-author_profile: false
-redirect_from: 
-  - /md/
-  - /markdown.html
----
 <style>
-/* Hide footer (and any subparts) */
+/* 1) Hide footer + remove its spacing */
 .page__footer,
 .page__footer-follow,
 .page__footer-copyright {
@@ -17,7 +9,7 @@ redirect_from:
   height: 0 !important;
 }
 
-/* Nuke all bottom spacing the theme might add */
+/* 2) Remove theme bottom padding that can create "white space" */
 #main,
 .initial-content,
 .page,
@@ -28,18 +20,11 @@ redirect_from:
   padding: 0 !important;
 }
 
-/* Optional: if you want ONLY the iframe (no title/meta spacing) */
-.page__title,
-.page__meta,
-.page__share {
-  display: none !important;
-}
-
-/* Make iframe fill viewport */
+/* 3) Full-viewport iframe */
 .fullscreen-embed {
   position: fixed;
-  inset: 0;          /* top/right/bottom/left = 0 */
-  z-index: -1;
+  inset: 0;
+  z-index: 0;              /* keep it normal (NOT -1) */
 }
 .fullscreen-embed iframe {
   width: 100vw;
@@ -48,9 +33,13 @@ redirect_from:
   display: block;
 }
 
-/* No scrolling because the page is now just the viewport */
-html, body { height: 100%; }
-body { overflow: hidden; }
+/* 4) Put masthead/nav above the iframe (this is the key) */
+.masthead,
+.greedy-nav,
+.masthead__inner-wrap {
+  position: relative !important;   /* make z-index apply */
+  z-index: 9999 !important;
+}
 </style>
 
 <div class="fullscreen-embed">

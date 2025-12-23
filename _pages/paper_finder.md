@@ -32,6 +32,6 @@ body {
 <div class="fullscreen-embed">
   <iframe
     src="https://wenhanacademia-ai-paper-finder.hf.space"
-    style="width:100vw; height:90vh; border:none; display:block;">
+    style="width:100vw; height:70vh; border:none; display:block;">
   </iframe>
 </div>

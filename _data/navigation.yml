@@ -35,3 +35,6 @@ main:
     
   - title: "Technical Blogs"
     url: /tech_blogs/
+
+  - title: "AI Conference Paper Finder"
+    url: /paper_finder/

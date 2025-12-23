@@ -8,19 +8,30 @@ redirect_from:
 ---
 
 <style>
+/* Hide footer */
 .page__footer {
   display: none !important;
 }
 
-/* REMOVE left sidebar offset */
-.page {
-  margin-left: 0 !important;
+/* Escape the theme content container */
+.fullscreen-embed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+}
+
+/* Optional: prevent horizontal scroll */
+body {
+  overflow-x: hidden;
 }
 </style>
 
-<div style="width:100vw; height:90vh;">
+<div class="fullscreen-embed">
   <iframe
     src="https://wenhanacademia-ai-paper-finder.hf.space"
-    style="width:100%; height:100%; border:none;">
+    style="width:100vw; height:90vh; border:none; display:block;">
   </iframe>
 </div>

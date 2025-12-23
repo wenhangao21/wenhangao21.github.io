@@ -39,7 +39,7 @@ redirect_from:
 .fullscreen-embed {
   position: fixed;
   inset: 0;          /* top/right/bottom/left = 0 */
-  z-index: 0;
+  z-index: -1;
 }
 .fullscreen-embed iframe {
   width: 100vw;

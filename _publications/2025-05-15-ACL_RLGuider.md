@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/2025-05-15-ACL_RLGuider
 excerpt: 'We develop an RL agent for LLM-assisted drug editing.'
 date: 2025-05-01
-venue: 'Findings of the Association for Computational Linguistics: ACL 2025'
+venue: 'Findings of the Association for Computational Linguistics: ACL'
 paperurl: 'http://aclanthology.org/2025.findings-acl.680/'
 codeurl: 'https://github.com/xufliu/RL-Guider'
 bibtex: ICML25_RISE.bib

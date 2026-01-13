@@ -9,7 +9,7 @@ paperurl: 'http://aclanthology.org/2025.findings-acl.680/'
 codeurl: 'https://github.com/xufliu/RL-Guider'
 bibtex: ICML25_RISE.bib
 citation: 'RL-Guider: Leveraging Historical Decisions and Feedback for Drug Editing with Large Language Models. Xufeng Liu, Yixuan Ding, Jingxiang Qu, Yichi Zhang, Wenhan Gao, Yi Liu. ACL'
-authors: 'X.Liu\*, Y.Ding\*, J.Qu, Y.Zhang, W.Gao‡, Y.Liu‡.'
+authors: 'X.Liu\*, Y.Ding\*, J.Qu, Y.Zhang, **W.Gao**‡, Y.Liu‡.'
 
 header:
   teaser: ACL_RLGuider.png

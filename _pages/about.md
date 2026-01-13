@@ -57,9 +57,9 @@ Education
 * August 2023: Passed Ph.D. qualifying exam in AMS!
 * February 2023: First author on a paper on [active learning-based sampling for high-dimensional PDEs](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=te4HWo0AAAAJ&citation_for_view=te4HWo0AAAAJ:u5HHmVD_uO8C) published in the Journal of Computational Physics.
 
-# First or Co-first Author Publications
+# First or Corresponding Author Publications
 
-\* indicates equal contributors.
+\* indicates equal contributors/co-first authors; ‡ indicates equal senior contributors/co-corresponding authors
 
 {% for post in site.publications reversed %}
   {% include archive-single.html %}
@@ -67,6 +67,6 @@ Education
 
 
 # First or Co-first Author Preprints
-* One paper on LLM-assisted drug editing; In submission to ACL 2026; **W.Gao** el al.
+* One paper on LLM-assisted drug editing; Submitted to ACL 2026; **W.Gao** el al.
 * One paper on size-consistent diffusion models for 3D molecular generation; Submitted to ICLR 2026; **W.Gao**, J.Qu, Y.Liu
 * One paper that reveals neural operators can learn hidden physics from data; In Submission to ICML 2026; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu

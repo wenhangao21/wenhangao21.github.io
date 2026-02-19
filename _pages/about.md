@@ -68,5 +68,5 @@ Education
 
 # First or Co-first Author Preprints
 * One paper on LLM-assisted drug editing; Submitted to ACL 2026; **W.Gao** el al.
-* One paper on size-consistent diffusion models for 3D molecular generation; Submitted to ICLR 2026; **W.Gao**, J.Qu, Y.Liu
-* One paper that reveals neural operators can learn hidden physics from data; In Submission to ICML 2026; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu
+* One paper on size-consistent diffusion models for 3D molecular generation; Submitted to ICML 2026; **W.Gao**, J.Qu, Y.Liu
+* One paper that reveals neural operators can learn hidden physics from data; Submitted to ICML 2026; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu

@@ -10,12 +10,14 @@ redirect_from:
 
 # About me
 
-Researcher, educator, engineer/developer.
+Ph.D. in Applied Math from Stony Brook
 
+GenAI, AI for Science
 
-
+The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
+<!--
 - **Researcher**: 
-	- Ph.D. student in Applied Mathematics at Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/)
+	- Ph.D. Applied Mathematics from Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/)
 	- Generative Models, Large Language Models, AI for Science
 - **Educator**:
 	- AMS 326, Numerical Analysis (Upper level core course for undergrad students in Applied Math) 
@@ -29,17 +31,10 @@ Researcher, educator, engineer/developer.
 	- [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder) (15,000+ queries; 240+ GitHub stars; 2,000+ likes and saves on RedNote; 13,500+ members reached on LinkedIn)
 	- [Technical Blogs with Code](https://wenhangao21.github.io/tech_blogs/)
 	- Database and web hosting with LLM-based semantic search for [Neural PDE Solvers](https://github.com/bitzhangcy/Neural-PDE-Solver); In preparation; Seeking collaborators to help with data acquisition
+-->
 
 
-The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
-
-Education
-======
-* Computer Science and Information Security (3.97/4.0); Queensborough Community College, Aug. 2018 - May 2019
-* B.S. Mathematics; Applied Mathematics & Statistics (3.97/4.0); Stony Brook University, Aug. 2019 - Dec. 2021
-* Ph.D. Operations Research (4.0/4.0); Stony Brook University, Aug. 2022 - Summer/Fall 2026
-
-	
+<!--
 # News
 * October 2025: Launched [AI Paper Finder](https://github.com/wenhangao21/ICLR26_Paper_Finder), a tool that helps researchers discover relevant literature in selected venues and years, powered by large language models. 
 * October 2025: Gave a talk at the Institute for Advanced Computational Science (IACS-Stony Brook) on AI for Science. [Abstract](https://calendar.stonybrook.edu/site/iacs/event/iacs-student-seminar-speaker-wenhan-gao-applied-mathematics--statistics/);[Slides](https://wenhangao21.github.io/files/Wenhan_IACS_Student_Seminar_102025.pdf)
@@ -56,6 +51,7 @@ Education
 * March 2024: Awarded the Excellence in Student Teaching Award from the AMS department at Stony Brook for Fall 2023!
 * August 2023: Passed Ph.D. qualifying exam in AMS!
 * February 2023: First author on a paper on [active learning-based sampling for high-dimensional PDEs](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=te4HWo0AAAAJ&citation_for_view=te4HWo0AAAAJ:u5HHmVD_uO8C) published in the Journal of Computational Physics.
+-->
 
 # First or Corresponding Author Publications
 
@@ -67,6 +63,5 @@ Education
 
 
 # First or Co-first Author Preprints
-* One paper on LLM-assisted drug editing; Submitted to ACL 2026; **W.Gao** el al.
 * One paper on size-consistent diffusion models for 3D molecular generation; Submitted to ICML 2026; **W.Gao**, J.Qu, Y.Liu
 * One paper that reveals neural operators can learn hidden physics from data; Submitted to ICML 2026; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu

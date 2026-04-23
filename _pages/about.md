@@ -15,6 +15,7 @@ Ph.D. in Applied Math from Stony Brook
 GenAI, AI for Science
 
 The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook(dot)edu 📫  
+
 <!--
 - **Researcher**: 
 	- Ph.D. Applied Mathematics from Stony Brook supervised by [Dr. Yi Liu](https://jacoblau0513.github.io/)

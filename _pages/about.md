@@ -62,7 +62,3 @@ The best way to contact me is through email: wenhan(dot)gao(at symbol)stonybrook
   {% include archive-single.html %}
 {% endfor %}
 
-
-# First or Co-first Author Preprints
-* One paper on size-consistent diffusion models for 3D molecular generation; Submitted to ICML 2026; **W.Gao**, J.Qu, Y.Liu
-* One paper that reveals neural operators can learn hidden physics from data; Submitted to ICML 2026; **W.Gao\***, J.Luo\*, R.Xu, F.Wan, X.Liu, Y.Liu
